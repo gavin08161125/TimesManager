@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Authority extends Model
 {
-    //
+    protected $table = 'authorities';
 }
