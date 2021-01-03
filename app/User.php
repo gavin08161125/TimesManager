@@ -38,4 +38,9 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     protected $redirectTo = '/dashboard';
+
+
+    public function projects() {
+        return $this -> belongsToMany('Project');
+    }
 }
