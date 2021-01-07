@@ -9,13 +9,15 @@ class ProjectController extends Controller
 {
     public function index()
     {
+
         $projects = Project::get();
         return view('admin.project.index', compact('projects'));
     }
 
     public function create(Request $request)
     {
-        return view('admin.project.create');
+        $myself = auth()->user()->email;
+        return view('admin.project.create', compact('myself'));
     }
 
     public function store(Request $request)
@@ -28,9 +30,10 @@ class ProjectController extends Controller
 
     public function edit($id)
     {
+        $myself = auth()->user()->email;
         $data = Project::find($id);
 
-        return view('admin.project.edit',compact('data'));
+        return view('admin.project.edit',compact('data','myself'));
     }
 
     public function update(Request $request, $id)
