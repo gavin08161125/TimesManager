@@ -28,5 +28,7 @@ Route::get('/profile', function () {
     return "seee";
  })->middleware('verified');
 
- Route::get('/authorities', 'AuthorityController@index');
+Route::get('/authorities', 'AuthorityController@index');
 
+
+Route::get('/project', 'ProjectController@index');
