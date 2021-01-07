@@ -10,7 +10,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::get();
-        return view('admin.project.TimesManager', compact('projects'));
+        return view('admin.project.index', compact('projects'));
     }
 
     public function create(Request $request)
@@ -23,7 +23,7 @@ class ProjectController extends Controller
         $projects= $request->all();
         Project::create($projects);
 
-        return redirect('admin/project');
+        return redirect('/admin/project/');
     }
 
     public function edit($id)

@@ -35,14 +35,12 @@ Route::get('/project', 'ProjectController@index');
 
 
 Route::group(['middleware' =>['auth'],'prefix'=>'admin/'], function () {
-
-    Route::get('project/edit/{id}','ProjectController@edit');
-    Route::post('project/update/{id}','ProjectController@update');
-    Route::get('project/destroy/{id}','ProjectController@destroy');
-
-    Route::group(['prefix' => 'project'], function () {
+   Route::group(['prefix' => 'project'], function () {
         Route::get('/', 'ProjectController@index')->name('home');
         Route::post('store', 'ProjectController@store');
         Route::get('create', 'ProjectController@create');
+        Route::get('edit/{id}','ProjectController@edit');
+        Route::post('update/{id}','ProjectController@update');
+        Route::get('destroy/{id}','ProjectController@destroy');
     });
 });

@@ -18,7 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('title');
             $table->dateTime('startingtime');
             $table->dateTime('deadline');
-            $table->integer('totaltime');
+            $table->integer('totaltime')->nullable();
             $table->longText('description');
             $table->string('owner');
             $table->timestamps();
