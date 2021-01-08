@@ -16,16 +16,16 @@
         </div>
         <div class="form-group">
             <label for="startingtime">開始時間</label>
-            <input type="datetime-local"   class="form-control" id="startingtime" name="startingtime"  required>
+            <input type="date"   class="form-control" id="startingtime" name="startingtime"  required>
         </div>
         <div class="form-group">
             <label for="deadline">結束時間</label>
-            <input type="datetime-local"  class="form-control" id="deadline" name="deadline" required>
+            <input type="date"  class="form-control" id="deadline" name="deadline" required>
         </div>
 
         <div class="form-group">
             <label for="owner">建立人</label>
-            <input type="text" class="form-control" id="owner" name="owner" value="{{$myself}}" required  readonly>
+            <input type="text" class="form-control" id="owner" name="owner" value="{{$myself}}" required disabled>
         </div>
 
         <div class="form-group">
