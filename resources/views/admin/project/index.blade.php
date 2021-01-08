@@ -25,12 +25,15 @@
             </tr>
         </thead>
         <tbody>
+
+            <?php dd($projects)?>
             @foreach ($projects as $project)
             <tr>
                 <td>{{$project->title}}</td>
                 <td>{{$project->startingtime}}</td>
                 <td>{{$project->deadline}}</td>
-                <td>{{$project->totaltime}}</td>
+                {{-- $hour=floor((strtotime($enddate)-strtotime($startdate))%86400/3600); --}}
+                <td>{{floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600)}}小時</td>
                 <td>{{$project->description}}</td>
                 <td>{{$project->owner}}</td>
                 <td><a class='btn btn-success' href="/admin/project/edit/{{$project->id}}">編輯</a><a
@@ -40,7 +43,7 @@
         </tbody>
 
     </table>
-    <a class='btn btn-success'href="/admin/project/create" class="btn btn-sm">新增</a>
+    <a class='btn btn-success' href="/admin/project/create" class="btn btn-sm">新增</a>
 </div>
 
 
@@ -49,12 +52,22 @@
 
 @section('js')
 
+<!-- #region datatables files -->
+
+
 <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 
 <script>
+    $.noConflict();
+    jQuery( document ).ready(function( $ ) {
+        $('#myTable').DataTable();
+    });
+    // Code that uses other library's $ can follow here.
+</script>
+{{-- <script>
     $(document).ready( function () {
     $('#myTable').DataTable();
 } );
-</script>
-@endsection
+</script> --}}
 
+@endsection
