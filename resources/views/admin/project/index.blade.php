@@ -26,14 +26,27 @@
         </thead>
         <tbody>
 
-            <?php dd($projects)?>
+
             @foreach ($projects as $project)
             <tr>
                 <td>{{$project->title}}</td>
                 <td>{{$project->startingtime}}</td>
                 <td>{{$project->deadline}}</td>
                 {{-- $hour=floor((strtotime($enddate)-strtotime($startdate))%86400/3600); --}}
-                <td>{{floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600)}}小時</td>
+                <td>
+                    @if (floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600) >= 1)
+                     還有{{floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600)}} 小時
+
+                    @elseif(floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600)+1 >0 && floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600)+1 <= 1 )
+                    {{floor((strtotime($project->deadline)-strtotime($project->startingtime))/60 )}} 分鐘
+                    @else
+                    鬧?
+                    @endif
+
+                </td>
+
+
+
                 <td>{{$project->description}}</td>
                 <td>{{$project->owner}}</td>
                 <td><a class='btn btn-success' href="/admin/project/edit/{{$project->id}}">編輯</a><a
