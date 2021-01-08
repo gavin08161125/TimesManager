@@ -43,4 +43,18 @@ Route::group(['middleware' =>['auth'],'prefix'=>'admin/'], function () {
         Route::post('update/{id}','ProjectController@update');
         Route::get('destroy/{id}','ProjectController@destroy');
     });
+
+    Route::group(['prefix' => 'task'], function () {
+        Route::get('/', 'TaskController@index')->name('home');
+
+        Route::post('store','TaskController@store');
+        Route::get('create','TaskController@create');
+
+        Route::get('edit/{id}','TaskController@edit');
+        Route::post('update/{id}','TaskController@update');
+
+        Route::get('destroy/{id}','TaskController@destroy');
+        
+
+    });
 });
