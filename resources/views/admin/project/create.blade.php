@@ -16,11 +16,19 @@
         </div>
         <div class="form-group">
             <label for="startingtime">開始時間</label>
+<<<<<<< Updated upstream
             <input type="date"   class="form-control" id="startingtime" name="startingtime"  required>
         </div>
         <div class="form-group">
             <label for="deadline">結束時間</label>
             <input type="date"  class="form-control" id="deadline" name="deadline" required>
+=======
+            <input type="date" class="form-control" id="startingtime" name="startingtime" required>
+        </div>
+        <div class="form-group">
+            <label for="deadline">結束時間</label>
+            <input type="date" class="form-control" id="deadline" name="deadline" required>
+>>>>>>> Stashed changes
         </div>
 
         <div class="form-group">
