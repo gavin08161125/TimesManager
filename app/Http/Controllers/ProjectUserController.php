@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Project;
+use App\ProjectUser;
 use Illuminate\Http\Request;
 
 class ProjectUserController extends Controller
@@ -15,7 +16,6 @@ class ProjectUserController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**
@@ -37,6 +37,13 @@ class ProjectUserController extends Controller
     public function store(Request $request)
     {
         //
+
+        ProjectUser::create([
+            'project_id' => $request->project_id,
+            'user_id' => $request->user_id,
+        ]);
+
+        return redirect('admin/project');
     }
 
     /**
@@ -59,6 +66,11 @@ class ProjectUserController extends Controller
     public function edit($id)
     {
         //
+        $project = Project::find($id);
+        $projects =  Project::all();
+        $users = User::all();
+
+        return view('admin.projectUser.edit', compact('project', 'projects', 'users'));
     }
 
     /**
@@ -79,8 +91,17 @@ class ProjectUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,Request $request)
     {
-        //
+        $project = Project::find($id);
+        $projects =  Project::all();
+        $users = Project::find($request->id)->users;
+
+        $delete = ProjectUser::where('user_id',$request->user_id)->where('project_id',$request->project_id);
+
+        $delete->delete();
+
+        return view('admin.projectUser.delete', compact('project', 'projects', 'users'));
+
     }
 }

@@ -8,6 +8,7 @@ use App\ProjectUser;
 use Illuminate\Http\Request;
 use App\User;
 use App\Project;
+use phpDocumentor\Reflection\Types\This;
 
 class ProjectController extends Controller
 {
@@ -37,6 +38,10 @@ class ProjectController extends Controller
         $projects= $request->all();
         Project::create($projects);
 
+        // ProjectUser::create([
+        //     'user_id' => auth()->user()->id,
+        // ]);
+
         return redirect('/admin/project/');
     }
 
@@ -47,6 +52,9 @@ class ProjectController extends Controller
 
         return view('admin.project.edit',compact('data','myself'));
     }
+
+
+
 
     public function update(Request $request, $id)
     {

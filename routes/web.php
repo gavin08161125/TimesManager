@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjectUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,14 @@ Route::group(['middleware' =>['auth'],'prefix'=>'admin/'], function () {
         Route::get('edit/{id}','ProjectController@edit');
         Route::post('update/{id}','ProjectController@update');
         Route::get('destroy/{id}','ProjectController@destroy');
+
+
+
+        Route::get('add_member/update/{id}','ProjectUserController@update');
+        Route::post('add_member/store', 'ProjectUserController@store');
+        Route::get('add_member/edit/{id}', 'ProjectUserController@edit');
+        Route::get('add_member/destroy/{id}','ProjectUserController@destroy');
+        Route::get('add_member/create','ProjectUserController@create');
     });
 
     Route::group(['prefix' => 'task'], function () {
