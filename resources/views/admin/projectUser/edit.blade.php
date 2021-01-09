@@ -37,13 +37,22 @@
             <input type="text" class="form-control" id="title" name="title" value="{{$project->owner}}" required disabled>
         </div>
 
-
-
-
         <div class="form-group">
             <label for="exampleInputPassword1">新增專案成員</label>
             <select class="form-control" id="user_id" name="user_id" >
                 @foreach ($users as $list)
+                <option class="form-control" value="{{$list->id}}" required>
+                    {{$list->name}}
+                </option>
+                @endforeach
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleInputPassword1">目前專案成員</label>
+            <select class="form-control" >
+                @foreach ($users_list as $list)
                 <option class="form-control" value="{{$list->id}}" required>
                     {{$list->name}}
                 </option>

@@ -39,8 +39,6 @@
         </div>
 
 
-
-
         <div class="form-group">
             <label for="exampleInputPassword1">刪除專案成員</label>
             <select class="form-control" id="user_id" name="user_id" >

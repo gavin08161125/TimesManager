@@ -63,14 +63,15 @@ class ProjectUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,Request $request)
     {
         //
         $project = Project::find($id);
         $projects =  Project::all();
         $users = User::all();
+        $users_list = Project::find($request->id)->users;
 
-        return view('admin.projectUser.edit', compact('project', 'projects', 'users'));
+        return view('admin.projectUser.edit', compact('project', 'projects', 'users','users_list'));
     }
 
     /**
