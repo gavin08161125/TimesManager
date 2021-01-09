@@ -54,7 +54,7 @@ Route::group(['middleware' =>['auth'],'prefix'=>'admin/'], function () {
         Route::post('update/{id}','TaskController@update');
 
         Route::get('destroy/{id}','TaskController@destroy');
-        
+
 
     });
 });

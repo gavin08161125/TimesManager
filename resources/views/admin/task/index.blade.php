@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-    
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 @endsection
 
 @section('main')
@@ -19,7 +19,7 @@
                 <th>執行者</th>
                 <th>編輯</th>
                 <th>刪除</th>
-                
+
             </tr>
         </thead>
         <tbody>

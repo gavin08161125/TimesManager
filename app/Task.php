@@ -19,7 +19,7 @@ class Task extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -27,6 +27,8 @@ class Task extends Model
     /**
      * @var array
      */
+
+    protected $table = 'tasks';
     protected $fillable = ['pro_id', 'name', 'startingtime', 'deadline', 'totaltime', 'picker', 'created_at', 'updated_at'];
 
 }

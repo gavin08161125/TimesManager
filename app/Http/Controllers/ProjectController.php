@@ -2,16 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Project;
+
+
+use App\ProjectUser;
 use Illuminate\Http\Request;
+use App\User;
+use App\Project;
 
 class ProjectController extends Controller
 {
     public function index()
     {
 
+
+        // $user = User::find(1);
         $projects = Project::get();
-        return view('admin.project.index', compact('projects'));
+        $myself = auth()->user()->email;
+
+        return view('admin.project.index', compact('projects','myself'));
+
+
+        // $project = auth()->user();
+
     }
 
     public function create(Request $request)

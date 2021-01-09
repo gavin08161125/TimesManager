@@ -1,3 +1,5 @@
+<?php use App\Project;?>
+
 @extends('layouts.app')
 
 @section('css')
@@ -12,6 +14,39 @@
 
 @section('main')
 <div class="container">
+    <div class="container">
+
+        <form  class="hidden_text" action="/admin/project/store" method="post" hidden>
+            <h2>新增專案</h2>
+            <hr>
+            @csrf
+            <div class="form-group">
+                <label for="title">專案名稱</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="startingtime">開始時間</label>
+                <input type="datetime-local"   class="form-control" id="startingtime" name="startingtime"  required>
+            </div>
+            <div class="form-group">
+                <label for="deadline">結束時間</label>
+                <input type="datetime-local"  class="form-control" id="deadline" name="deadline" required>
+            </div>
+
+            <div class="form-group">
+                <label for="owner">建立人</label>
+                <input type="text" class="form-control" id="owner" name="owner" value="{{$myself}}" required  readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="description">描述</label>
+                <textarea class="form-control" id="description" rows="3" name="description" required></textarea>
+            </div>
+
+            <button class="btn btn-primary">新增</button>
+        </form>
+
+
     <table id="myTable" class="display">
         <thead>
             <tr>
@@ -26,13 +61,13 @@
         </thead>
         <tbody>
 
-
             @foreach ($projects as $project)
-            <tr>
+
+           <tr>
                 <td>{{$project->title}}</td>
                 <td>{{$project->startingtime}}</td>
                 <td>{{$project->deadline}}</td>
-                {{-- $hour=floor((strtotime($enddate)-strtotime($startdate))%86400/3600); --}}
+
                 <td>
                     @if (floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600) >= 1)
                      還有{{floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600)}} 小時
@@ -45,18 +80,20 @@
 
                 </td>
 
-
-
                 <td>{{$project->description}}</td>
                 <td>{{$project->owner}}</td>
                 <td><a class='btn btn-success' href="/admin/project/edit/{{$project->id}}">編輯</a><a
                         class='btn btn-danger' href="/admin/project/destroy/{{$project->id}}">刪除</a></td>
             </tr>
-            @endforeach
+             @endforeach
         </tbody>
 
     </table>
-    <a class='btn btn-success' href="/admin/project/create" class="btn btn-sm">新增</a>
+    <button class='btn btn-success  btn btn-sm add_project'>新增</button>
+    <button class="btn btn-success btn btn-sm remove_add">取消新增</button>
+
+
+    {{-- href="/admin/project/create" --}}
 </div>
 
 
@@ -77,10 +114,29 @@
     });
     // Code that uses other library's $ can follow here.
 </script>
-{{-- <script>
-    $(document).ready( function () {
-    $('#myTable').DataTable();
-} );
-</script> --}}
+<script>
+    var add = document.querySelector('.add_project')
+    var hidden= document.querySelector('.remove_add')
+
+     add.addEventListener('click', evt =>{
+
+         var hidden_text = document.querySelector('.hidden_text')
+         if(hidden_text.hasAttribute('hidden')){
+            hidden_text.removeAttribute('hidden')
+         }
+        //  }else{
+        //     hidden_text.setAttribute('hidden', 'hidden')
+        //  }
+
+     });
+
+     hidden.addEventListener('click', evt =>{
+        var hidden_text = document.querySelector('.hidden_text')
+        hidden_text.setAttribute('hidden', 'hidden')
+     });
+
+
+</script>
 
 @endsection
+
