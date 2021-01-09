@@ -20,12 +20,12 @@
         </div>
         <div class="form-group">
             <label for="startingtime">開始時間</label>
-            <input type="datetime-local" class="form-control" id="startingtime" name="startingtime" value="{{$task->startingtime}}" required>
+            <input type="datetime-local" class="form-control" id="startingtime" name="startingtime" value="{{date('Y-m-d\TH:i',strtotime($task->startingtime))}}" required>
         </div>
 
         <div class="form-group">
             <label for="deadline">結束時間</label>
-            <input type="datetime-local" class="form-control" id="deadline" name="deadline" value="{{$task->deadline}}" required>
+            <input type="datetime-local" class="form-control" id="deadline" name="deadline" value="{{ date('Y-m-d\TH:i',strtotime($task->deadline))}}" required>
         </div>
 
         <div class="form-group">
