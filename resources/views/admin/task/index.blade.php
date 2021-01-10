@@ -6,7 +6,10 @@
 
 @section('main')
 <div class="container">
-    <a class="btn btn-success" href="/admin/task/create">新增工作</a>
+    <a class="btn btn-success" href="/admin/project/task/create/id">新增工作</a>
+    {{-- <form action="/admin/project/task/create/{{$request->id}}">
+        <button class="btn btn-success " value="{{$request->id}}">新增工作</button>
+    </form> --}}
     <hr>
     <table id="myTable" class="display">
         <thead>
@@ -31,8 +34,9 @@
                 <td>{{$task->deadline}}</td>
                 <td>{{$task->totaltime}}</td>
                 <td>{{$task->picker}}</td>
-                <td><a class="btn btn-primary" href="/admin/task/edit/{{$task->id}}">編輯</td>
-                <td><a class="btn btn-danger" href="/admin/task/destroy/{{$task->id}}">刪除</td>
+                <td><a class="btn btn-primary" href="/admin/project/task/edit/{{$task->id}}">編輯</td>
+                <td><a class="btn btn-danger" href="/admin/project/task/destroy/{{$task->id}}">刪除</td>
+
             </tr>
             @endforeach
 

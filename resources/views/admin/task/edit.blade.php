@@ -8,11 +8,11 @@
 <div class="container">
     <h2>編輯工作項目</h2>
     <hr>
-    <form action="/admin/task/update/{{$task->id}}" method="post">
+    <form action="/admin/project/task/update/{{$task->id}}" method="post">
         @csrf
         <div class="form-group">
             <label for="project_id">專案</label>
-            <select type="text" class="form-control" id="project_id" name="project_id" 
+            <select type="text" class="form-control" id="project_id" name="project_id"
                 readonly required>
                 <option value="{{$task->project_id}}">
                     {{$projects->title}}

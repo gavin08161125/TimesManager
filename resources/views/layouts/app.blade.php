@@ -35,9 +35,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/admin/project">專案管理</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/admin/task">工作管理</a>
-                            </li>
                         </ul>
 
 

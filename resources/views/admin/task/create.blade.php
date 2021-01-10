@@ -8,8 +8,9 @@
 <div class="container">
     <h2>新增工作項目</h2>
     <hr>
-    <form action="/admin/task/store" method="post">
+    <form action="/admin/project/task/store/{id}" method="post">
         @csrf
+        @method("get")
         {{-- {{$productType}} --}}
         <div class="form-group">
             <label for="project_id">專案</label>
@@ -38,7 +39,7 @@
         </div>
         <div class="form-group">
             <label for="picker">執行者</label>
-            <input class="form-control" id="picker" name="picker" value=""   required>
+            <input class="form-control" id="picker" name="picker"    required>
         </div>
 
         <button class="btn btn-primary">新增</button>

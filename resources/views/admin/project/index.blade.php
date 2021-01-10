@@ -76,10 +76,18 @@
                             {{floor((strtotime($project->deadline)-strtotime($project->startingtime))/60 )}} 分鐘 @else 鬧?
                             @endif </td> <td>{{$project->description}}</td>
                     <td>{{$project->owner}}</td>
-                    <td><a class='btn btn-success btn-sm ' href="/admin/project/edit/{{$project->id}}">編輯</a>
-                        <a class='btn btn-danger btn-sm' href="/admin/project/destroy/{{$project->id}}">刪除</a>
-                        <a class='btn btn-success btn-sm' href="/admin/project/add_member/edit/{{$project->id}}">新增成員</a>
-                        <a class='btn btn-danger btn-sm' href="/admin/project/add_member/destroy/{{$project->id}}">刪除成員</a></td>
+                    <td>
+                        <a class='btn btn-success btn-sm ' href="/admin/project/edit/{{$project->id}}">編輯
+                        </a>
+                        <a class='btn btn-danger btn-sm' href="/admin/project/destroy/{{$project->id}}">刪除
+                        </a>
+                        <a class='btn btn-success btn-sm' href="/admin/project/add_member/edit/{{$project->id}}">新增成員
+                        </a>
+                        <a class='btn btn-danger btn-sm' href="/admin/project/add_member/destroy/{{$project->id}}">刪除成員
+                        </a>
+                        <form action="/admin/project/task/{{$project->id}}">
+                            <button class='btn btn-success btn-sm' name="id" value="{{$project->id}}">工作管理</button>
+                        </form>
                     </td>
 
                 </tr>

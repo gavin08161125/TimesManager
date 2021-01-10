@@ -14,11 +14,15 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $tasks = Task::get();
-        return view('admin.task.index',compact('tasks'));
+        // $tasks = Task::get();
+
+        $tasks = Project::find($request->id)->tasks;
+
+
+        return view('admin.task.index',compact('tasks','request'));
     }
 
     /**
@@ -26,15 +30,17 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
 
         $projects = Project::get();
+
+        $task = Task::find($id);
         $members = Project::get();
 
 
-        return view('admin.task.create',compact('projects'));
+        return view('admin.task.create',compact('projects' ,'task' ,'id'));
     }
 
     /**
@@ -43,12 +49,21 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
         //
-        Task::create($request->all());
+        $task = Task::find($id);
+        Task::create([
+            'name'=> $request->name,
+            'project_id'=> $request->project_id,
+            'startingtime'=> $request->startingtime,
+            'deadline'=> $request->deadline,
+            'totaltime'=> $request->totaltime,
+            'picker'=> $request->picker,
+        ]);
 
-        return redirect('/admin/task/');
+
+        return redirect()->route('taskhome',[$request->project_id]);
     }
 
     /**
@@ -89,10 +104,19 @@ class TaskController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $tasks = Task::find($id);
-        $tasks->update($request->all());
 
-        return redirect('/admin/task/');
+        $tasks = Task::where('project_id',$request->project_id);
+
+        $tasks->update([
+            'name'=> $request->name,
+            'project_id'=> $request->project_id,
+            'startingtime'=> $request->startingtime,
+            'deadline'=> $request->deadline,
+            'totaltime'=> $request->totaltime,
+            'picker'=> $request->picker,
+        ]);
+
+        return redirect()->route('taskhome',[$request->project_id]);
 
     }
 
@@ -106,9 +130,13 @@ class TaskController extends Controller
     {
         //
 
+
         $tasks = Task::find($id);
+        $projects = Task::find($id)->project_id;
         $tasks->delete();
 
-        return redirect('/admin/task/');
+
+        // return redirect('/admin/project/task/{id}');
+        return redirect()->route('taskhome',[$projects]);
     }
 }
