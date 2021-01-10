@@ -129,13 +129,10 @@ class TaskController extends Controller
     public function destroy($id)
     {
         //
-
-
         $tasks = Task::find($id);
         $projects = Task::find($id)->project_id;
         $tasks->delete();
-
-
+        
         // return redirect('/admin/project/task/{id}');
         return redirect()->route('taskhome',[$projects]);
     }
