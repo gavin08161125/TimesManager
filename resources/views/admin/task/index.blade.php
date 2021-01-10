@@ -25,7 +25,7 @@
         <tbody>
             @foreach ($tasks as $task)
             <tr>
-                <td>{{$task->pro_id}}</td>
+                <td>{{$task->project_id}}</td>
                 <td>{{$task->name}}</td>
                 <td>{{$task->startingtime}}</td>
                 <td>{{$task->deadline}}</td>

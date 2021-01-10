@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use App\Project;
+use App\ProjectUser;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -16,7 +18,6 @@ class TaskController extends Controller
     {
         //
         $tasks = Task::get();
-
         return view('admin.task.index',compact('tasks'));
     }
 
@@ -28,7 +29,12 @@ class TaskController extends Controller
     public function create()
     {
         //
-        return view('admin.task.create');
+
+        $projects = Project::get();
+        $members = Project::get();
+
+
+        return view('admin.task.create',compact('projects'));
     }
 
     /**
@@ -67,7 +73,10 @@ class TaskController extends Controller
         //
         $task = Task::find($id);
 
-        return view('admin.task.edit',compact('task'));
+        $projects = Project::find($task->project_id);
+        $members = Project::find($task->project_id)->users;
+
+        return view('admin.task.edit',compact('task','projects','members'));
     }
 
     /**

@@ -21,6 +21,8 @@ class Project extends Model
         return $this -> belongsToMany(User :: class,'project_user');
     }
 
-
+    public function tasks() {
+        return $this -> hasMany('App\Task');
+    }
 }
 

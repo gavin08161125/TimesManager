@@ -12,8 +12,12 @@
         @csrf
         {{-- {{$productType}} --}}
         <div class="form-group">
-            <label for="pro_id">專案</label>
-            <input type="text" class="form-control" id="pro_id" name="pro_id" required>
+            <label for="project_id">專案</label>
+            <select type="text" class="form-control" id="project_id" name="project_id" required>
+                @foreach ($projects as $project)
+                <option value="{{$project->id}}">{{$project->title}}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="name">工作</label>
@@ -34,7 +38,7 @@
         </div>
         <div class="form-group">
             <label for="picker">執行者</label>
-            <input class="form-control" id="picker" name="picker" required>
+            <input class="form-control" id="picker" name="picker" value=""   required>
         </div>
 
         <button class="btn btn-primary">新增</button>
