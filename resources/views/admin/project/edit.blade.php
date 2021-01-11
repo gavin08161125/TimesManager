@@ -7,7 +7,6 @@
 @section('main')
 <div class="container">
     <h2>編輯專案</h2>
-    <a href="/admin/project/task/" class="btn btn-info">工作項目(Tasks)</a>
     <hr>
     <form action="/admin/project/update/{{$data->id}}" method="post">
         @csrf

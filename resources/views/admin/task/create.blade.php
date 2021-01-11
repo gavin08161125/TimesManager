@@ -15,11 +15,9 @@
         {{-- {{$productType}} --}}
         <div class="form-group">
             <label for="project_id">專案</label>
-            <select type="text" class="form-control" id="project_id" name="project_id" required>
+            <select type="text" class="form-control" id="project_id" name="project_id" required >
                 {{-- <option value="{{$project->id}}">{{$project->title}}</option> --}}
-
-
-                <option value="{{$project->id}}">{{$project->title}}</option>
+                <option value="{{$myProject->id}}" readonly>{{$myProject->title}}</option>
             </select>
         </div>
         <div class="form-group">
@@ -41,7 +39,12 @@
         </div>
         <div class="form-group">
             <label for="picker">執行者</label>
-            <input class="form-control" id="picker" name="picker"    required>
+            <select class="form-control" id="picker" name="picker"    required>
+                @foreach ($projectsUsers as $projectsUser)
+                <option value="{{$projectsUser->name}}">{{$projectsUser->name}}</option>
+                @endforeach
+
+            </select>
         </div>
 
         <button class="btn btn-primary">新增</button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use App\User;
 use App\Project;
 use App\ProjectUser;
 use Illuminate\Http\Request;
@@ -30,27 +31,38 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+
         //
-        $tasks = Project::find(auth()->user()->id)->tasks;
+        // $myProject = ProjectUser::get()->where('user_id',auth()->user()->id);
+        $myProject = Project::find($request->id);
+        
+        $myTasks = TasK::find(auth()->user()->id);
+
+        $project_id = ProjectUser::find(auth()->user()->id);
 
 
 
-        foreach ($tasks as $task){
-            $project = Project::find($task->project_id);
-        };
+        $projectsUsers =  Project::find($request->id)->users;
 
 
-        // $turn = (int)$request->id ;
+        // dd($projectsUsers);
+
+
+        // $project = (Project::find(auth()->user()->id)->project_id);
+
+
+
+
 
         // dd($request->id);
 
-        // $projects = Project::get();
+        $projects = Project::get();
 
         $members = Project::get();
 
-        return view('admin.task.create', compact('project' , 'tasks'));
+        return view('admin.task.create', compact('myProject','projectsUsers'));
     }
 
     /**
