@@ -33,7 +33,6 @@ class TaskController extends Controller
      */
     public function create(Request $request)
     {
-
         //
         // $myProject = ProjectUser::get()->where('user_id',auth()->user()->id);
         $myProject = Project::find($request->id);
@@ -42,21 +41,11 @@ class TaskController extends Controller
 
         $project_id = ProjectUser::find(auth()->user()->id);
 
-
-
         $projectsUsers =  Project::find($request->id)->users;
-
 
         // dd($projectsUsers);
 
-
         // $project = (Project::find(auth()->user()->id)->project_id);
-
-
-
-
-
-        // dd($request->id);
 
         $projects = Project::get();
 
@@ -83,7 +72,6 @@ class TaskController extends Controller
             'totaltime' => $request->totaltime,
             'picker' => $request->picker,
         ]);
-
 
         return redirect()->route('taskHome', [$request->project_id]);
     }
