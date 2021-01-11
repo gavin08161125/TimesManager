@@ -37,7 +37,7 @@ class TaskController extends Controller
         //
         // $myProject = ProjectUser::get()->where('user_id',auth()->user()->id);
         $myProject = Project::find($request->id);
-        
+
         $myTasks = TasK::find(auth()->user()->id);
 
         $project_id = ProjectUser::find(auth()->user()->id);
@@ -127,7 +127,7 @@ class TaskController extends Controller
     {
         //
 
-        $tasks = Task::where('project_id', $request->project_id);
+        $tasks = Task::find($request->id);
 
         $tasks->update([
             'name' => $request->name,
@@ -138,7 +138,7 @@ class TaskController extends Controller
             'picker' => $request->picker,
         ]);
 
-        return redirect()->route('taskhome', [$request->project_id]);
+        return redirect()->route('taskHome', [$request->project_id]);
     }
 
     /**

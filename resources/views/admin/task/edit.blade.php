@@ -44,7 +44,7 @@
             <label for="picker">執行者</label>
             <select type="text" class="form-control" id="picker" name="picker" required>
                 @foreach ($members as $member)
-                <option value="{{$task->picker}}">{{$member->name}}</option>
+                <option value="{{$member->name}}">{{$member->name}}</option>
                 @endforeach
             </select>
         </div>
