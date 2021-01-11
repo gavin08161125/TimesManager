@@ -67,8 +67,6 @@ class ProjectController extends Controller
     }
 
 
-
-
     public function update(Request $request, $id)
     {
         $products = Project::find($id);
