@@ -18,11 +18,11 @@ class TaskController extends Controller
     {
         //
         // $tasks = Task::get();
+        $porject = Project::get();
 
         $tasks = Project::find($request->id)->tasks;
 
-
-        return view('admin.task.index',compact('tasks','request'));
+        return view('admin.task.index', compact('tasks', 'request'));
     }
 
     /**
@@ -30,17 +30,27 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
         //
+        $tasks = Project::find(auth()->user()->id)->tasks;
 
-        $projects = Project::get();
 
-        $task = Task::find($id);
+
+        foreach ($tasks as $task){
+            $project = Project::find($task->project_id);
+        };
+
+
+        // $turn = (int)$request->id ;
+
+        // dd($request->id);
+
+        // $projects = Project::get();
+
         $members = Project::get();
 
-
-        return view('admin.task.create',compact('projects' ,'task' ,'id'));
+        return view('admin.task.create', compact('project' , 'tasks'));
     }
 
     /**
@@ -49,21 +59,21 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id)
+    public function store(Request $request, $id)
     {
         //
         $task = Task::find($id);
         Task::create([
-            'name'=> $request->name,
-            'project_id'=> $request->project_id,
-            'startingtime'=> $request->startingtime,
-            'deadline'=> $request->deadline,
-            'totaltime'=> $request->totaltime,
-            'picker'=> $request->picker,
+            'name' => $request->name,
+            'project_id' => $request->project_id,
+            'startingtime' => $request->startingtime,
+            'deadline' => $request->deadline,
+            'totaltime' => $request->totaltime,
+            'picker' => $request->picker,
         ]);
 
 
-        return redirect()->route('taskhome',[$request->project_id]);
+        return redirect()->route('taskHome', [$request->project_id]);
     }
 
     /**
@@ -91,7 +101,7 @@ class TaskController extends Controller
         $projects = Project::find($task->project_id);
         $members = Project::find($task->project_id)->users;
 
-        return view('admin.task.edit',compact('task','projects','members'));
+        return view('admin.task.edit', compact('task', 'projects', 'members'));
     }
 
     /**
@@ -105,19 +115,18 @@ class TaskController extends Controller
     {
         //
 
-        $tasks = Task::where('project_id',$request->project_id);
+        $tasks = Task::where('project_id', $request->project_id);
 
         $tasks->update([
-            'name'=> $request->name,
-            'project_id'=> $request->project_id,
-            'startingtime'=> $request->startingtime,
-            'deadline'=> $request->deadline,
-            'totaltime'=> $request->totaltime,
-            'picker'=> $request->picker,
+            'name' => $request->name,
+            'project_id' => $request->project_id,
+            'startingtime' => $request->startingtime,
+            'deadline' => $request->deadline,
+            'totaltime' => $request->totaltime,
+            'picker' => $request->picker,
         ]);
 
-        return redirect()->route('taskhome',[$request->project_id]);
-
+        return redirect()->route('taskhome', [$request->project_id]);
     }
 
     /**
@@ -132,8 +141,8 @@ class TaskController extends Controller
         $tasks = Task::find($id);
         $projects = Task::find($id)->project_id;
         $tasks->delete();
-        
+
         // return redirect('/admin/project/task/{id}');
-        return redirect()->route('taskhome',[$projects]);
+        return redirect()->route('taskHome', [$projects]);
     }
 }

@@ -16,8 +16,18 @@ class ProjectController extends Controller
     {
 
 
+
         // $user = User::find(1);
-        $projects = Project::get();
+        // $singleProjects=ProjectUser::get()->where('user_id',auth()->user()->id);
+
+        // foreach($singleProjects as $singleProject){
+        //     $singleProjectId = $singleProject->project_id;
+        // }
+
+
+        // $projects = Project::get();
+
+        $projects =Project::find(,
         $myself = auth()->user()->email;
 
         return view('admin.project.index', compact('projects','myself'));
@@ -40,6 +50,7 @@ class ProjectController extends Controller
 
         // ProjectUser::create([
         //     'user_id' => auth()->user()->id,
+        //     'project_id' => $request->id
         // ]);
 
         return redirect('/admin/project/');

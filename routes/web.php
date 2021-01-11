@@ -27,7 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/profile', function () {
     return "seee";
- })->middleware('verified');
+})->middleware('verified');
 
 Route::get('/authorities', 'AuthorityController@index');
 
@@ -35,35 +35,29 @@ Route::get('/authorities', 'AuthorityController@index');
 Route::get('/project', 'ProjectController@index');
 
 
-Route::group(['middleware' =>['auth'],'prefix'=>'admin/'], function () {
-   Route::group(['prefix' => 'project'], function () {
+Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
+
+    Route::group(['prefix' => 'project'], function () {
         Route::get('/', 'ProjectController@index')->name('home');
         Route::post('store', 'ProjectController@store');
         Route::get('create', 'ProjectController@create');
-        Route::get('edit/{id}','ProjectController@edit');
-        Route::post('update/{id}','ProjectController@update');
-        Route::get('destroy/{id}','ProjectController@destroy');
+        Route::get('edit/{id}', 'ProjectController@edit');
+        Route::post('update/{id}', 'ProjectController@update');
+        Route::get('destroy/{id}', 'ProjectController@destroy');
 
         Route::group(['prefix' => 'task'], function () {
-            Route::get('{id}', 'TaskController@index')->name('taskhome');
-
-            Route::get('/store/{id}','TaskController@store');
-            Route::get('/create/{id}','TaskController@create')->name('taskCreate');
-
-            Route::get('/edit/{id}','TaskController@edit');
-            Route::post('/update/{id}','TaskController@update')->name('taskUpdate');
-
-            Route::get('/destroy/{id}','TaskController@destroy');
-
-
+            Route::get('{id}', 'TaskController@index')->name('taskHome');
+            Route::get('/store/{id}', 'TaskController@store');
+            Route::get('/create/{id}', 'TaskController@create')->name('taskCreate');
+            Route::get('/edit/{id}', 'TaskController@edit');
+            Route::post('/update/{id}', 'TaskController@update')->name('taskUpdate');
+            Route::get('/destroy/{id}', 'TaskController@destroy');
         });
 
-        Route::get('add_member/update/{id}','ProjectUserController@update');
+        Route::get('add_member/update/{id}', 'ProjectUserController@update');
         Route::post('add_member/store', 'ProjectUserController@store');
         Route::get('add_member/edit/{id}', 'ProjectUserController@edit');
-        Route::get('add_member/destroy/{id}','ProjectUserController@destroy');
-        Route::get('add_member/create','ProjectUserController@create');
+        Route::get('add_member/destroy/{id}', 'ProjectUserController@destroy');
+        Route::get('add_member/create', 'ProjectUserController@create');
     });
-
-
 });

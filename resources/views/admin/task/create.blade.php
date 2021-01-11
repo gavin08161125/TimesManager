@@ -5,6 +5,7 @@
 @endsection
 
 @section('main')
+
 <div class="container">
     <h2>新增工作項目</h2>
     <hr>
@@ -15,9 +16,10 @@
         <div class="form-group">
             <label for="project_id">專案</label>
             <select type="text" class="form-control" id="project_id" name="project_id" required>
-                @foreach ($projects as $project)
+                {{-- <option value="{{$project->id}}">{{$project->title}}</option> --}}
+
+
                 <option value="{{$project->id}}">{{$project->title}}</option>
-                @endforeach
             </select>
         </div>
         <div class="form-group">
