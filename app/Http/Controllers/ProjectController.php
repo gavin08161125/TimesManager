@@ -27,7 +27,10 @@ class ProjectController extends Controller
 
         // $projects = Project::get();
 
-        $projects =Project::find(,
+        $projects =User::find(auth()->user()->id)->projects;
+
+
+        // dd($projects);
         $myself = auth()->user()->email;
 
         return view('admin.project.index', compact('projects','myself'));
@@ -45,13 +48,12 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        $projects= $request->all();
-        Project::create($projects);
+        $projects= Project::create($request->all());
 
-        // ProjectUser::create([
-        //     'user_id' => auth()->user()->id,
-        //     'project_id' => $request->id
-        // ]);
+        ProjectUser::create([
+            'user_id' => auth()->user()->id,
+            'project_id' => $projects->id
+        ]);
 
         return redirect('/admin/project/');
     }
