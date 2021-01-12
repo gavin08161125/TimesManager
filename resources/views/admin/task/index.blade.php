@@ -9,8 +9,8 @@
     {{-- <a class="btn btn-success" href="/admin/project/task/create/id">新增工作</a> --}}
 
     {{-- 抓取的id從indexfunction接過來，透過Form表單抓取id 把值post進create頁面 --}}
-    <form action="/admin/project/task/create/{{$request->id}}" neme="id" id="id" >
-        <button class="btn btn-success "  neme="id" id="id" value="{{$request->id}}" >新增工作</button>
+    <form action="/admin/project/task/create/{{$request->id}}" neme="id" id="id">
+        <button class="btn btn-success " neme="id" id="id" value="{{$request->id}}">新增工作</button>
     </form>
     <hr>
     <table id="myTable" class="display">
@@ -22,8 +22,10 @@
                 <th>結束時間</th>
                 <th>總時長</th>
                 <th>執行者</th>
+                <th>任務點數</th>
                 <th>編輯</th>
                 <th>刪除</th>
+                <th>任務結束</th>
 
             </tr>
         </thead>
@@ -35,15 +37,15 @@
                 <td>{{$task->startingtime}}</td>
                 <td>{{$task->deadline}}</td>
                 <td>{{$task->totaltime}}</td>
-                <td>{{$task->user_id}}</td>
+                <td>{{$task->picker}}</td>
+                <td>{{$task->task_point}}</td>
                 <td><a class="btn btn-primary" href="/admin/project/task/edit/{{$task->id}}">編輯</td>
                 <td><a class="btn btn-danger" href="/admin/project/task/destroy/{{$task->id}}">刪除</td>
+                <td><a class="btn btn-primary" href="/admin/project/task/destroy/{{$task->id}}">任務結束</td>
 
             </tr>
             @endforeach
-            <tr>
 
-            </tr>
 
 
         </tbody>

@@ -36,6 +36,7 @@ class TaskController extends Controller
     public function create(Request $request)
     {
         //
+
         // $myProject = ProjectUser::get()->where('user_id',auth()->user()->id);
         $myProject = Project::find($request->id);
 
@@ -73,7 +74,9 @@ class TaskController extends Controller
             'startingtime' => $request->startingtime,
             'deadline' => $request->deadline,
             'totaltime' => $request->totaltime,
+            'picker' => $request->picker,
             'user_id' => $request->user_id,
+            'task_point'=> $request->task_point,
         ]);
         return redirect()->route('taskHome', [$request->project_id]);
     }
@@ -126,6 +129,7 @@ class TaskController extends Controller
             'deadline' => $request->deadline,
             'totaltime' => $request->totaltime,
             'picker' => $request->picker,
+            'task_point'=> $request->task_point,
         ]);
 
         return redirect()->route('taskHome', [$request->project_id]);

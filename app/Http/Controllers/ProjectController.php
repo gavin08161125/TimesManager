@@ -80,6 +80,10 @@ class ProjectController extends Controller
     {
         $products = Project::find($id);
         $products->delete();
+
+        $deleteAllMenber = ProjectUser::where('project_id',$id) ;
+        $deleteAllMenber->delete();
+
         return redirect('/admin/project/');
     }
 

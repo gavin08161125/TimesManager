@@ -36,15 +36,31 @@
         </div>
 
         <div class="form-group">
-            <label for="totaltime">總時長</label>
+            <label for="totaltime">總共時長(小時)</label>
             <input type="number" class="form-control" id="totaltime" name="totaltime" value="{{$task->totaltime}}"
-                required>
+            required>
         </div>
+
         <div class="form-group">
-            <label for="picker">執行者</label>
+            <label for="task_point">任務點數</label>
+            <input type="number" class="form-control" id="task_point" name="task_point" value="{{$task->task_point}}"
+            min="0" max="5"required>
+        </div>
+
+        <div class="form-group" hidden>
+            <label for="picker">員工編號</label>
             <select type="text" class="form-control" id="user_id" name="user_id" required>
                 @foreach ($members as $member)
-                <option value="{{$member->id}}">{{$member->name}}</option>
+                <option value="{{$member->id}}">{{$member->id}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="picker">執行者</label>
+            <select type="text" class="form-control" id="picker" name="picker" required>
+                @foreach ($members as $member)
+                <option value="{{$member->name}}">{{$member->name}}</option>
                 @endforeach
             </select>
         </div>

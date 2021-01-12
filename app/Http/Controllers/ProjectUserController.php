@@ -98,9 +98,13 @@ class ProjectUserController extends Controller
         $projects =  Project::all();
         $users = Project::find($request->id)->users;
 
-        $delete = ProjectUser::where('user_id',$request->user_id)->where('project_id',$request->project_id);
+        $deleteMember = ProjectUser::where('user_id',$request->user_id)->where('project_id',$request->project_id);
 
-        $delete->delete();
+        
+
+
+        $deleteMember->delete();
+
 
         return view('admin.projectUser.delete', compact('project', 'projects', 'users'));
 
