@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','point','work_memo',
     ];
 
     /**
@@ -46,5 +46,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this -> belongsToMany(Project :: class,'project_user');
     }
 
+    public function tasks() {
+        return $this -> hasMany('App\Task');
+    }
     //
 }

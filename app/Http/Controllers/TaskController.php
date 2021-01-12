@@ -19,6 +19,7 @@ class TaskController extends Controller
     {
         //
         // $tasks = Task::get();
+
         $porject = Project::get();
 
         $tasks = Project::find($request->id)->tasks;
@@ -31,6 +32,7 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create(Request $request)
     {
         //
@@ -51,7 +53,7 @@ class TaskController extends Controller
 
         $members = Project::get();
 
-        return view('admin.task.create', compact('myProject','projectsUsers'));
+        return view('admin.task.create', compact('myProject', 'projectsUsers'));
     }
 
     /**
@@ -63,6 +65,7 @@ class TaskController extends Controller
     public function store(Request $request, $id)
     {
         //
+
         $task = Task::find($id);
         Task::create([
             'name' => $request->name,
@@ -70,9 +73,8 @@ class TaskController extends Controller
             'startingtime' => $request->startingtime,
             'deadline' => $request->deadline,
             'totaltime' => $request->totaltime,
-            'picker' => $request->picker,
+            'user_id' => $request->user_id,
         ]);
-
         return redirect()->route('taskHome', [$request->project_id]);
     }
 

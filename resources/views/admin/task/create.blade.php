@@ -39,9 +39,9 @@
         </div>
         <div class="form-group">
             <label for="picker">執行者</label>
-            <select class="form-control" id="picker" name="picker"    required>
+            <select class="form-control" id="user_id" name="user_id"    required>
                 @foreach ($projectsUsers as $projectsUser)
-                <option value="{{$projectsUser->name}}">{{$projectsUser->name}}</option>
+                <option value="{{$projectsUser->id}}">{{$projectsUser->name}}</option>
                 @endforeach
 
             </select>

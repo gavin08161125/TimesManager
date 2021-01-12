@@ -35,12 +35,16 @@
                 <td>{{$task->startingtime}}</td>
                 <td>{{$task->deadline}}</td>
                 <td>{{$task->totaltime}}</td>
-                <td>{{$task->picker}}</td>
+                <td>{{$task->user_id}}</td>
                 <td><a class="btn btn-primary" href="/admin/project/task/edit/{{$task->id}}">編輯</td>
                 <td><a class="btn btn-danger" href="/admin/project/task/destroy/{{$task->id}}">刪除</td>
 
             </tr>
             @endforeach
+            <tr>
+
+            </tr>
+
 
         </tbody>
     </table>
