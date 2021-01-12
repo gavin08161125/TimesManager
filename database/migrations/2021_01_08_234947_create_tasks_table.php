@@ -23,6 +23,8 @@ class CreateTasksTable extends Migration
             $table->integer('totaltime');
             $table->string('picker');
             $table->bigInteger('task_point')->nullable();
+            $table->bigInteger('add_point')->nullable();
+            $table->tinyInteger('status')->default('1');
             $table->timestamps();
         });
     }

@@ -35,7 +35,10 @@ Route::get('/authorities', 'AuthorityController@index');
 Route::get('/project', 'ProjectController@index');
 
 
+
+
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
+
 
     Route::group(['prefix' => 'project'], function () {
         Route::get('/', 'ProjectController@index')->name('home');
@@ -44,6 +47,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
         Route::get('edit/{id}', 'ProjectController@edit');
         Route::post('update/{id}', 'ProjectController@update');
         Route::get('destroy/{id}', 'ProjectController@destroy');
+
 
         Route::group(['prefix' => 'task'], function () {
             Route::get('{id}', 'TaskController@index')->name('taskHome');
@@ -63,8 +67,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
             Route::get('create', 'ProjectUserController@create');
         });
 
-        Route::post('calculationPoint/', function ($id) {
-
-        });
+        Route::get('/calculation/{id}', 'CalculationController@calculation')->middleware('auth');
     });
 });

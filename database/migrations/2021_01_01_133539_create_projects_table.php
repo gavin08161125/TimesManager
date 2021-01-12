@@ -21,6 +21,7 @@ class CreateProjectsTable extends Migration
             $table->integer('totaltime')->nullable();
             $table->longText('description');
             $table->string('owner');
+            $table->tinyInteger('status')->default('1');
             $table->timestamps();
         });
     }

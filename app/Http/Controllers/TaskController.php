@@ -129,6 +129,7 @@ class TaskController extends Controller
             'deadline' => $request->deadline,
             'totaltime' => $request->totaltime,
             'picker' => $request->picker,
+            'user_id'=> $request->user_id,
             'task_point'=> $request->task_point,
         ]);
 

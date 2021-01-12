@@ -29,7 +29,7 @@ class Task extends Model
      */
 
     protected $table = 'tasks';
-    protected $fillable = ['project_id','user_id','name', 'startingtime', 'deadline', 'totaltime','task_point','picker', 'created_at', 'updated_at'];
+    protected $fillable = ['project_id','user_id','name', 'startingtime', 'deadline', 'totaltime','task_point','picker', 'created_at', 'updated_at','add_point','status'];
 
     public function projects() {
         return $this -> hasMany('App\Project');

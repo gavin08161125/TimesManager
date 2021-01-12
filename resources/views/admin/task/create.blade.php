@@ -44,9 +44,9 @@
             <input type="number" class="form-control" id="task_point" name="task_point" min="0" max="5" required>
         </div>
 
-        <div class="form-group" hidden>
+        <div class="form-group" >
             <label for="user_id">員工編號</label>
-            <select class="form-control" id="user_id" name="user_id" required readonly>
+            <select class="form-control" id="user_id" name="user_id" required>
                 @foreach ($projectsUsers as $projectsUser)
                 <option value="{{$projectsUser->id}}">
                     {{$projectsUser->id}}
