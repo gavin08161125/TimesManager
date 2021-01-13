@@ -40,16 +40,22 @@
                             <a class="nav-link" href="/admin/project">專案管理</a>
                         </li>
                     </ul>
-
+                    <?php use App\User; ?>
+                    @auth
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/project">
-                                <?php
-                                use App\User;
-                                $point =User::find(auth()->user()->id)->point ?>
-                                您目前有 {{$point}} 點被剝削點數</a>
+
+
+                             <?php $point = User::find(auth()->user()->id)->point ?>
+                                您目前有 {{$point}} 點被剝削點數
+                            </a>
                         </li>
                     </ul>
+
+                    @endauth
+
+
 
 
                     <!-- Right Side Of Navbar -->
@@ -65,11 +71,15 @@
                         </li>
                         @endif
                         @else
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
+
+
+
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
