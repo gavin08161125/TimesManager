@@ -45,15 +45,15 @@
             <input type="number" class="form-control" id="task_point" name="task_point" value="{{$task->task_point}}"
                 min="0" max="5" required>
         </div>
-
+{{--
         <div class="form-group">
             <label for="user_id">員工編號</label>
             <select type="text" class="form-control" id="option" name="user_id" required>
                 @foreach ($members as $member)
-                <option value="{{$member->id}}" >{{$member->id}}</option>
+                <option value="{{$member->id}}" >{{$member->name}}</option>
                 @endforeach
             </select>
-        </div>
+        </div> --}}
 
         <div class="form-group">
             <label for="picker">執行者</label>
@@ -64,7 +64,7 @@
             </select>
         </div>
 
-        <button class="btn btn-primary">儲存</button>
+        <button class="btn btn-primary saveBtn" data-userid="userid" >儲存</button>
     </form>
 </div>
 
@@ -74,10 +74,33 @@
 
 @section('js')
 <script>
+//  $(".pointBtn").click(function(){
+//         console.log($(this).data('userid'))
+
+//         $.ajaxSetup({
+//             headers: {
+//                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//             }
+//         });
+
+//         $.ajax({
+//             method: 'POST',
+//             url: `http://127.0.0.1:8000/admin/project/update/{{}}`,
+//             data:{
+//                 user_id: $(this).data('userid'),
+//                 project_id: $(this).data('projectid'),
+//                 task_id: $(this).data('taskid'),
+//                 },
+
+
+//       });
+
+
+//     });
 
 
 
-</script>
+// </script>
 
 
 @endsection

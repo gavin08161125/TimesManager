@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use App\User;
+
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class CalculationController extends Controller
 {
@@ -90,17 +92,19 @@ class CalculationController extends Controller
 
     public function calculation(Request $request){
 
-        $click = Task::find($request->id)->update(['status' => '2']);
+    
 
-        $returnPoint=Task::find($request->id)->task_point;
+        $click = Task::find($request->input('task_id'))->update(['status' => '2']);
 
-        $addPoint=Task::find($request->id)->update(['add_point' => $returnPoint]);
+        $returnPoint=Task::find($request->input('task_id'))->task_point;
 
-        $sumPoint = Task::get()->where('user_id',$request->user_id)->sum('add_point');
+        $addPoint=Task::find($request->input('task_id'))->update(['add_point' => $returnPoint]);
 
-        $returnToUserPoint = User::find($request->user_id)->update(['point' => $sumPoint]);
+        $sumPoint = Task::get()->where('user_id',$request->input('user_id'))->sum('add_point');
+
+        $returnToUserPoint = User::find($request->input('user_id'))->update(['point' => $sumPoint]);
 
 
-        return redirect()->route('taskHome', [$request->project_id]);
+        return redirect()->route('taskHome', [$request->input('project_id')]);
     }
 }
