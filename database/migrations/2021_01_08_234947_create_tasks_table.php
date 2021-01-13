@@ -17,7 +17,6 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('project_id');
-            $table->bigInteger('user_id');
             $table->datetime('startingtime');
             $table->datetime('deadline');
             $table->integer('totaltime');

@@ -59,7 +59,7 @@
                     </form> --}}
 
                         <button value="{{$task->task_point}}" class="btn btn-primary  pointBtn"@if ($task->status == 2 ) disabled @endif
-                            data-userid="{{$task->user_id}}" data-projectid="{{$task->project_id}}"
+                            data-picker="{{$task->picker}}" data-projectid="{{$task->project_id}}"
                             data-taskid="{{$task->id}}" onclick="location.reload()">任務結束</button>
 
 
@@ -108,8 +108,8 @@
 
 
     $(".pointBtn").click(function(){
-        console.log($(this).data('taskid'))
-        var userId= $(this).data('userid');
+        console.log($(this).data('picker'))
+        var picker= $(this).data('picker');
         var projectId = $(this).data('projectid');
         var taskId = $(this).data('taskid');
 
@@ -123,7 +123,7 @@
             method: 'GET',
             url: `http://127.0.0.1:8000/admin/project/calculation/${projectId}`,
             data:{
-                user_id: $(this).data('userid'),
+                picker: $(this).data('picker'),
                 project_id: $(this).data('projectid'),
                 task_id: $(this).data('taskid'),
                 },

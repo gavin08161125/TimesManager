@@ -75,7 +75,7 @@ class TaskController extends Controller
             'deadline' => $request->deadline,
             'totaltime' => $request->totaltime,
             'picker' => $request->picker,
-            'user_id' => $request->user_id,
+            // 'user_id' => $request->user_id,
             'task_point'=> $request->task_point,
         ]);
         return redirect()->route('taskHome', [$request->project_id]);
@@ -129,7 +129,7 @@ class TaskController extends Controller
             'deadline' => $request->deadline,
             'totaltime' => $request->totaltime,
             'picker' => $request->picker,
-            'user_id'=> $request->user_id,
+            // 'user_id'=> $request->user_id,
             'task_point'=> $request->task_point,
         ]);
 

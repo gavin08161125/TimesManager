@@ -92,7 +92,7 @@ class CalculationController extends Controller
 
     public function calculation(Request $request){
 
-    
+
 
         $click = Task::find($request->input('task_id'))->update(['status' => '2']);
 
@@ -100,9 +100,9 @@ class CalculationController extends Controller
 
         $addPoint=Task::find($request->input('task_id'))->update(['add_point' => $returnPoint]);
 
-        $sumPoint = Task::get()->where('user_id',$request->input('user_id'))->sum('add_point');
+        $sumPoint = Task::get()->where('picker',$request->input('picker'))->sum('add_point');
 
-        $returnToUserPoint = User::find($request->input('user_id'))->update(['point' => $sumPoint]);
+        $returnToUserPoint = User::where('name',$request->input('picker'))->update(['point' => $sumPoint]);
 
 
         return redirect()->route('taskHome', [$request->input('project_id')]);

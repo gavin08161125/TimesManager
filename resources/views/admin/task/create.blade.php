@@ -44,7 +44,7 @@
             <input type="number" class="form-control" id="task_point" name="task_point" min="0" max="5" required>
         </div>
 
-        <div class="form-group" >
+        {{-- <div class="form-group" >
             <label for="user_id">員工編號</label>
             <select class="form-control" id="user_id" name="user_id" required>
                 @foreach ($projectsUsers as $projectsUser)
@@ -53,7 +53,7 @@
                 </option>
                 @endforeach
             </select>
-        </div>
+        </div> --}}
 
         <div class="form-group">
             <label for="picker">執行者</label>
