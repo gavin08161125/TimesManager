@@ -25,7 +25,8 @@
                 <th>結束時間</th>
                 <th>總時長</th>
                 <th>執行者</th>
-                <th>任務點數</th>
+                <th>預計獲得任務點數</th>
+                <th>實際獲得任務點數</th>
                 <th>編輯</th>
                 <th>刪除</th>
                 <th>任務結束</th>
@@ -42,6 +43,7 @@
                 <td>{{$task->totaltime}}</td>
                 <td>{{$task->picker}}</td>
                 <td>{{$task->task_point}}</td>
+                <td>{{$task->add_point}}</td>
                 {{-- <a class="btn btn-primary" href="/admin/project/task/edit/{{$task->id}}" > --}}
                 <td>
                     <form action="/admin/project/task/edit/{{$task->id}} "> <button class="btn btn-primary "

@@ -100,21 +100,41 @@ class CalculationController extends Controller
         //
     }
 
-    public function calculation(Request $request){
+    public function calculation(Request $request,$id){
+
+        $catchData = Task::find($request->id)->update([
+            'task_point'=> $request->task_point,
+            'feedback' => $request->feedback,
+        ]);
+
+        $updatePoint = Task::find($request->id)->update(['add_point'=> $request->task_point]);
+
+        $click = Task::find($request->id)->update(['status' => '2']);
+
+        $returnPoint=Task::find($request->id)->task_point;
+
+        $addPoint=Task::find($request->id)->update(['add_point' => $returnPoint]);
+
+        $sumPoint = Task::get()->where('picker',$request->picker)->sum('add_point');
+
+        $returnToUserPoint = User::where('name',$request->picker)->update(['point' => $sumPoint]);
 
 
 
-        $click = Task::find($request->input('task_id'))->update(['status' => '2']);
-
-        $returnPoint=Task::find($request->input('task_id'))->task_point;
-
-        $addPoint=Task::find($request->input('task_id'))->update(['add_point' => $returnPoint]);
-
-        $sumPoint = Task::get()->where('picker',$request->input('picker'))->sum('add_point');
-
-        $returnToUserPoint = User::where('name',$request->input('picker'))->update(['point' => $sumPoint]);
 
 
-        return redirect()->route('taskHome', [$request->input('project_id')]);
+
+        // $click = Task::find($request->input('task_id'))->update(['status' => '2']);
+
+        // $returnPoint=Task::find($request->input('task_id'))->task_point;
+
+        // $addPoint=Task::find($request->input('task_id'))->update(['add_point' => $returnPoint]);
+
+        // $sumPoint = Task::get()->where('picker',$request->input('picker'))->sum('add_point');
+
+        // $returnToUserPoint = User::where('name',$request->input('picker'))->update(['point' => $sumPoint]);
+
+        $projects = Task::find($id)->project_id;
+        return redirect()->route('taskHome', [$projects]);
     }
 }

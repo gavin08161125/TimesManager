@@ -24,7 +24,7 @@
 
         <div class="form-group">
             <label for="picker">執行者</label>
-            <input type="text" class="form-control" id="picker" name="picker" disabled value="{{$task->picker}}"
+            <input type="text" class="form-control" id="picker" name="picker" readonly value="{{$task->picker}}"
                 required>
 
         </div>
@@ -57,7 +57,7 @@
 
 @section('js')
 
-{{-- <script>
+<script>
     $(".pointBtn").click(function(){
         console.log($(this).data('picker'))
         var picker= $(this).data('picker');
@@ -74,14 +74,14 @@
             method: 'GET',
             url: `http://127.0.0.1:8000/admin/project/calculation/${projectId}`,
             data:{
-                picker: $(this).data('picker'),
+                // picker: $(this).data('picker'),
                 project_id: $(this).data('projectid'),
-                task_id: $(this).data('taskid'),
+                // task_id: $(this).data('taskid'),
                 },
 
       });
 
     });
-</script> --}}
+</script>
 
 @endsection

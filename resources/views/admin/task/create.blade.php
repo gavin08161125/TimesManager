@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            <label for="task_point">任務點數</label>
+            <label for="task_point">預計給予任務點數</label>
             <input type="number" class="form-control" id="task_point" name="task_point" min="0" max="5" required>
         </div>
 
