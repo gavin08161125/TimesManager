@@ -84,9 +84,9 @@ class CalculationController extends Controller
 
     public function feedBack(Request $request, $id)
     {
-        $product =Task::find($id)->project;
+        $product = Task::find($id)->project;
         $task = Task::find($id);
-        return view('admin.task.point.point', compact('task','product'));
+        return view('admin.task.point.point', compact('task', 'product'));
     }
 
     /**
@@ -100,30 +100,32 @@ class CalculationController extends Controller
         //
     }
 
-    public function calculation(Request $request,$id){
+    public function calculation(Request $request, $id)
+    {
 
+        //抓取任務結束的request資料並且更新到欄位
         $catchData = Task::find($request->id)->update([
-            'task_point'=> $request->task_point,
+            'add_point' => $request->add_point,
             'feedback' => $request->feedback,
         ]);
 
-        $updatePoint = Task::find($request->id)->update(['add_point'=> $request->task_point]);
-
+        //狀態值改變成2，讓按鈕disabled
         $click = Task::find($request->id)->update(['status' => '2']);
 
-        $returnPoint=Task::find($request->id)->task_point;
+        //抓取該任務執行者並將點數相加
+        $sumPoint = Task::get()->where('picker', $request->picker)->sum('add_point');
 
-        $addPoint=Task::find($request->id)->update(['add_point' => $returnPoint]);
+        //把相加後的點數更新至使用者總點數
+        $returnToUserPoint = User::where('name', $request->picker)->update(['point' => $sumPoint]);
 
-        $sumPoint = Task::get()->where('picker',$request->picker)->sum('add_point');
-
-        $returnToUserPoint = User::where('name',$request->picker)->update(['point' => $sumPoint]);
-
-
-
-
+        //回傳project的id回taskindex頁面，才能抓取對應的任務列表
+        $projects = Task::find($id)->project_id;
+        return redirect()->route('taskHome', [$projects]);
 
 
+
+        //ajax區(已被更換)
+        
         // $click = Task::find($request->input('task_id'))->update(['status' => '2']);
 
         // $returnPoint=Task::find($request->input('task_id'))->task_point;
@@ -133,8 +135,8 @@ class CalculationController extends Controller
         // $sumPoint = Task::get()->where('picker',$request->input('picker'))->sum('add_point');
 
         // $returnToUserPoint = User::where('name',$request->input('picker'))->update(['point' => $sumPoint]);
-
-        $projects = Task::find($id)->project_id;
-        return redirect()->route('taskHome', [$projects]);
     }
 }
+
+
+

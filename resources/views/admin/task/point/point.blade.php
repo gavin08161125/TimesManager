@@ -31,7 +31,7 @@
 
         <div class="form-group">
             <label for="task_point">獎勵點數</label>
-            <input type="number" class="form-control" id="task_point" name="task_point" value="" min="0" max="5"
+            <input type="number" class="form-control" id="add_point" name="add_point" value="" min="0" max="5"
                 required>
         </div>
 
