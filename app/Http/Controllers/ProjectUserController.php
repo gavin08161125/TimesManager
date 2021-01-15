@@ -6,6 +6,7 @@ use App\User;
 use App\Project;
 use App\ProjectUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectUserController extends Controller
 {
@@ -37,13 +38,24 @@ class ProjectUserController extends Controller
     public function store(Request $request)
     {
         //
+        $productUser = ProjectUser::find($request->user_id);
 
-        ProjectUser::create([
-            'project_id' => $request->project_id,
-            'user_id' => $request->user_id,
-        ]);
+        //新增專案成員
+        //判斷專案內是否已有該成員名單
+        if (ProjectUser::where('project_id', $request->project_id)->where('user_id', $request->user_id)->exists()) {
 
-        return redirect('admin/project');
+            //如有該成員名單跳出訊息
+            return redirect()->back()->with('alert', '該成員已在專案內!');
+        } else {
+            ProjectUser::create([
+                'project_id' => $request->project_id,
+                'user_id' => $request->user_id,
+            ]);
+
+            return redirect()->back()->with('alert', '新增成功!');
+        }
+
+        // return redirect('admin/project');
     }
 
     /**
@@ -63,15 +75,16 @@ class ProjectUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,Request $request)
+    public function edit($id, Request $request)
     {
-        //
+        //抓出目前專案
         $project = Project::find($id);
-        $projects =  Project::all();
+        //抓出所有使用者
         $users = User::all();
+        //抓出目前專案成員
         $users_list = Project::find($request->id)->users;
 
-        return view('admin.projectUser.edit', compact('project', 'projects', 'users','users_list'));
+        return view('admin.projectUser.edit', compact('project', 'users', 'users_list'));
     }
 
     /**
@@ -92,21 +105,58 @@ class ProjectUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id,Request $request)
+
+    public function deleteMember(Request $request)
     {
+
+        //抓取指定成員
+        $deleteMember = ProjectUser::where('user_id', $request->user_id)->where('project_id', $request->project_id);
+
+        //抓取主管本身
+        $mySelf = ProjectUser::where('user_id', auth()->user()->id)->where('project_id', $request->project_id);
+
+        //增加判斷防呆，免去刪除自己(待改良)
+        if($deleteMember == $mySelf){
+
+            return redirect()->back()->with('alert', '無法刪除移除此成員!');
+
+        }else{
+            //刪除指定成員
+            $deleteMember->delete();
+            return redirect()->back()->with('alert', '刪除成功!');
+
+        }
+
+
+
+        // //挑選專案擁有者(待改良)
+
+        // $users_list = Project::find($request->id)->users;
+
+        //     if ($request->input('name') == $request->owner){
+        //         return 'NOOOOOOOOOOO';
+        //         return redirect()->back()->with('alert', '無法刪除移除專案擁有者!');
+
+        //     }else{
+        //         $deleteMember->delete();
+        //         return redirect()->back()->with('alert', '刪除成功!');
+        //     }
+
+
+        return redirect('admin/project');
+    }
+
+
+    public function deleteSelect($id, Request $request)
+    {
+
+        //抓出目前專案
         $project = Project::find($id);
-        $projects =  Project::all();
+
+        //抓出目前專案所有成員
         $users = Project::find($request->id)->users;
 
-        $deleteMember = ProjectUser::where('user_id',$request->user_id)->where('project_id',$request->project_id);
 
-        
-
-
-        $deleteMember->delete();
-
-
-        return view('admin.projectUser.delete', compact('project', 'projects', 'users'));
-
+        return view('admin.projectUser.delete', compact('project', 'users'));
     }
 }

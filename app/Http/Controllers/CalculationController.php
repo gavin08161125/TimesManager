@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Task;
 use App\User;
 
+use App\Project;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;
 
@@ -73,10 +74,19 @@ class CalculationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function addPoint(Request $request, $id)
     {
         //
 
+
+    }
+
+
+    public function feedBack(Request $request, $id)
+    {
+        $product =Task::find($id)->project;
+        $task = Task::find($id);
+        return view('admin.task.point.point', compact('task','product'));
     }
 
     /**

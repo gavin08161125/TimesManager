@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 
 
-use App\ProjectUser;
-use Illuminate\Http\Request;
+use App\Task;
 use App\User;
 use App\Project;
+use App\ProjectUser;
+use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\This;
 
 class ProjectController extends Controller
@@ -15,34 +16,23 @@ class ProjectController extends Controller
     public function index()
     {
 
-
-
-        // $user = User::find(1);
-        // $singleProjects=ProjectUser::get()->where('user_id',auth()->user()->id);
-
-        // foreach($singleProjects as $singleProject){
-        //     $singleProjectId = $singleProject->project_id;
-        // }
-
-
+        // 抓取所有專案
         // $projects = Project::get();
 
+        //抓取目前使用者的所有專案
         $projects =User::find(auth()->user()->id)->projects;
 
-
-        // dd($projects);
-        $myself = auth()->user()->email;
+        //抓取目前使用者姓名
+        $myself = auth()->user()->name;
 
         return view('admin.project.index', compact('projects','myself'));
 
-
-        // $project = auth()->user();
-
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        $myself = auth()->user()->email;
+        //抓取目前使用者姓名
+        $myself = auth()->user()->name;
         return view('admin.project.create', compact('myself'));
     }
 
@@ -50,6 +40,7 @@ class ProjectController extends Controller
     {
         $projects= Project::create($request->all());
 
+        //建立專案時建立專案與擁有者之資料
         ProjectUser::create([
             'user_id' => auth()->user()->id,
             'project_id' => $projects->id
@@ -60,15 +51,17 @@ class ProjectController extends Controller
 
     public function edit($id)
     {
-        $myself = auth()->user()->email;
-        $data = Project::find($id);
+        //抓取目前使用者姓名
+        $myself = auth()->user()->name;
 
+        $data = Project::find($id);
         return view('admin.project.edit',compact('data','myself'));
     }
 
 
     public function update(Request $request, $id)
     {
+        //更新專案
         $products = Project::find($id);
         $update = $request->all();
         $products->update($update);
@@ -78,11 +71,17 @@ class ProjectController extends Controller
 
     public function destroy($id)
     {
-        $products = Project::find($id);
-        $products->delete();
+        //刪除專案時刪除專案任務
+        $deleteTask = Task::where('project_id',Project::find($id)->id);
+        $deleteTask->delete();;
 
+        //刪除專案時刪除專案成員
         $deleteAllMenber = ProjectUser::where('project_id',$id) ;
         $deleteAllMenber->delete();
+
+        //刪除專案
+        $products = Project::find($id);
+        $products->delete();
 
         return redirect('/admin/project/');
     }

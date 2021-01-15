@@ -14,6 +14,7 @@
     <form action="/admin/project/task/create/{{$request->id}}" neme="id" id="id">
         <button class="btn btn-success " neme="id" id="id" value="{{$request->id}}">新增工作</button>
     </form>
+
     <hr>
     <table id="myTable" class="display">
         <thead>
@@ -43,27 +44,25 @@
                 <td>{{$task->task_point}}</td>
                 {{-- <a class="btn btn-primary" href="/admin/project/task/edit/{{$task->id}}" > --}}
                 <td>
-                    <form action="/admin/project/task/edit/{{$task->id}} "> <button class="btn btn-primary " @if($task->status == 2) disabled @endif >編輯</button></form>
+                    <form action="/admin/project/task/edit/{{$task->id}} "> <button class="btn btn-primary "
+                            @if($task->status == 2) disabled @endif >編輯</button></form>
                 </td>
                 <td><a class="btn btn-danger" href="/admin/project/task/destroy/{{$task->id}}">刪除</td>
 
                 <td>
 
-                    {{-- <form action="/admin/project/calculation/{{$task->user_id}}" >
-                    <button value="{{$task->task_point}}" class="btn btn-primary " name="task_point" id="task_point"
-                        data-point="" @if ($task->status == 2 ) disabled @endif>任務結束
-                    </button>
-                    <input type="number" value="{{$task->user_id}}" name="user_id" id="user_id" hidden>
-                    <input type="number" value="{{$task->project_id}}" name="project_id" id="project_id" hidden>
-                    <input type="number" value="{{$task->id}}" name="id" id="id" hidden>
-                    </form> --}}
+                    {{-- <button value="{{$task->task_point}}" class="btn btn-primary pointBtn"@if ($task->status == 2 )
+                    disabled @endif
+                    data-picker="{{$task->picker}}" data-projectid="{{$task->project_id}}"
+                    data-taskid="{{$task->id}}" onclick="location.reload()">任務結束</button> --}}
 
-                        <button value="{{$task->task_point}}" class="btn btn-primary  pointBtn"@if ($task->status == 2 ) disabled @endif
+
+                    <form action="/admin/project/task/feedback/{{$task->id}}">
+                        <button class="btn btn-primary pointBtn" @if ($task->status == 2 )
+                            disabled @endif
                             data-picker="{{$task->picker}}" data-projectid="{{$task->project_id}}"
-                            data-taskid="{{$task->id}}" onclick="location.reload()">任務結束</button>
-
-
-
+                            data-taskid="{{$task->id}}" >任務結束</button>
+                    </form>
                 </td>
 
             </tr>
@@ -85,75 +84,32 @@
         $('#myTable').DataTable();
     });
 
-
     // $(".pointBtn").click(function(){
-    //     console.log($(this).data('taskid'))
-    //     var userId= $(this).data('userid');
+    //     console.log($(this).data('picker'))
+    //     var picker= $(this).data('picker');
     //     var projectId = $(this).data('projectid');
     //     var taskId = $(this).data('taskid');
+
+    //     $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         }
+    //     });
+
     //     $.ajax({
-    //         url: `/admin/project/calculation/${projectId}`,
+    //         method: 'GET',
+    //         url: `http://127.0.0.1:8000/admin/project/calculation/${projectId}`,
     //         data:{
-    //             user_id: $(this).data('userid'),
+    //             picker: $(this).data('picker'),
     //             project_id: $(this).data('projectid'),
     //             task_id: $(this).data('taskid'),
-    //             '_token': '{{ csrf_token() }}' ,
-    //         },
-    //         type: 'post',
-    //         dataType: 'text',
+    //             },
 
     //   });
+
+
     // });
 
 
-
-    $(".pointBtn").click(function(){
-        console.log($(this).data('picker'))
-        var picker= $(this).data('picker');
-        var projectId = $(this).data('projectid');
-        var taskId = $(this).data('taskid');
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $.ajax({
-            method: 'GET',
-            url: `http://127.0.0.1:8000/admin/project/calculation/${projectId}`,
-            data:{
-                picker: $(this).data('picker'),
-                project_id: $(this).data('projectid'),
-                task_id: $(this).data('taskid'),
-                },
-
-
-      });
-
-
-    });
-
-
-
-
-
-//     $.ajax({
-//     url: "https://ajax-lesson.digipack-develop.com/news",
-//     data: {
-//         title: title.value,
-//         date: date.value,
-//         content: content.value,
-//         image_url: image_url.value
-//     },
-//     type: "POST",
-//     dataType: 'text'
-
-// });
-
-// });
-
-
-    // Code that uses other library's $ can follow here.
 </script>
 @endsection

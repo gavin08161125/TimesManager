@@ -56,6 +56,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
             Route::get('edit/{id}', 'TaskController@edit');
             Route::post('update/{id}', 'TaskController@update')->name('taskUpdate');
             Route::get('destroy/{id}', 'TaskController@destroy');
+            Route::get('feedback/{id}', 'CalculationController@feedback');
+            Route::post('add_point/{id}', 'CalculationController@calculation');
         });
 
 
@@ -63,9 +65,13 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
             Route::get('update/{id}', 'ProjectUserController@update');
             Route::post('store', 'ProjectUserController@store');
             Route::get('edit/{id}', 'ProjectUserController@edit');
-            Route::get('destroy/{id}', 'ProjectUserController@destroy');
-            Route::get('create', 'ProjectUserController@create');
         });
+
+
+        Route::get('delete_select/{id}', 'ProjectUserController@deleteSelect');
+        Route::get('delete_member/{id}', 'ProjectUserController@deleteMember');
+
+
 
         Route::get('/calculation/{id}', 'CalculationController@calculation')->middleware('auth');
     });
