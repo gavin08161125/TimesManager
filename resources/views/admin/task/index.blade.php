@@ -49,7 +49,7 @@
                     <form action="/admin/project/task/edit/{{$task->id}} "> <button class="btn btn-primary "
                             @if($task->status == 2) disabled @endif >編輯</button></form>
                 </td>
-                <td><a class="btn btn-danger" href="/admin/project/task/destroy/{{$task->id}}">刪除</td>
+                <td><a class="btn btn-danger" href="/admin/project/task/destroy/{{$task->id}}" onclick="javascript:return del();" >刪除</td>
 
                 <td>
 
@@ -85,6 +85,16 @@
     jQuery( document ).ready(function( $ ) {
         $('#myTable').DataTable();
     });
+
+
+    function del() {
+        var msg = "您真的確定要刪除此任務嗎！？";
+        if (confirm(msg)==true){
+        return true;
+        }else{
+        return false;
+        }
+    }
 
     // $(".pointBtn").click(function(){
     //     console.log($(this).data('picker'))

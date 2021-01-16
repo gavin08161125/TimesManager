@@ -80,7 +80,7 @@
                     <td>
                         <a class='btn btn-success btn-sm ' href="/admin/project/edit/{{$project->id}}">編輯
                         </a>
-                        <a class='btn btn-danger btn-sm' href="/admin/project/destroy/{{$project->id}}">刪除
+                        <a class='btn btn-danger btn-sm' href="/admin/project/destroy/{{$project->id}}" onclick="javascript:return del();">刪除
                         </a>
                         <a class='btn btn-success btn-sm' href="/admin/project/add_member/edit/{{$project->id}}">新增成員
                         </a>
@@ -143,6 +143,15 @@
         hidden_text.setAttribute('hidden', 'hidden')
      });
 
+
+     function del() {
+        var msg = "您真的確定要刪除此專案嗎！？";
+        if (confirm(msg)==true){
+        return true;
+        }else{
+        return false;
+        }
+    }
 
     </script>
 

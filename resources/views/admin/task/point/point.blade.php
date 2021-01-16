@@ -46,7 +46,7 @@
         <button value="{{$task->task_point}}" class="btn btn-primary  pointBtn" @if ($task->status == 2 ) disabled
             @endif
             data-picker="{{$task->picker}}" data-projectid="{{$task->project_id}}"
-            data-taskid="{{$task->id}}" onclick="location.reload()">任務結束</button>
+            data-taskid="{{$task->id}}" onclick="javascript:return del();">任務結束</button>
 
     </form>
 </div>
@@ -82,6 +82,16 @@
       });
 
     });
+
+
+    function del() {
+        var msg = "送出後點數會增加至任務執行者？確定嗎？";
+        if (confirm(msg)==true){
+        return true;
+        }else{
+        return false;
+        }
+    }
 </script>
 
 @endsection
