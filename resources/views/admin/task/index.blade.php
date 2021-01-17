@@ -2,18 +2,36 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+<style>
+
+.progress{
+    height: 50px;
+}
+
+.progress-bar{
+    border-right: 0.5px white dashed;
+}
+
+</style>
+
 @endsection
 
 @section('main')
 
 <div class="container">
 
-    {{-- <a class="btn btn-success" href="/admin/project/task/create/id">新增工作</a> --}}
 
-    {{-- 抓取的id從indexfunction接過來，透過Form表單抓取id 把值post進create頁面 --}}
-    <form action="/admin/project/task/create/{{$request->id}}" neme="id" id="id">
-        <button class="btn btn-success " neme="id" id="id" value="{{$request->id}}">新增工作</button>
-    </form>
+    {{-- 進度條 --}}
+    <h3>任務進度</h3>
+    <div class="progress" >
+        @foreach ($tasks as $task)
+        @if($task->status == 2 )
+        <div class="progress-bar progress-bar-striped  bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0"
+            aria-valuemax="100">{{$task->name}}</div>
+        @endif
+        @endforeach
+    </div>
+
 
     <hr>
     <table id="myTable" class="display">
@@ -30,6 +48,7 @@
                 <th>編輯</th>
                 <th>刪除</th>
                 <th>任務結束</th>
+                <th>任務詳細</th>
 
             </tr>
         </thead>
@@ -49,7 +68,8 @@
                     <form action="/admin/project/task/edit/{{$task->id}} "> <button class="btn btn-primary "
                             @if($task->status == 2) disabled @endif >編輯</button></form>
                 </td>
-                <td><a class="btn btn-danger" href="/admin/project/task/destroy/{{$task->id}}" onclick="javascript:return del();" >刪除</td>
+                <td><a class="btn btn-danger" href="/admin/project/task/destroy/{{$task->id}}"
+                        onclick="javascript:return del();">刪除</td>
 
                 <td>
 
@@ -67,11 +87,51 @@
                     </form>
                 </td>
 
+                <td>
+                    <button type="button" class="btn btn-success" data-toggle="modal"
+                        data-target="#exampleModalLong{{$task->id}}">
+                        任務詳細
+                    </button>
+                </td>
+
+                <div class="modal fade" id="exampleModalLong{{$task->id}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">任務詳細</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h5>專案名稱：{{$task->project->title}}</h5>
+                                <hr>
+                                <h5>任務名稱：{{$task->name}}</h5>
+                                <hr>
+                                <h5>預計獲得任務點數：{{$task->task_point}}</h5>
+                                <hr>
+                                <h5>實際獲得任務點數：{{$task->add_point}}</h5>
+                                <hr>
+                                <h5>任務反饋</h5>
+                                <textarea cols="55" rows="10" readonly>{{$task->feedback}}</textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary " data-dismiss="modal">關閉</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </tr>
             @endforeach
 
         </tbody>
     </table>
+    {{-- 抓取的id從indexfunction接過來，透過Form表單抓取id 把值post進create頁面 --}}
+    <form action="/admin/project/task/create/{{$request->id}}" neme="id" id="id">
+        <button class="btn btn-success " neme="id" id="id" value="{{$request->id}}">新增工作</button>
+    </form>
 </div>
 
 @endsection
