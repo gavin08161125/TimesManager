@@ -166,8 +166,8 @@
 
         </table>
 
-        <button class='btn btn-success  btn-sm add_project'>新增</button>
-        <button class="btn btn-success  btn-sm remove_add">取消新增</button>
+        <button class='btn btn-success add_project'>新增</button>
+        <button class="btn btn-success remove_add">取消新增</button>
     </div>
 
 
