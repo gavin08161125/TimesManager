@@ -22,7 +22,7 @@
             <hr>
             @csrf
             <div class="form-group">
-                <label for="title">專案名稱</label>
+                <label for="title"> 專案名稱</label>
                 <input type="text" class="form-control" id="title" name="title" required>
             </div>
             <div class="form-group">
@@ -68,7 +68,7 @@
 
                 <tr>
                     {{-- 標題 --}}
-                    <td>{{$project->title}}</td>
+                    <td><a href="/admin/project/project_datail/{{$project->id}}">{{$project->title}}</a></td>
                     {{-- 專案開始時間 --}}
                     <td>{{$project->startingtime}}</td>
                     {{-- 專案截止時間 --}}
