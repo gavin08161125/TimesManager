@@ -36,7 +36,7 @@
         <tbody>
             @foreach ($tasks as $task)
             <tr>
-                <td>{{$task->project_id}}</td>
+                <td>{{$task->project->title}}</td>
                 <td>{{$task->name}}</td>
                 <td>{{$task->startingtime}}</td>
                 <td>{{$task->deadline}}</td>
