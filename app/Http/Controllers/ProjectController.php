@@ -25,6 +25,7 @@ class ProjectController extends Controller
         //抓取目前使用者姓名
         $myself = auth()->user()->name;
 
+
         return view('admin.project.index', compact('projects','myself'));
 
     }

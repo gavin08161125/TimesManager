@@ -55,6 +55,9 @@
                     <th>專案截止時間</th>
                     <th>專案總計時間</th>
                     <th>描述</th>
+                    <th>專案任務總計</th>
+                    <th>已完成任務總計</th>
+                    <th>未完成任務總計</th>
                     <th>擁有者</th>
                     <th>功能</th>
                 </tr>
@@ -76,11 +79,18 @@
                         floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600)+1 <= 1 )
                             {{floor((strtotime($project->deadline)-strtotime($project->startingtime))/60 )}} 分鐘 @else 鬧?
                             @endif </td> <td>{{$project->description}}</td>
+                    {{-- 任務總計 --}}
+                    <td>{{count($project->tasks)}}</td>
+                    {{-- 已完成任務總計 --}}
+                    <td>{{count($project->tasks->where('status','2'))}}</td>
+                    {{-- 未完成任務總計 --}}
+                    <td>{{count($project->tasks->where('status','1'))}}</td>
                     <td>{{$project->owner}}</td>
                     <td>
                         <a class='btn btn-success btn-sm ' href="/admin/project/edit/{{$project->id}}">編輯
                         </a>
-                        <a class='btn btn-danger btn-sm' href="/admin/project/destroy/{{$project->id}}" onclick="javascript:return del();">刪除
+                        <a class='btn btn-danger btn-sm' href="/admin/project/destroy/{{$project->id}}"
+                            onclick="javascript:return del();">刪除
                         </a>
                         <a class='btn btn-success btn-sm' href="/admin/project/add_member/edit/{{$project->id}}">新增成員
                         </a>
