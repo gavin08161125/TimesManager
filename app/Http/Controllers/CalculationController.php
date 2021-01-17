@@ -149,4 +149,21 @@ class CalculationController extends Controller
 
         return redirect()->back();
     }
+
+
+    public function endProject($id)
+    {
+
+
+
+
+
+        //專案狀態值改變成2，讓按鈕disabled
+        $click = Project::find($id)->update(['status' => 2]);
+
+        //將結束專案下的Task之狀態改變成2，讓Task按鈕disabled
+        $taskEnd = Task::whereIn('project_id', [$id])->update(['status' => 2]);
+
+        return redirect()->back();
+    }
 }

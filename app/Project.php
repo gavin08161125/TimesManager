@@ -15,6 +15,7 @@ class Project extends Model
         'totaltime',
         'description',
         'owner',
+        'status',
     ];
 
     public function users() {

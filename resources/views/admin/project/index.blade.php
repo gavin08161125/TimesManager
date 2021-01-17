@@ -92,18 +92,19 @@
                     <td>{{$project->owner}}</td>
                     {{-- 功能 --}}
                     <td>
-                        <a class='btn btn-success btn-sm ' href="/admin/project/edit/{{$project->id}}">編輯
+                        <a class='btn btn-success btn-sm  @if($project->status == 2) disabled @endif ' href="/admin/project/edit/{{$project->id}}" >編輯
                         </a>
                         <a class='btn btn-danger btn-sm' href="/admin/project/destroy/{{$project->id}}"
                             onclick="javascript:return del();">刪除
                         </a>
-                        <a class='btn btn-success btn-sm' href="/admin/project/add_member/edit/{{$project->id}}">新增成員
+                        <a class='btn btn-success btn-sm @if($project->status == 2) disabled @endif ' href="/admin/project/add_member/edit/{{$project->id}}"  >新增成員
                         </a>
-                        <a class='btn btn-danger btn-sm' href="/admin/project/delete_select/{{$project->id}}">刪除成員
+                        <a class='btn btn-danger btn-sm @if($project->status == 2) disabled @endif' href="/admin/project/delete_select/{{$project->id}}"  >刪除成員
                         </a>
                         <form action="/admin/project/task/{{$project->id}}">
-                            <button class='btn btn-success btn-sm' name="id" value="{{$project->id}}">工作管理</button>
+                            <button class='btn btn-success btn-sm' name="id" value="{{$project->id}}" >工作管理</button>
                         </form>
+                        <a  class='btn btn-danger btn-sm @if($project->status == 2) disabled @endif' href="/admin/project/endProject/{{$project->id}}"   onclick="javascript:return endProject();">封存專案</a>
                     </td>
 
                 </tr>
@@ -152,6 +153,17 @@
      //點擊刪除按鈕跳出提示確認(button上綁定onclick="javascript:return del();)
      function del() {
         var msg = "您真的確定要刪除此專案嗎！？";
+        if (confirm(msg)==true){
+        return true;
+        }else{
+        return false;
+        }
+    }
+
+    //
+    //點擊刪除按鈕跳出提示確認(button上綁定onclick="javascript:return del();)
+    function endProject() {
+        var msg = "要封存此專案嗎？\n注意:如任務點數尚未發放，封存專案將會無法再行發放任務點數！！";
         if (confirm(msg)==true){
         return true;
         }else{

@@ -74,5 +74,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
 
         //計算點數
         Route::get('/calculation/{id}', 'CalculationController@calculation')->middleware('auth');
+
+        //將專案封存按鈕狀態變為2，讓按鈕disabled
+        Route::get('/endProject/{id}', 'CalculationController@endProject');
     });
 });
