@@ -84,7 +84,9 @@ class CalculationController extends Controller
 
     public function feedBack(Request $request, $id)
     {
+        //抓取任務對應到相對專案(hasOne)
         $product = Task::find($id)->project;
+        //抓取任務
         $task = Task::find($id);
         return view('admin.task.point.point', compact('task', 'product'));
     }
@@ -125,7 +127,7 @@ class CalculationController extends Controller
 
 
         //ajax區(已被更換)
-        
+
         // $click = Task::find($request->input('task_id'))->update(['status' => '2']);
 
         // $returnPoint=Task::find($request->input('task_id'))->task_point;
@@ -136,7 +138,15 @@ class CalculationController extends Controller
 
         // $returnToUserPoint = User::where('name',$request->input('picker'))->update(['point' => $sumPoint]);
     }
+
+    public function updatePoint()
+    {
+        //抓取該任務執行者並將點數相加
+        $sumPoint = Task::get()->where('picker', auth()->user()->name)->sum('add_point');
+
+        //把相加後的點數更新至使用者總點數
+        $returnToUserPoint = User::where('name', auth()->user()->name)->update(['point' => $sumPoint]);
+
+        return redirect()->back();
+    }
 }
-
-
-

@@ -39,7 +39,7 @@ Route::get('/project', 'ProjectController@index');
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
 
-
+    //專案
     Route::group(['prefix' => 'project'], function () {
         Route::get('/', 'ProjectController@index')->name('home');
         Route::post('store', 'ProjectController@store');
@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
         Route::post('update/{id}', 'ProjectController@update');
         Route::get('destroy/{id}', 'ProjectController@destroy');
 
-
+        //任務
         Route::group(['prefix' => 'task'], function () {
             Route::get('{id}', 'TaskController@index')->name('taskHome');
             Route::get('store/{id}', 'TaskController@store');
@@ -60,19 +60,19 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
             Route::post('add_point/{id}', 'CalculationController@calculation');
         });
 
-
+        //新增成員
         Route::group(['prefix' => 'add_member'], function () {
             Route::get('update/{id}', 'ProjectUserController@update');
             Route::post('store', 'ProjectUserController@store');
             Route::get('edit/{id}', 'ProjectUserController@edit');
         });
 
-
+        //刪除成員
         Route::get('delete_select/{id}', 'ProjectUserController@deleteSelect');
         Route::get('delete_member/{id}', 'ProjectUserController@deleteMember');
 
 
-
+        //計算點數
         Route::get('/calculation/{id}', 'CalculationController@calculation')->middleware('auth');
     });
 });

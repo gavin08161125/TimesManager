@@ -67,25 +67,30 @@
                 @foreach ($projects as $project)
 
                 <tr>
+                    {{-- 標題 --}}
                     <td>{{$project->title}}</td>
+                    {{-- 專案開始時間 --}}
                     <td>{{$project->startingtime}}</td>
+                    {{-- 專案截止時間 --}}
                     <td>{{$project->deadline}}</td>
-
+                    {{-- 專案總計時間(小時) --}}
                     <td>
                         @if (floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600) >= 1)
                         還有{{floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600)}} 小時
 
                         @elseif(floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600)+1 >0 &&
                         floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600)+1 <= 1 )
-                            {{floor((strtotime($project->deadline)-strtotime($project->startingtime))/60 )}} 分鐘 @else 鬧?
-                            @endif </td> <td>{{$project->description}}</td>
+                            {{floor((strtotime($project->deadline)-strtotime($project->startingtime))/60 )}} 分鐘 @else
+                            請檢查專案開始時間與截止時間是否正確 @endif </td> <td>{{$project->description}}</td>
                     {{-- 任務總計 --}}
                     <td>{{count($project->tasks)}}</td>
                     {{-- 已完成任務總計 --}}
                     <td>{{count($project->tasks->where('status','2'))}}</td>
                     {{-- 未完成任務總計 --}}
                     <td>{{count($project->tasks->where('status','1'))}}</td>
+                    {{-- 擁有者 --}}
                     <td>{{$project->owner}}</td>
+                    {{-- 功能 --}}
                     <td>
                         <a class='btn btn-success btn-sm ' href="/admin/project/edit/{{$project->id}}">編輯
                         </a>
@@ -109,9 +114,6 @@
 
         <button class='btn btn-success  btn-sm add_project'>新增</button>
         <button class="btn btn-success  btn-sm remove_add">取消新增</button>
-
-
-        {{-- href="/admin/project/create" --}}
     </div>
 
 
@@ -122,7 +124,6 @@
 
     <!-- #region datatables files -->
 
-
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 
     <script>
@@ -131,29 +132,24 @@
         $('#myTable').DataTable();
     });
     // Code that uses other library's $ can follow here.
-    </script>
-    <script>
-        var add = document.querySelector('.add_project')
+
+    var add = document.querySelector('.add_project')
     var hidden= document.querySelector('.remove_add')
-
+    //點擊新增按鈕移除hidden標籤，顯示畫面上的新增專案欄位
      add.addEventListener('click', evt =>{
-
          var hidden_text = document.querySelector('.hidden_text')
          if(hidden_text.hasAttribute('hidden')){
             hidden_text.removeAttribute('hidden')
          }
-        //  }else{
-        //     hidden_text.setAttribute('hidden', 'hidden')
-        //  }
 
      });
-
+    //點擊取消新增按鈕增加hidden標籤，隱藏畫面上的新增專案欄位
      hidden.addEventListener('click', evt =>{
         var hidden_text = document.querySelector('.hidden_text')
         hidden_text.setAttribute('hidden', 'hidden')
      });
 
-
+     //點擊刪除按鈕跳出提示確認(button上綁定onclick="javascript:return del();)
      function del() {
         var msg = "您真的確定要刪除此專案嗎！？";
         if (confirm(msg)==true){
