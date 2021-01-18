@@ -71,11 +71,16 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
         Route::get('delete_select/{id}', 'ProjectUserController@deleteSelect');
         Route::get('delete_member/{id}', 'ProjectUserController@deleteMember');
 
-
         //計算點數
         Route::get('/calculation/{id}', 'CalculationController@calculation')->middleware('auth');
 
         //將專案封存按鈕狀態變為2，讓按鈕disabled
         Route::get('/endProject/{id}', 'CalculationController@endProject');
+
+        //管理者權限(提高其他帳號權限、部門更新、職位更新)
+        Route::get('/usersControllers', 'UserController@usersController');
+        Route::POST('/createDapartment', 'UserController@createDapartment');
+        Route::POST('/updateDapartment', 'UserController@updateDapartment');
+        Route::POST('/authority', 'UserController@authority');
     });
 });

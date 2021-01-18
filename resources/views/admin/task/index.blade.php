@@ -12,6 +12,37 @@
     border-right: 0.5px white dashed;
 }
 
+
+.color:nth-child(n) {
+  background: red!important;
+}
+
+.color:nth-child(2n) {
+  background: orange!important;
+}
+
+.color:nth-child(3n) {
+  background: yellow!important;
+}
+
+.color:nth-child(4n) {
+  background: green!important;
+}
+
+.color:nth-child(5n) {
+  background: blue!important;
+}
+
+.color:nth-child(6n) {
+  background: indigo!important;
+}
+
+.color:nth-child(7n) {
+  background: violet!important;
+}
+
+
+
 </style>
 
 @endsection
@@ -26,7 +57,7 @@
     <div class="progress" >
         @foreach ($tasks as $task)
         @if($task->status == 2 )
-        <div class="progress-bar progress-bar-striped  bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0"
+        <div class="progress-bar progress-bar-striped  bg-danger color" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0"
             aria-valuemax="100">{{$task->name}}</div>
         @endif
         @endforeach

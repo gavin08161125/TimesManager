@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->bigInteger('point')->nullable();
             $table->longText('work_memo')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone')->nullable();
+            $table->longText('img')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
