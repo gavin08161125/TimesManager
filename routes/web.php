@@ -76,11 +76,13 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
 
         //將專案封存按鈕狀態變為2，讓按鈕disabled
         Route::get('/endProject/{id}', 'CalculationController@endProject');
+    });
 
-        //管理者權限(提高其他帳號權限、部門更新、職位更新)
-        Route::get('/usersControllers', 'UserController@usersController');
-        Route::POST('/createDapartment', 'UserController@createDapartment');
-        Route::POST('/updateDapartment', 'UserController@updateDapartment');
-        Route::POST('/authority', 'UserController@authority');
+    Route::group(['middleware' => ['auth'], 'prefix' => 'user/'], function () {
+        //管理者權限(提高其他帳號權限、部門更新、職位、會員資訊更新)
+        Route::get('/', 'UserController@index');
+        Route::get('/edit/{id}', 'UserController@edit');
+        Route::post('/update/{id}', 'UserController@update');
+        Route::get('/destroy/{id}', 'UserController@destroy');
     });
 });

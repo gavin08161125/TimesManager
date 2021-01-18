@@ -35,20 +35,29 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+
+                    <?php use App\User; ?>
+                    @auth
+
+                    <ul class="navbar-nav ">
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/project">專案管理</a>
                         </li>
                     </ul>
-                    <?php use App\User; ?>
-                    @auth
-                    <ul class="navbar-nav mr-auto">
+
+                    <ul class="navbar-nav ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/user/">人員管理</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ">
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/project">
 
 
                              <?php $point = User::find(auth()->user()->id)->point ?>
-                                您目前有 {{$point}} 點被剝削點數
+                                您目前有 {{$point}} 點任務點數
                             </a>
                         </li>
                     </ul>
