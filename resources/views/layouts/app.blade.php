@@ -18,12 +18,24 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'HunInn';
+            src: url("https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.eot"); /* IE9 Compat Modes */
+            src: url("https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+            url("https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.woff") format("woff"), /* Modern Browsers */
+            url("https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.ttf") format("truetype"), /* Safari, Android, iOS */
+            url("https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.svg#SealmemoryHeader") format("svg"); /* Legacy iOS */
+        }
         * {
             padding: 0;
             margin: 0;
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
+
+
         }
+
+
 
         @media (min-width: 1600px) {
 
@@ -48,13 +60,17 @@
         }
 
         body {
+            width: 100%;
+            height: 100%;
             background-color: #F0E09C;
+            font-family: 'HunInn';
         }
 
         nav {
             width: 388px;
-            height: 100vh;
+            min-height: 100vh;
             background-color: #F4F2F2;
+
         }
 
         .sideNav {
@@ -95,7 +111,7 @@
             border-radius: 20px;
             font-size: 36px;
             text-align: center;
-            line-height: 40px;
+            line-height: 45px;
             padding-top: 25px;
         }
 
@@ -110,7 +126,7 @@
 
         .sideNav .notice-window {
             position: fixed;
-            bottom: 0;
+            bottom:20px;
         }
 
         .sideNav .notice-window .notice-part {
@@ -151,12 +167,13 @@
             line-height: 66px;
             text-align: center;
             line-height: 66px;
-            position: fixed;
-            bottom: 2%;
+            position: absolute;
+            bottom: 5%;
             left: 50px;
             height: 40px;
             line-height: 40px;
             font-size: 24px;
+
             background-color: #354D6D;
             color: white;
             cursor: pointer;
@@ -167,6 +184,7 @@
             height: 100vh;
             background-color: #F0E09C;
             padding-top: 50px;
+            overflow: scroll;
         }
 
         table {
@@ -220,7 +238,7 @@
             @endif
             <div class="notice-window m-a d-flex">
                 <div class="notice-part d-flex">
-                    <img src="" width="140px">
+                    <img src="{{ asset('img/head.png') }}" width="140px">
 
 
                     @auth
