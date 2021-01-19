@@ -30,6 +30,13 @@
         </div>
 
         <div class="form-group">
+            <label for="picker">審核人</label>
+            <input type="text" class="form-control" id="reviewer" name="reviewer" readonly value="{{$reviewer}}"
+                required>
+
+        </div>
+
+        <div class="form-group">
             <label for="task_point">獎勵點數</label>
             <input type="number" class="form-control" id="add_point" name="add_point" value="" min="0" max="5"
                 required>

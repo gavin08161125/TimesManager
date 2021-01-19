@@ -38,7 +38,7 @@ Route::get('/project', 'ProjectController@index');
 
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
-
+    Route::get('/profile','UserController@profile');
     //專案
     Route::group(['prefix' => 'project'], function () {
         Route::get('/', 'ProjectController@index')->name('home');
@@ -85,4 +85,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
         Route::post('/update/{id}', 'UserController@update');
         Route::get('/destroy/{id}', 'UserController@destroy');
     });
+
+    Route::get('/pointLog/{id}','UserController@pointLog');
+
+
 });

@@ -30,7 +30,7 @@ class Task extends Model
      */
 
     protected $table = 'tasks';
-    protected $fillable = ['project_id','user_id','name', 'startingtime', 'deadline', 'totaltime','task_point','picker', 'created_at', 'updated_at','add_point','status','feedback'];
+    protected $fillable = ['project_id','user_id','name', 'startingtime', 'deadline', 'totaltime','task_point','picker', 'created_at', 'updated_at','add_point','status','feedback','reviewer'];
 
 
     public function project() {
@@ -39,7 +39,7 @@ class Task extends Model
 
 
     public function users() {
-        return $this -> hasMany('App\User','id','user_id');
+        return $this -> hasMany('App\User','id','id');
     }
 
 

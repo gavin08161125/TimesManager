@@ -45,8 +45,9 @@
             </div>
             <button class="btn btn-primary">新增</button>
         </form>
-
-
+        <br>
+        <h2>專案管理</h2>
+        <hr>
         <table id="myTable" class="display">
             <thead>
                 <tr>

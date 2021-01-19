@@ -23,6 +23,7 @@ class CreateTasksTable extends Migration
             $table->string('picker');
             $table->bigInteger('task_point')->nullable();
             $table->bigInteger('add_point')->nullable();
+            $table->string('reviewer')->nullable();
             $table->longText('feedback')->nullable();
             $table->tinyInteger('status')->default('1');
             $table->timestamps();

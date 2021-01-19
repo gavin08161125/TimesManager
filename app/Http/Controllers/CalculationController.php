@@ -87,8 +87,10 @@ class CalculationController extends Controller
         //抓取任務對應到相對專案(hasOne)
         $product = Task::find($id)->project;
         //抓取任務
+        $reviewer = User::find(auth()->user()->id)->name;
+
         $task = Task::find($id);
-        return view('admin.task.point.point', compact('task', 'product'));
+        return view('admin.task.point.point', compact('task', 'product','reviewer'));
     }
 
     /**
@@ -107,6 +109,7 @@ class CalculationController extends Controller
 
         //抓取任務結束的request資料並且更新到欄位
         $catchData = Task::find($request->id)->update([
+            'reviewer' => $request->reviewer,
             'add_point' => $request->add_point,
             'feedback' => $request->feedback,
         ]);

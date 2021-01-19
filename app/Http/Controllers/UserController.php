@@ -2,13 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Task;
+use App\User;
+use App\Project;
 use App\Department;
 use Illuminate\Http\Request;
-use App\User;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
+
+
+
+    public function profile(){
+
+        //admin
+        if(User::find(auth()->user()->id)->authority == 1){
+            $user = User::find(auth()->user()->id);
+            $projects = Project::all();
+
+
+            return view('admin.profile.admin' ,compact('user' ,'projects'));
+        }elseif (User::find(auth()->user()->id)->authority == 2){
+            $user = User::find(auth()->user()->id);
+            $projects =User::find(auth()->user()->id)->projects ;
+
+            return view('admin.profile.employee' ,compact('user' ,'projects'));
+        }elseif (User::find(auth()->user()->id)->authority == 3){
+
+            $user = User::find(auth()->user()->id);
+            $projects =User::find(auth()->user()->id)->projects ;
+
+            return view('admin.profile.employee' ,compact('user' ,'projects'));
+        }
+
+
+
+
+    }
 
 
     //
@@ -16,14 +47,14 @@ class UserController extends Controller
         //抓取全部人員資料
         $users = User::all();
 
-        return view('admin.users.index' ,compact('users'));
+        return view('admin.usersController.index' ,compact('users'));
     }
 
     public function edit($id){
         //抓取全部人員資料
         $user = User::find($id);
 
-        return view('admin.users.edit' ,compact('user'));
+        return view('admin.usersController.edit' ,compact('user'));
     }
 
     public function update(Request $request,$id){
@@ -51,6 +82,30 @@ class UserController extends Controller
         $users = User::all();
 
         return view('admin.users.index' ,compact('users'));
+    }
+
+    public function pointLog($id){
+        //抓取全部人員資料
+        if(User::find(auth()->user()->authority == '1')){
+
+            $tasks = Task::all();
+
+            return view('admin.pointLog.index' ,compact('tasks'));
+
+        }elseif(User::find(auth()->user()->authority == '2')){
+            //
+            $tasks = Project::find($id)->tasks;
+            $reviewer = Task::all()->where('reviewer',auth()->user()->name);
+
+            return view('admin.pointLog.index2' ,compact('tasks' , 'reviewer'));
+
+        }else{
+            //抓取執行者為自己的任務
+            $tasks = Task::all()->where('picker',auth()->user()->name);
+
+            return view('admin.pointLog.index' ,compact('tasks'));
+        }
+
     }
 
 }
