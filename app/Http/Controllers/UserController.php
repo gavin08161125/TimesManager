@@ -36,9 +36,6 @@ class UserController extends Controller
             return view('admin.profile.employee' ,compact('user' ,'projects'));
         }
 
-
-
-
     }
 
 
@@ -94,7 +91,7 @@ class UserController extends Controller
 
         }elseif(User::find(auth()->user()->authority == '2')){
             //
-            $tasks = Project::find($id)->tasks;
+            $tasks = Task::all()->where('picker',auth()->user()->name);
             $reviewer = Task::all()->where('reviewer',auth()->user()->name);
 
             return view('admin.pointLog.index2' ,compact('tasks' , 'reviewer'));

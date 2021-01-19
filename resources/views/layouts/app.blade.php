@@ -211,11 +211,11 @@
             </div>
 
             @if(App\User::find(auth()->user()->id)->authority == 1)
-                <ul class="navbar-nav ">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/user/">人員管理</a>
-                    </li>
-                </ul>
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/user/">人員管理</a>
+                </li>
+            </ul>
 
             @endif
             <div class="notice-window m-a d-flex">
@@ -237,7 +237,15 @@
                     </div>
                     @endauth
                 </div>
-                <div class="logout-btn m-a">登出</div>
+                <div class="logout-btn m-a">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('登出') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+
             </div>
 
 

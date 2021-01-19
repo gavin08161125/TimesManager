@@ -15,12 +15,31 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        
-        // 抓取所有專案
-        // $projects = Project::get();
+        if(User::find(auth()->user()->id)->authority == 1){
+        //anmin
+        //抓取所有專案
+        $projects = Project::get();
 
+        $myself = auth()->user()->name;
+        return view('admin.project.index', compact('projects','myself'));
+        }elseif(User::find(auth()->user()->id)->authority == 2){
+        //主管
         //抓取目前使用者的所有專案
         $projects =User::find(auth()->user()->id)->projects;
+
+        $myself = auth()->user()->name;
+        return view('admin.project.index', compact('projects','myself'));
+        }elseif(User::find(auth()->user()->id)->authority == 3){
+
+        //組員
+        $projects =User::find(auth()->user()->id)->projects;
+
+        $myself = auth()->user()->name;
+        return view('admin.project.employee', compact('projects','myself'));
+        }
+
+
+
 
         //抓取目前使用者姓名
         $myself = auth()->user()->name;
@@ -52,20 +71,24 @@ class ProjectController extends Controller
 
     public function edit($id)
     {
-        //抓取目前使用者姓名
-        $myself = auth()->user()->name;
 
-        $data = Project::find($id);
-        return view('admin.project.edit',compact('data','myself'));
+        $project = Project::find($id);
+
+        $users= User::all();
+        return view('admin.project.edit',compact('project','users'));
     }
 
 
     public function update(Request $request, $id)
     {
         //更新專案
+
         $products = Project::find($id);
         $update = $request->all();
         $products->update($update);
+
+        //更新專案時更新專案擁有者關聯
+        ProjectUser::where('project_id',$id)->where('user_id',$request->input('user_id'));
 
         return redirect('/admin/project/');
     }

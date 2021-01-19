@@ -65,30 +65,30 @@
 @section('js')
 
 <script>
-    $(".pointBtn").click(function(){
-        console.log($(this).data('picker'))
-        var picker= $(this).data('picker');
-        var projectId = $(this).data('projectid');
-        var taskId = $(this).data('taskid');
+    // $(".pointBtn").click(function(){
+    //     console.log($(this).data('picker'))
+    //     var picker= $(this).data('picker');
+    //     var projectId = $(this).data('projectid');
+    //     var taskId = $(this).data('taskid');
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+    //     $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         }
+    //     });
 
-        $.ajax({
-            method: 'GET',
-            url: `http://127.0.0.1:8000/admin/project/calculation/${projectId}`,
-            data:{
-                // picker: $(this).data('picker'),
-                project_id: $(this).data('projectid'),
-                // task_id: $(this).data('taskid'),
-                },
+    //     $.ajax({
+    //         method: 'post',
+    //         url: `http://127.0.0.1:8000/admin/project/calculation/${projectId}`,
+    //         data:{
+    //             // picker: $(this).data('picker'),
+    //             project_id: $(this).data('projectid'),
+    //             task_id: $(this).data('taskid'),
+    //             },
 
-      });
+    //   });
 
-    });
+    // });
 
 
     function del() {

@@ -63,7 +63,7 @@
                         <th>專案</th>
                         <th>核發主管</th>
                         <th>花費時間</th>
-                        <th>獲得點數</th>
+                        <th>核發點數</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,8 +80,8 @@
                         <td>{{$reviewer->project->owner}}</td>
                         {{-- 花費時間 --}}
                         <td>{{$reviewer->totaltime}}</td>
-                        {{-- 獲得點數 --}}
-                        <td>{{$reviewer->point}}</td>
+                        {{-- 核發點數 --}}
+                        <td>{{$reviewer->add_point}}</td>
                     </tr>
                     @endforeach
                 </tbody>

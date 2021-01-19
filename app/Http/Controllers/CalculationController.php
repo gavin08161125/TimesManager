@@ -106,16 +106,17 @@ class CalculationController extends Controller
 
     public function calculation(Request $request, $id)
     {
-
         //抓取任務結束的request資料並且更新到欄位
-        $catchData = Task::find($request->id)->update([
+        $catchData = Task::find($id)->update([
             'reviewer' => $request->reviewer,
             'add_point' => $request->add_point,
             'feedback' => $request->feedback,
         ]);
 
         //狀態值改變成2，讓按鈕disabled
-        $click = Task::find($request->id)->update(['status' => '2']);
+
+        Task::find($id)->update(['status' => '2']);
+
 
         //抓取該任務執行者並將點數相加
         $sumPoint = Task::get()->where('picker', $request->picker)->sum('add_point');

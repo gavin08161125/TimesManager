@@ -20,11 +20,25 @@ class TaskController extends Controller
         //
         // $tasks = Task::get();
 
-        $porject = Project::get();
+        if(User::find(auth()->user()->id)->authority == 1){
+
+        $tasks = Task::get();
+
+        // $porject = Project::get();
+
+        return view('admin.task.index', compact('tasks', 'request'));
+        }elseif(User::find(auth()->user()->id)->authority == 2){
 
         $tasks = Project::find($request->id)->tasks;
 
         return view('admin.task.index', compact('tasks', 'request'));
+        }
+
+        $porject = Project::get();
+
+        $tasks = Project::find($request->id)->tasks;
+
+        return view('admin.task.employee', compact('tasks', 'request'));
     }
 
     /**

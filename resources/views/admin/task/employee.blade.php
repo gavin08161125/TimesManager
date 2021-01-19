@@ -13,16 +13,15 @@
 
 
     .color:nth-child(n) {
-
-        background: #e67E22 !important;
+        background: red !important;
     }
 
     .color:nth-child(2n) {
-        background: #e74c3c !important;
+        background: orange !important;
     }
 
     .color:nth-child(3n) {
-        background: #d86c25 !important;
+        background: yellow !important;
     }
 
     .color:nth-child(4n) {
@@ -73,10 +72,8 @@
                 <th>執行者</th>
                 <th>預計獲得任務點數</th>
                 <th>實際獲得任務點數</th>
-                <th>編輯</th>
-                <th>刪除</th>
-                <th>任務結束</th>
                 <th>任務詳細</th>
+                <th>任務狀態</th>
 
             </tr>
         </thead>
@@ -92,28 +89,12 @@
                 <td>{{$task->task_point}}</td>
                 <td>{{$task->add_point}}</td>
                 {{-- <a class="btn btn-primary" href="/admin/project/task/edit/{{$task->id}}" > --}}
-                <td>
-                    <form action="/admin/project/task/edit/{{$task->id}} "> <button class="btn btn-primary "
-                            @if($task->status == 2) disabled @endif >編輯</button></form>
-                </td>
-                <td><a class="btn btn-danger" href="/admin/project/task/destroy/{{$task->id}}"
-                        onclick="javascript:return del();">刪除</td>
 
-                <td>
+                {{-- <button value="{{$task->task_point}}" class="btn btn-primary pointBtn"@if ($task->status == 2 )
+                disabled @endif
+                data-picker="{{$task->picker}}" data-projectid="{{$task->project_id}}"
+                data-taskid="{{$task->id}}" onclick="location.reload()">任務結束</button> --}}
 
-                    {{-- <button value="{{$task->task_point}}" class="btn btn-primary pointBtn"@if ($task->status == 2 )
-                    disabled @endif
-                    data-picker="{{$task->picker}}" data-projectid="{{$task->project_id}}"
-                    data-taskid="{{$task->id}}" onclick="location.reload()">任務結束</button> --}}
-
-
-                    <form action="/admin/project/task/feedback/{{$task->id}}">
-                        <button class="btn btn-primary pointBtn" @if ($task->status == 2 )
-                            disabled @endif
-                            data-picker="{{$task->picker}}" data-projectid="{{$task->project_id}}"
-                            data-taskid="{{$task->id}}" >任務結束</button>
-                    </form>
-                </td>
 
                 <td>
                     <button type="button" class="btn btn-success" data-toggle="modal"
@@ -122,8 +103,13 @@
                     </button>
                 </td>
 
-
-
+                <td>
+                    @if($task->status == 1 )
+                        未完成
+                    @elseif($task->status == 2)
+                        已結束
+                    @endif
+                </td>
 
                 <div class="modal fade" id="exampleModalLong{{$task->id}}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">

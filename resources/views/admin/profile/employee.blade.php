@@ -27,7 +27,7 @@
                     @foreach ($projects as $project)
                     <tr>
                         <th>{{$project->title}}</th>
-                        <th>{{count($project->tasks)}}</th>
+                        <th>{{count($project->tasks->where('status','1'))}}</th>
                     </tr>
                     @endforeach
 
