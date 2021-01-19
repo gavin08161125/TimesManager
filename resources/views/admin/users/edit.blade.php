@@ -53,9 +53,12 @@
         <div class="form-group">
             <label for="authority">權限</label>
             <select type="text" class="form-control" id="authority" name="authority" value="{{$user->authority}}" required>
-            <option value="1">管理者</option>
-            <option value="2">主管</option>
-            <option value="3">員工</option>
+
+                <option value="1" @if ($user->authority ==  1)   selected  @endif >管理者</option>
+                <option value="2" @if ($user->authority ==  2)   selected  @endif >主管</option>
+                <option value="3" @if ($user->authority ==  3)   selected  @endif >員工</option>
+
+
             </select>
         </div>
 

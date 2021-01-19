@@ -39,9 +39,7 @@ class UserController extends Controller
 
 
     public function destroy($id){
-
         $users = User::find($id);
-
         $users->delete();
 
         return redirect()->back()->with('alert', '刪除人員成功!');
