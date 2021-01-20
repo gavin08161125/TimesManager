@@ -70,7 +70,6 @@
             width: 388px;
             min-height: 100vh;
             background-color: #F4F2F2;
-
         }
 
         .sideNav {
@@ -137,9 +136,11 @@
         .sideNav .notice-window .notice-part .notice {
             width: 200px;
             height: 100px;
+            padding: 8px 10px ;
             position: relative;
             background: #ffffff;
             border-radius: .4em;
+
         }
 
         .sideNav .notice-window .notice-part .notice:after {
@@ -155,6 +156,7 @@
             border-bottom: 0;
             margin-top: -17.5px;
             margin-left: -25px;
+            z-index: -1;
         }
 
         .sideNav .logout-btn {
@@ -212,6 +214,7 @@
 
 <body class="d-flex">
     <?php use App\User; ?>
+    <?php use Illuminate\Support\Str; ?>
     <nav>
         <div class="sideNav">
             <div class="logo m-a">
@@ -229,7 +232,7 @@
             </div>
 
             @if(App\User::find(auth()->user()->id)->authority == 1)
-            <ul class="navbar-nav ">
+            <ul class="navbar-nav main-btn m-a ">
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/user/">人員管理</a>
                 </li>
@@ -246,8 +249,23 @@
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="/admin/project">
+                                    {{-- 老闆小人 --}}
+                                    @if(User::find(auth()->user()->id)->authority == 1)
+                                    {{User::find(auth()->user()->id)->name}}，你好<br>
+                                    祝你有美好的一天
+                                    {{-- 主管小人 --}}
+                                    @elseif(User::find(auth()->user()->id)->authority == 2)
+                                    {{User::find(auth()->user()->id)->name}}，你好<br>
                                     <?php $point = User::find(auth()->user()->id)->point ?>
                                     您目前有 {{$point}} 點任務點數
+                                    {{-- 員工小人 --}}
+                                    @elseif(User::find(auth()->user()->id)->authority == 3)
+                                    <?php $point = User::find(auth()->user()->id)->point ?>
+                                    {{User::find(auth()->user()->id)->name}}，你好<br>
+                                    您目前有 {{$point}} 點任務點數
+                                    @else
+                                    請登入
+                                    @endif
                                 </a>
                             </li>
                         </ul>

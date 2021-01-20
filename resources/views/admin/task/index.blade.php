@@ -71,8 +71,8 @@
                 <th>結束時間</th>
                 <th>總時長</th>
                 <th>執行者</th>
-                <th>預計獲得任務點數</th>
-                <th>實際獲得任務點數</th>
+                <th>預計獲得點數</th>
+                <th>實際獲得點數</th>
                 <th>編輯</th>
                 <th>刪除</th>
                 <th>任務結束</th>
@@ -140,9 +140,9 @@
                                 <hr>
                                 <h5>任務名稱：{{$task->name}}</h5>
                                 <hr>
-                                <h5>預計獲得任務點數：{{$task->task_point}}</h5>
+                                <h5>預計獲得點數：{{$task->task_point}}</h5>
                                 <hr>
-                                <h5>實際獲得任務點數：{{$task->add_point}}</h5>
+                                <h5>實際獲得點數：{{$task->add_point}}</h5>
                                 <hr>
                                 <h5>任務反饋</h5>
                                 <textarea cols="55" rows="10" readonly>{{$task->feedback}}</textarea>

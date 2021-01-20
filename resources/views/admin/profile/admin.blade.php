@@ -1,3 +1,4 @@
+<?php use Illuminate\Support\Arr;?>
 @extends('layouts.app')
 
 @section('css')
@@ -33,8 +34,12 @@
                 </tbody>
             </table>
         </div>
+        <?php
+              $talk = ['你好','我不好','好累喔','哭哭', '想要過得去，頭上帶點綠'];
+              $random = Arr::random($talk);
+        ?>
         <div class="prompt-box d-flex">
-            <div class="prompt-windows"></div>
+            <div class="prompt-windows">{{$random}}</div>
             <img src="{{asset('img/people-r-29.png')}}" width="100px">
         </div>
     </div>
