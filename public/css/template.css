@@ -1,0 +1,204 @@
+@font-face {
+    font-family: 'HunInn';
+    src: url("https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.eot"); /* IE9 Compat Modes */
+    src: url("https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.woff") format("woff"), /* Modern Browsers */
+    url("https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.ttf") format("truetype"), /* Safari, Android, iOS */
+    url("https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.svg#SealmemoryHeader") format("svg"); /* Legacy iOS */
+}
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+
+}
+
+
+
+@media (min-width: 1600px) {
+
+    .container-xl,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container {
+        max-width: 1400px;
+    }
+}
+
+
+.d-flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.m-a {
+    margin: auto;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #F0E09C;
+    font-family: 'HunInn';
+}
+
+nav {
+    width: 388px;
+    min-height: 100vh;
+    background-color: #F4F2F2;
+}
+
+.sideNav {
+    position: relative;
+}
+
+.sideNav .logo {
+    margin-left: 60px;
+}
+
+.sideNav .main-btn {
+    width: 291px;
+    height: 66px;
+    background-color: #E5CFBA;
+    border-radius: 10px;
+    font-size: 36px;
+    text-align: center;
+    line-height: 66px;
+    font-size: 24px;
+    letter-spacing: 4px;
+}
+
+.sideNav .main-btn:hover {
+    -webkit-box-shadow: 0 0 0 5px #E48E64;
+    box-shadow: 0 0 0 5px #E48E64;
+    cursor: pointer;
+}
+.sideNav .btn-group {
+    width: 291px;
+    margin-top: 10px;
+}
+
+.sideNav .btn-group .btnb {
+    width: 140px;
+    height: 140px;
+    background-color: #E5CFBA;
+    border-radius: 20px;
+    font-size: 36px;
+    text-align: center;
+    line-height: 45px;
+    padding-top: 25px;
+}
+
+.sideNav .btn-group .btnb:nth-child(2n-1) {
+    margin-right: 10px;
+}
+
+.sideNav .btn-group .btnb:hover {
+    -webkit-box-shadow: 0 0 0 5px #E48E64;
+    box-shadow: 0 0 0 5px #E48E64;
+}
+
+.down-btn{
+    margin-top: 10px;
+
+}
+
+.sideNav .notice-window {
+    position: fixed;
+    bottom:20px;
+}
+
+.sideNav .notice-window .notice-part {
+    position: absolute;
+    bottom: 60px;
+}
+
+.sideNav .notice-window .notice-part .notice {
+    width: 200px;
+    height: 100px;
+    padding: 8px 10px ;
+    position: relative;
+    background: #ffffff;
+    border-radius: .4em;
+
+}
+
+.sideNav .notice-window .notice-part .notice:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 35px solid transparent;
+    border-right-color: #ffffff;
+    border-left: 0;
+    border-bottom: 0;
+    margin-top: -17.5px;
+    margin-left: -25px;
+    z-index: -1;
+}
+
+
+.sideNav .logout-btn {
+    width: 291px;
+    height: 66px;
+    border-radius: 10px;
+    font-size: 36px;
+    text-align: center;
+    line-height: 66px;
+    position: absolute;
+    bottom: 5%;
+    left: 50px;
+    background-color: #354D6D;
+    color: white;
+    cursor: pointer;
+}
+.sideNav .logout-btn:hover{
+    background-color: #F4F2F2;
+    box-shadow:0 0 0 5px #354D6D;
+    color: #354D6D;
+    transition: 0.3s;
+
+}
+.sideNav .logout-btn:hover a{
+    color:#354D6D;
+}
+
+.sideNav .logout-btn a{
+    color: rgb(255, 255, 255);
+    line-height: 36px;
+    text-decoration: none;
+}
+
+main {
+    width: calc(100% - 388px);
+    height: 100vh;
+    background-color: #F0E09C;
+    padding-top: 50px;
+    overflow: scroll;
+}
+
+table {
+    background-color: #E4B959;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+    padding: 10px 20px;
+    border: 2px solid #ffffff;
+}
+
+table.dataTable tbody th,
+table.dataTable tbody td {
+    padding: 10px 18px 6px 18px;
+    border: 2px solid #fdfdfd;
+}
+
+table.dataTable tbody tr {
+    background-color: #E4B959;
+}
