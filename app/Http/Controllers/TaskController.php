@@ -22,7 +22,7 @@ class TaskController extends Controller
 
         if(User::find(auth()->user()->id)->authority == 1){
 
-        $tasks = Task::get();
+        $tasks = Project::find($request->id)->tasks;
 
         // $porject = Project::get();
 
@@ -89,7 +89,7 @@ class TaskController extends Controller
             'deadline' => $request->deadline,
             'totaltime' => $request->totaltime,
             'picker' => $request->picker,
-            // 'user_id' => $request->user_id,
+            'description' => $request->description,
             'task_point'=> $request->task_point,
         ]);
         return redirect()->route('taskHome', [$request->project_id]);
@@ -135,17 +135,9 @@ class TaskController extends Controller
         //
 
         $tasks = Task::find($request->id);
+        $taskDatas = $request->all();
 
-        $tasks->update([
-            'name' => $request->name,
-            'project_id' => $request->project_id,
-            'startingtime' => $request->startingtime,
-            'deadline' => $request->deadline,
-            'totaltime' => $request->totaltime,
-            'picker' => $request->picker,
-            // 'user_id'=> $request->user_id,
-            'task_point'=> $request->task_point,
-        ]);
+        $tasks->update($taskDatas);
 
         return redirect()->route('taskHome', [$request->project_id]);
     }

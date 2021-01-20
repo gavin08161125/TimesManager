@@ -83,7 +83,7 @@
         <tbody>
             @foreach ($tasks as $task)
             <tr>
-                <td>{{$task->project->title}}</td>
+                <td>{{Str::limit($task->project->title,'18','...')}}</td>
                 <td>{{$task->name}}</td>
                 <td>{{$task->startingtime}}</td>
                 <td>{{$task->deadline}}</td>
@@ -143,6 +143,9 @@
                                 <h5>預計獲得點數：{{$task->task_point}}</h5>
                                 <hr>
                                 <h5>實際獲得點數：{{$task->add_point}}</h5>
+                                <hr>
+                                <h5>任務敘述：</h5>
+                                <textarea cols="55" rows="15" readonly>{{$task->description}}</textarea>
                                 <hr>
                                 <h5>任務反饋</h5>
                                 <textarea cols="55" rows="10" readonly>{{$task->feedback}}</textarea>

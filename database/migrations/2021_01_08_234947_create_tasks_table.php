@@ -21,6 +21,7 @@ class CreateTasksTable extends Migration
             $table->datetime('deadline');
             $table->integer('totaltime');
             $table->string('picker');
+            $table->longText('description');
             $table->bigInteger('task_point')->nullable();
             $table->bigInteger('add_point')->nullable();
             $table->string('reviewer')->nullable();

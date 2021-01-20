@@ -61,6 +61,7 @@
                     <th>未完成任務</th>
                     <th>擁有者</th>
                     <th>功能 </th>
+                    <th>專案狀態 </th>
                 </tr>
             </thead>
             <tbody>
@@ -69,7 +70,7 @@
 
                 <tr>
                     {{-- 標題 --}}
-                    <td>{{$project->title}}</td>
+                    <td>{{Str::limit($project->title,'18','...')}}</td>
                     {{-- 專案開始時間 --}}
                     <td>{{$project->startingtime}}</td>
                     {{-- 專案截止時間 --}}
@@ -117,6 +118,7 @@
                             專案詳細
                         </button>
                     </td>
+                    <td>@if($project->status == 1 ) 未完成  @elseif($project->status == 2) 已結案 @else 請檢察專案 @endif</td>
 
                     <div class="modal fade" id="exampleModalLong{{$project->id}}" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLongTitle" aria-hidden="true">

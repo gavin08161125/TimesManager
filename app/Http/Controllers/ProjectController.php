@@ -62,9 +62,9 @@ class ProjectController extends Controller
 
     public function edit($id)
     {
-
+        //抓取對應專案
         $project = Project::find($id);
-
+        //抓取所有成員
         $users= User::all();
         return view('admin.project.edit',compact('project','users'));
     }
