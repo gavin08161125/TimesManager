@@ -76,7 +76,7 @@
             <div class="point-box">目前<br>點數<br>
                 {{$user->point}}
             </div>
-            <a href="">
+            <a href="/admin/to_do_list/{{auth()->user()->id}}">
                 <div class="diary-box">工作<br>日誌</div>
             </a>
         </div>
@@ -92,27 +92,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <!-- pie chart -->
-    <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-
-        var myPieChart = new Chart(ctx, {
-        type: 'doughnut',
-
-        data: {
-
-            labels: ['執行中', '已結案', '新專案' ],
-            datasets: [{
-                backgroundColor: ['#936331','#8FC0C4','#DD8B63'],
-                data: [30, 50, 40]
-            }]
-        },
-        options: {
-            legend:{
-                position:'bottom',
-            }
-
-        }
-    });
-    </script>
+    
 @endsection

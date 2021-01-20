@@ -73,7 +73,6 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
         //更新專案
-
         $products = Project::find($id);
         $update = $request->all();
         $products->update($update);

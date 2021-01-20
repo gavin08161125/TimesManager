@@ -14,31 +14,31 @@
 
     .color:nth-child(n) {
 
-        background: #e67E22 !important;
+        background: #974F44 !important;
     }
 
     .color:nth-child(2n) {
-        background: #e74c3c !important;
+        background: #F4F3F3 !important;
     }
 
     .color:nth-child(3n) {
-        background: #d86c25 !important;
+        background: #93C7CB !important;
     }
 
     .color:nth-child(4n) {
-        background: green !important;
+        background: #E59D58 !important;
     }
 
     .color:nth-child(5n) {
-        background: blue !important;
+        background: #F1E09C !important;
     }
 
     .color:nth-child(6n) {
-        background: indigo !important;
+        background: #E5B959 !important;
     }
 
     .color:nth-child(7n) {
-        background: violet !important;
+        background: #E6CFBB !important;
     }
 </style>
 

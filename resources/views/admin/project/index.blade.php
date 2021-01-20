@@ -83,15 +83,10 @@
                         @elseif(floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600)+1 >0 &&
                         floor((strtotime($project->deadline)-strtotime($project->startingtime))/3600)+1 <= 1 )
                             {{floor((strtotime($project->deadline)-strtotime($project->startingtime))/60 )}} 分鐘 @else
-                            請檢查專案開始時間與截止時間是否正確 @endif </td>
-                    {{-- 描述 --}}
-                    {{-- <td>{{$project->description}}</td> --}}
-                    {{-- 任務總計 --}}
-                    {{-- <td>{{count($project->tasks)}}</td> --}}
-                    {{-- 已完成任務總計 --}}
-                    {{-- <td>{{count($project->tasks->where('status','2'))}}</td> --}}
-                    {{-- 未完成任務總計 --}}
-                    <td>{{count($project->tasks->where('status','1'))}}</td>
+                            請檢查專案開始時間與截止時間是否正確 @endif </td> {{-- 描述 --}} {{-- <td>{{$project->description}}</td> --}}
+                            {{-- 任務總計 --}} {{-- <td>{{count($project->tasks)}}</td> --}} {{-- 已完成任務總計 --}}
+                            {{-- <td>{{count($project->tasks->where('status','2'))}}</td> --}} {{-- 未完成任務總計 --}} <td>
+                            {{count($project->tasks->where('status','1'))}}</td>
                     {{-- 擁有者 --}}
                     <td>{{$project->owner}}</td>
                     {{-- 功能 --}}
@@ -109,16 +104,17 @@
                             href="/admin/project/delete_select/{{$project->id}}">刪除成員
                         </a> --}}
                         {{-- <form action="/admin/project/task/{{$project->id}}">
-                            <button class='btn btn-success btn-sm' name="id" value="{{$project->id}}">工作管理</button>
+                        <button class='btn btn-success btn-sm' name="id" value="{{$project->id}}">工作管理</button>
                         </form> --}}
-                        <a  href="/admin/project/task/{{$project->id}}" class='btn btn-success btn-sm' name="project_id" data-project_id="{{$project->id}}" >工作管理</a>
+                        <a href="/admin/project/task/{{$project->id}}" class='btn btn-success btn-sm' name="project_id"
+                            data-project_id="{{$project->id}}">工作管理</a>
 
                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
                             data-target="#exampleModalLong{{$project->id}}">
                             專案詳細
                         </button>
                     </td>
-                    <td>@if($project->status == 1 ) 未完成  @elseif($project->status == 2) 已結案 @else 請檢察專案 @endif</td>
+                    <td>@if($project->status == 1 ) 未完成 @elseif($project->status == 2) 已結案 @else 請檢察專案 @endif</td>
 
                     <div class="modal fade" id="exampleModalLong{{$project->id}}" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -169,7 +165,7 @@
 
         </table>
 
-        <button class='btn btn-success add_project' >新增</button>
+        <button class='btn btn-success add_project'>新增</button>
         <button class="btn btn-success remove_add">取消新增</button>
     </div>
 
@@ -213,12 +209,15 @@
 
      //點擊刪除按鈕跳出提示確認(button上綁定onclick="javascript:return del();)
      function del() {
-        var msg = "您真的確定要刪除此專案嗎！？";
-        if (confirm(msg)==true){
-        return true;
-        }else{
-        return false;
-        }
+        // var msg= "確定要刪除此專案嗎！？"
+        // if ( confirm(msg) == true){
+        // return true;
+        // }else{
+        // return false;
+        // }
+
+        
+
     }
 
     //
