@@ -124,7 +124,7 @@
 
         .down-btn{
             margin-top: 10px;
-            
+
         }
 
         .sideNav .notice-window {
@@ -236,7 +236,7 @@
             </div>
 
             @if(App\User::find(auth()->user()->id)->authority == 1)
-            <div class="main-btn m-a down-btn" style="text-decoration: none;color:black"> <a href="/admin/user/">人員管理</a>
+            <div class="main-btn m-a down-btn" > <a href="/admin/user/" style="text-decoration: none;color:black">人員管理</a>
             </div>
 
 
