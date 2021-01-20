@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            <label for="task_point">預計給予任務點數</label>
+            <label for="task_point">預計給予點數</label>
             <input type="number" class="form-control" id="task_point" name="task_point" min="0" max="5" required>
         </div>
 
@@ -62,6 +62,11 @@
                 <option value="{{$projectsUser->name}}">{{$projectsUser->name}}</option>
                 @endforeach
             </select>
+        </div>
+
+        <div class="form-group">
+            <label for="description">任務敘述</label>
+            <textarea class="form-control" id="description" rows="3" name="description" required></textarea>
         </div>
 
         <button class="btn btn-primary">新增</button>

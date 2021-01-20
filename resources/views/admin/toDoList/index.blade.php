@@ -82,7 +82,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class='btn btn-success'>儲存</button>
-                            <a class='btn btn-danger ' href="/admin/to_do_list/destroy/{{$myList->id}}">刪除</a>
+                            <a class='btn btn-danger ' href="/admin/to_do_list/destroy/{{$myList->id}}" onclick="javascript:return del();">刪除</a>
                             <button type="button" class="btn btn-secondary " data-dismiss="modal">關閉</button>
                         </div>
                     </form>
@@ -128,6 +128,17 @@
         var hidden_text = document.querySelector('.hidden_text')
         hidden_text.setAttribute('hidden', 'hidden')
      });
+
+       //點擊刪除按鈕跳出提示確認(button上綁定onclick="javascript:return del();)
+       function del() {
+        var msg = "您真的確定要刪除此事項嗎！？";
+        if (confirm(msg)==true){
+        return true;
+        }else{
+        return false;
+        }
+    }
+
 
 </script>
 

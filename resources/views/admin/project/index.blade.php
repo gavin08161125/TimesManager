@@ -70,7 +70,7 @@
 
                 <tr>
                     {{-- 標題 --}}
-                    <td>{{$project->title}}</td>
+                    <td>{{Str::limit($project->title,'18','...')}}</td>
                     {{-- 專案開始時間 --}}
                     <td>{{$project->startingtime}}</td>
                     {{-- 專案截止時間 --}}
