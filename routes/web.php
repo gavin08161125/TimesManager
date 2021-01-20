@@ -88,5 +88,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
 
     Route::get('/pointLog/{id}','UserController@pointLog');
 
+    Route::get('/to_do_list/{id}','ToDoListController@index');
+    Route::post('/to_do_list/create/{id}','ToDoListController@addList');
+    Route::get('/to_do_list/update/{id}','ToDoListController@updateList');
+    Route::get('/to_do_list/destroy/{id}','ToDoListController@deleteList');
+
+
 
 });

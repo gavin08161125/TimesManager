@@ -38,14 +38,6 @@ class ProjectController extends Controller
         return view('admin.project.employee', compact('projects','myself'));
         }
 
-
-
-
-        //抓取目前使用者姓名
-        $myself = auth()->user()->name;
-
-     
-
     }
 
     public function create()

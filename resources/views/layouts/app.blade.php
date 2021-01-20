@@ -232,7 +232,7 @@
             <div class="btn-group d-flex m-a">
                 <a class="btnb" href="/admin/pointLog/{{auth()->user()->id}}"
                     style="text-decoration: none;color:black">點數<br>歷程</a>
-                <a class="btnb" style="text-decoration: none;color:black">工作<br>日誌</a>
+                <a class="btnb" href="/admin/to_do_list/{{auth()->user()->id}}" style="text-decoration: none;color:black">工作<br>日誌</a>
             </div>
 
             @if(App\User::find(auth()->user()->id)->authority == 1)
