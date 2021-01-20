@@ -58,6 +58,7 @@
                         <small>{{$myList->created_at}}</small>
 
                     </div>
+<<<<<<< HEAD
                     <p class="mb-1">{{$myList->content}}</small>
 
 
@@ -92,6 +93,24 @@
                                 </div>
                             </form>
                             </button>
+=======
+                    <form action="/admin/to_do_list/update/{{$myList->id}}">
+                        <div class="modal-body">
+                            <h5>創建日期：{{$myList->created_at}}</h5>
+                            <hr>
+                            <h5>標題:</h5><input type="text" class="form-control" id="title" name="title"
+                                value="{{$myList->title}}" required>
+                            <hr>
+
+                            <h5>描述:</h5>
+                            <textarea class="form-control" id="content" rows="3" name="content"
+                                required>{{$myList->content}}</textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button class='btn btn-success'>儲存</button>
+                            <a class='btn btn-danger ' href="/admin/to_do_list/destroy/{{$myList->id}}" onclick="javascript:return del();">刪除</a>
+                            <button type="button" class="btn btn-secondary " data-dismiss="modal">關閉</button>
+>>>>>>> 67089e62270a812a61faa54372440823d2e4391c
                         </div>
                     </div>
                 </div>
@@ -137,6 +156,17 @@
         var hidden_text = document.querySelector('.hidden_text')
         hidden_text.setAttribute('hidden', 'hidden')
      });
+
+       //點擊刪除按鈕跳出提示確認(button上綁定onclick="javascript:return del();)
+       function del() {
+        var msg = "您真的確定要刪除此事項嗎！？";
+        if (confirm(msg)==true){
+        return true;
+        }else{
+        return false;
+        }
+    }
+
 
 </script>
 
