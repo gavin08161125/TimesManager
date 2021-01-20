@@ -22,7 +22,7 @@ class TaskController extends Controller
 
         if(User::find(auth()->user()->id)->authority == 1){
 
-        $tasks = Task::get();
+        $tasks = Project::find($request->id)->tasks;
 
         // $porject = Project::get();
 
