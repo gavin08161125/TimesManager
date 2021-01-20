@@ -97,7 +97,6 @@
             box-shadow: 0 0 0 5px #E48E64;
             cursor: pointer;
         }
-
         .sideNav .btn-group {
             width: 291px;
             margin-top: 10px;
@@ -121,6 +120,11 @@
         .sideNav .btn-group .btnb:hover {
             -webkit-box-shadow: 0 0 0 5px #E48E64;
             box-shadow: 0 0 0 5px #E48E64;
+        }
+
+        .down-btn{
+            margin-top: 10px;
+            
         }
 
         .sideNav .notice-window {
@@ -232,11 +236,9 @@
             </div>
 
             @if(App\User::find(auth()->user()->id)->authority == 1)
-            <ul class="navbar-nav main-btn m-a ">
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/user/">人員管理</a>
-                </li>
-            </ul>
+            <div class="main-btn m-a down-btn" style="text-decoration: none;color:black"> <a href="/admin/user/">人員管理</a>
+            </div>
+
 
             @endif
             <div class="notice-window m-a d-flex">
