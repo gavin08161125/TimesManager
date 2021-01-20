@@ -11,6 +11,58 @@
     body {
         position: relative;
     }
+
+    .btn-warning {
+        background-color: #6c9575 !important;
+        color: white;
+        border: 1px #6c9575 solid;
+    }
+
+    .btn-warning:hover::before{
+    -webkit-animation: spin 1s linear 1s 2 alternate;
+    animation: spin 1s linear 1s 2 alternate;
+}
+
+.close{
+font-size:0px;/*使span中的文字不顯示*/
+cursor:pointer;/*使鼠標指針顯示為手型*/
+display:inline-block;
+width:100px;
+height:100px;
+line-height:100px;
+border-radius:50%;/*使背景形狀顯示為圓形*/
+background:#FFF;
+color:#8b8ab3;
+text-align:center;
+/**/
+-webkit-animation: moving 1s linear;
+animation: moving 1s linear;
+}
+
+
+@-webkit-keyframes moving {
+    from {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+    }
+}
+@keyframes moving {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+
+
 </style>
 @endsection
 
@@ -48,18 +100,18 @@
         <div class="col-6">
             @foreach ($myLists as $myList)
             <div class="list-group">
-                <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
                     data-target="#exampleModalLong{{$myList->id}}">
                     事項詳細
                 </button>
-                <a href="#" data-toggle="modal" class="list-group-item list-group-item-action flex-column align-items-start ">
+                <a href="#" data-toggle="modal"
+                    class="list-group-item list-group-item-action flex-column align-items-start ">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{$myList->title}}</h5>
                         <small>{{$myList->created_at}}</small>
 
                     </div>
                     <p class="mb-1">{{$myList->content}}</small>
-
 
                 </a>
 

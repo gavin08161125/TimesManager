@@ -5,8 +5,8 @@
 @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 <style>
-    .card {
-        margin: 20px;
+    .dataTable  {
+        text-align: center;
     }
 </style>
 @endsection
@@ -216,7 +216,29 @@
         // return false;
         // }
 
-        
+
+        var msg =swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+                });
+            } else {
+                swal("Your imaginary file is safe!");
+            }
+        });
+
+        if ( msg == true){
+        return true;
+        }else{
+        return false;
+        }
 
     }
 
@@ -231,6 +253,15 @@
         }
     }
 
+
+
+
+
+
+
     </script>
+
+
+
 
     @endsection

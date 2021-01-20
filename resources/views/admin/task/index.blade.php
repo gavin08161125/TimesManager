@@ -4,7 +4,8 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 <style>
     .progress {
-        height: 50px;
+        font-size: 18px;
+        height: 40px;
     }
 
     .progress-bar {
@@ -18,7 +19,7 @@
     }
 
     .color:nth-child(2n) {
-        background: #F4F3F3 !important;
+        background: #ADA299 !important;
     }
 
     .color:nth-child(3n) {
@@ -30,7 +31,7 @@
     }
 
     .color:nth-child(5n) {
-        background: #F1E09C !important;
+        background: #CEC8C2 !important;
     }
 
     .color:nth-child(6n) {
@@ -38,7 +39,7 @@
     }
 
     .color:nth-child(7n) {
-        background: #E6CFBB !important;
+        background: #809B82 !important;
     }
 </style>
 

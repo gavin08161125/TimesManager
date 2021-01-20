@@ -3,6 +3,7 @@
 @section('css')
 <link href="{{ asset('css/Dashboard(Employee).css') }}" rel="stylesheet">
 <link href="{{ asset('css/template.css') }}" rel="stylesheet">
+
 @endsection
 
 @section('main')
@@ -13,7 +14,7 @@
             <img src="{{asset('img/people-l.png')}}" width="80px">
             <div class="greeting-windows"></div>
         </div>
-        <div class="projects_owned">
+        <div class="projects_owned ">
             <!-- use table套件 -->
             <table>
                 <thead>
@@ -92,5 +93,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    
+
 @endsection
