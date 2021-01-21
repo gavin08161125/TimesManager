@@ -41,8 +41,8 @@
             </div>
 
             @if(App\User::find(auth()->user()->id)->authority == 1)
-            <div class="main-btn m-a down-btn" > <a href="/admin/user/" style="text-decoration: none;color:black">人員管理</a>
-            </div>
+            <a href="/admin/user/" style="text-decoration: none;color:black"><div class="main-btn m-a down-btn" > 人員管理
+            </div></a>
 
 
             @endif

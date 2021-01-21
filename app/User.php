@@ -59,6 +59,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this -> hasMany('App\Task');
     }
 
-  
+    public function talks() {
+        return $this -> hasMany('App\Talk');
+    }
+
+
     //
 }

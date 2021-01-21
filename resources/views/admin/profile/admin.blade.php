@@ -11,7 +11,7 @@
     <div class="leftSide">
         <div class="greeting d-flex">
             <img src="{{asset('img/people-l.png')}}" width="80px">
-            <div class="greeting-windows"></div>
+            <div class="greeting-windows"> {{$talks->random()->content}}</div>
         </div>
         <div class="projects_owned">
             <!-- use table套件 -->
@@ -33,13 +33,11 @@
 
                 </tbody>
             </table>
+
         </div>
-        <?php
-              $talk = ['你好','我不好','好累喔','哭哭', '想要過得去，頭上帶點綠'];
-              $random = Arr::random($talk);
-        ?>
+
         <div class="prompt-box d-flex">
-            <div class="prompt-windows">{{$random}}</div>
+            <div class="prompt-windows">  {{$talks->random()->content}}</div>
             <img src="{{asset('img/people-r-29.png')}}" width="100px">
         </div>
     </div>

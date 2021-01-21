@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Talk;
 use App\Task;
 use App\User;
 use App\Project;
@@ -18,23 +19,34 @@ class UserController extends Controller
 
         //admin
         if(User::find(auth()->user()->id)->authority == 1){
+
+            //抓取所有小人對話
+            $talks = Talk::all();
+
+
+
             $user = User::find(auth()->user()->id);
             $projects = Project::all();
 
 
-            return view('admin.profile.admin' ,compact('user' ,'projects'));
+
+            return view('admin.profile.admin' ,compact('user' ,'projects','talks'));
         }elseif (User::find(auth()->user()->id)->authority == 2){
+            //抓取所有小人對話
+            $talks = Talk::all();
             $user = User::find(auth()->user()->id);
             $projects =User::find(auth()->user()->id)->projects ;
 
-            return view('admin.profile.employee' ,compact('user' ,'projects'));
+            return view('admin.profile.employee' ,compact('user' ,'projects','talks'));
         }elseif (User::find(auth()->user()->id)->authority == 3){
-
+            //抓取所有小人對話
+            $talks = Talk::all();
             $user = User::find(auth()->user()->id);
             $projects =User::find(auth()->user()->id)->projects ;
 
-            return view('admin.profile.employee' ,compact('user' ,'projects'));
+            return view('admin.profile.employee' ,compact('user' ,'projects','talks'));
         }
+
 
     }
 
