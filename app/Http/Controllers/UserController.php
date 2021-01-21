@@ -7,6 +7,7 @@ use App\Task;
 use App\User;
 use App\Project;
 use App\Department;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -29,7 +30,7 @@ class UserController extends Controller
                 $projects = Project::all();
 
                 return view('admin.profile.admin', compact('user', 'projects', 'talks', 'talks2'));
-            //主管
+                //主管
             } elseif (User::find(auth()->user()->id)->authority == 2) {
                 //抓取所有小人對話
                 $talks = Talk::all()->random()->content;
@@ -38,8 +39,10 @@ class UserController extends Controller
                 $user = User::find(auth()->user()->id);
                 $projects = User::find(auth()->user()->id)->projects;
 
+
+
                 return view('admin.profile.employee', compact('user', 'projects', 'talks', 'talks2'));
-            //組員
+                //組員
             } elseif (User::find(auth()->user()->id)->authority == 3) {
                 //抓取所有小人對話
                 $talks = Talk::all()->random()->content;
@@ -48,31 +51,34 @@ class UserController extends Controller
                 $user = User::find(auth()->user()->id);
                 $projects = User::find(auth()->user()->id)->projects;
 
+
+
                 return view('admin.profile.employee', compact('user', 'projects', 'talks', 'talks2'));
             }
-        //如果對話為0
-        }elseif(User::find(auth()->user()->id)->authority == 1){
+            //如果對話為0
+        } elseif (User::find(auth()->user()->id)->authority == 1) {
 
             $talks = '點我可以新增對話唷！';
             $talks2 = '點我點我，說說話！';
+
             $user = User::find(auth()->user()->id);
             $projects = User::find(auth()->user()->id)->projects;
 
 
-            return view('admin.profile.admin', compact('user', 'projects','talks','talks2'));
-        }else{
 
-             //抓取所有小人對話
-             $talks = '點我可以新增對話唷！';
-             $talks2 = '點我點我，說說話！';
+            return view('admin.profile.admin', compact('user', 'projects', 'talks', 'talks2'));
+        } else {
 
-             $user = User::find(auth()->user()->id);
-             $projects = User::find(auth()->user()->id)->projects;
+            //抓取所有小人對話
+            $talks = '點我可以新增對話唷！';
+            $talks2 = '點我點我，說說話！';
 
-             return view('admin.profile.employee', compact('user', 'projects', 'talks', 'talks2'));
+            $user = User::find(auth()->user()->id);
+            $projects = User::find(auth()->user()->id)->projects;
+
+
+            return view('admin.profile.employee', compact('user', 'projects', 'talks', 'talks2'));
         }
-
-
     }
 
 
@@ -117,6 +123,7 @@ class UserController extends Controller
 
     public function usersController()
     {
+        //
         $users = User::all();
 
         return view('admin.users.index', compact('users'));
@@ -150,7 +157,6 @@ class UserController extends Controller
         if (User::find(auth()->user()->id)->authority == 1) {
             //抓取所有
             $talks = Talk::all();
-
         } else {
             //抓取自己創建的對話
             $talks = Talk::all()->where('user_id', auth()->user()->id);
@@ -175,5 +181,4 @@ class UserController extends Controller
         $talks->delete();
         return redirect()->back();
     }
-
 }

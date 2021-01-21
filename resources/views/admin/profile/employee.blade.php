@@ -73,33 +73,34 @@
             <button class="prompt-windows" data-toggle="modal" data-target="#exampleModal2">
                 {{$talks2}}</button>
             <img src="{{asset('img/people-r-29.png')}}" width="100px">
-             <!-- Modal -->
-             <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalLongTitle2" aria-hidden="true">
-             <div class="modal-dialog" role="document">
-                 <div class="modal-content">
-                     <div class="modal-header">
-                         <h5 class="modal-title" id="exampleModalLongTitle">增加對話</h5>
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                             <span aria-hidden="true">&times;</span>
-                         </button>
-                     </div>
-                     <form action="/admin/talk/create/{{auth()->user()->id}}" method="POST">
-                         @csrf
-                         <div class="modal-body">
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle2" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">增加對話</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="/admin/talk/create/{{auth()->user()->id}}" method="POST">
+                            @csrf
+                            <div class="modal-body">
 
-                             <h5>增加對話:</h5><input type="text" class="form-control" id="content" name="content" required>
+                                <h5>增加對話:</h5><input type="text" class="form-control" id="content" name="content"
+                                    required>
 
-                         </div>
-                         <div class="modal-footer">
-                             <button class='btn btn-success'>新增</button>
-                             <button type="button" class="btn btn-secondary " data-dismiss="modal">關閉</button>
-                         </div>
-                     </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class='btn btn-success'>新增</button>
+                                <button type="button" class="btn btn-secondary " data-dismiss="modal">關閉</button>
+                            </div>
+                        </form>
 
-                 </div>
-             </div>
-         </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="rightSide">
@@ -129,6 +130,8 @@
                         <th>電子信箱</th>
                         <td>{{$user->email}}</td>
                     </tr>
+
+
                 </tbody>
             </table>
             <div class="personal-photo"></div>
@@ -138,8 +141,8 @@
             <div class="point-box">目前<br>點數<br>
                 {{$user->point}}
             </div>
-            <a href="/admin/to_do_list/{{auth()->user()->id}}">
-                <div class="diary-box">工作<br>日誌</div>
+            <a href="/admin/lotto/index">
+                <div class="diary-box">幸運輪<br>大抽獎</div>
             </a>
         </div>
     </div>
@@ -160,5 +163,7 @@
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
 
 @endsection

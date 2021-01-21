@@ -139,7 +139,7 @@ animation: moving 1s linear;
                                 </div>
                                 <div class="modal-footer">
                                     <button class='btn btn-success'>儲存</button>
-                                    <a class='btn btn-danger ' href="/admin/to_do_list/destroy/{{$myList->id}}">刪除</a>
+                                    <a class='btn btn-danger ' href="/admin/to_do_list/destroy/{{$myList->id}}" onclick="javescript: return del();">刪除</a>
                                     <button type="button" class="btn btn-secondary " data-dismiss="modal">關閉</button>
                                 </div>
                             </form>
@@ -149,8 +149,7 @@ animation: moving 1s linear;
                 </div>
             </div>
             @endforeach
-            <button class='btn btn-success add_project'>新增</button>
-            <button class="btn btn-success remove_add">取消新增</button>
+
         </div>
     </div>
 
@@ -174,22 +173,6 @@ animation: moving 1s linear;
 </script>
 
 <script>
-    var add = document.querySelector('.add_project')
-    var hidden= document.querySelector('.remove_add')
-    //點擊新增按鈕移除hidden標籤，顯示畫面上的新增專案欄位
-     add.addEventListener('click', evt =>{
-         var hidden_text = document.querySelector('.hidden_text')
-         if(hidden_text.hasAttribute('hidden')){
-            hidden_text.removeAttribute('hidden')
-         }
-
-     });
-    //點擊取消新增按鈕增加hidden標籤，隱藏畫面上的新增專案欄位
-     hidden.addEventListener('click', evt =>{
-        var hidden_text = document.querySelector('.hidden_text')
-        hidden_text.setAttribute('hidden', 'hidden')
-     });
-
        //點擊刪除按鈕跳出提示確認(button上綁定onclick="javascript:return del();)
        function del() {
         var msg = "您真的確定要刪除此事項嗎！？";

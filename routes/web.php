@@ -99,5 +99,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
     Route::get('/talk/index','UserController@indexTalk');
     Route::get('/talk/destroy/{id}','UserController@deleteTalk');
 
-    
+    //樂透
+    Route::get('/lotto/game/{id}','LottoController@lottoGame');
+    Route::get('/lotto/index','LottoController@lottoIndex');
+
 });

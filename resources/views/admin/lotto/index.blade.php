@@ -1,14 +1,8 @@
-<?php use App\Project;?>
-
 @extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-<style>
-    .dataTable {
-        text-align: center;
-    }
-</style>
+
 @endsection
 
 
@@ -16,34 +10,38 @@
 
 <div class="container">
     <div class="container">
-        <h2>對話管理</h2>
-        <hr>
         <table id="myTable" class="display">
+            <h1>中獎列表</h1>
+            <hr>
             <thead>
                 <tr>
-                    <th>對話內容</th>
-                    <th>刪除 </th>
+                    <th>獎項</th>
+                    <th>中獎者</th>
+                    <th>中獎時間</th>
                 </tr>
             </thead>
             <tbody>
-
-                @foreach ($talks as $talk)
-
+                @foreach ($listOfAwards as $award)
                 <tr>
-                    {{-- 對話內容 --}}
-                    <td>{{Str::limit($talk->content,'36','...')}}</td>
-                    {{-- 刪除 --}}
-                    <td>
-                        <a class='btn btn-danger btn-sm' href="/admin/talk/destroy/{{$talk->id}}"
-                            onclick="javascript:return del();">刪除
-                        </a>
-                    </td>
+                    {{-- 獎項 --}}
+                    <td>{{$award->prize}}</td>
+                    {{-- 中獎者 --}}
+                    <td>{{$award->awarded}}</td>
+                    {{-- 中獎時間 --}}
+                    <td>{{$award->created_at}}</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 
+    {{-- 抽獎 --}}
+    @if ($user->point >= 10)
+
+    <a class='btn btn-success' href="/admin/lotto/game/{{$user->id}}" onclick="javascript:return del();">點我抽獎
+    </a>
+
+    @endif
 
     @endsection
 
@@ -65,23 +63,17 @@
         $('#myTable').DataTable();
     });
 
-
-
-      //點擊刪除按鈕跳出提示確認(button上綁定onclick="javascript:return del();)
-      function del() {
-        var msg= "確定要刪除此專案嗎！？"
-
-        if ( confirm(msg) == true){
+    //點擊刪除按鈕跳出提示確認(button上綁定onclick="javascript:return del();)
+    function del() {
+        var msg = "抽獎須扣除10點任務點數，確定抽獎嗎?！？";
+        if (confirm(msg)==true){
         return true;
         }else{
         return false;
         }
     }
 
-
     </script>
-
-
 
 
     @endsection
