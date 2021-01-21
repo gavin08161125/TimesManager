@@ -54,8 +54,8 @@ class Task extends Model
     }
 
 
-    public function users() {
-        return $this -> hasMany('App\User','id','id');
+    public function user() {
+        return $this -> hasOne('App\User','name','picker');
     }
 
 

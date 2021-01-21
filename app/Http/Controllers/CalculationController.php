@@ -106,6 +106,8 @@ class CalculationController extends Controller
 
     public function calculation(Request $request, $id)
     {
+
+
         //抓取任務結束的request資料並且更新到欄位
         $catchData = Task::find($id)->update([
             'reviewer' => $request->reviewer,
@@ -114,15 +116,23 @@ class CalculationController extends Controller
         ]);
 
         //狀態值改變成2，讓按鈕disabled
-
         Task::find($id)->update(['status' => '2']);
 
-
         //抓取該任務執行者並將點數相加
-        $sumPoint = Task::get()->where('picker', $request->picker)->sum('add_point');
-
+        // $sumPoint = Task::get()->where('picker', $request->picker)->sum('add_point');
         //把相加後的點數更新至使用者總點數
-        $returnToUserPoint = User::where('name', $request->picker)->update(['point' => $sumPoint]);
+        // $returnToUserPoint = User::where('name', $request->picker)->update(['point' => $sumPoint]);
+
+        //抓取該任務執行者點數
+        $sumPoint = Task::find($id)->add_point;
+
+        //抓取使用者原本點數
+        $originalPoing = Task::find($id)->user->point ;
+
+
+        //把抓取的點數更新至使用者總點數
+        $returnToUserPoint = User::where('name', $request->picker)->update(['point' => $originalPoing+$sumPoint]);
+
 
         //回傳project的id回taskindex頁面，才能抓取對應的任務列表
         $projects = Task::find($id)->project_id;
@@ -157,10 +167,6 @@ class CalculationController extends Controller
 
     public function endProject($id)
     {
-
-
-
-
 
         //專案狀態值改變成2，讓按鈕disabled
         $click = Project::find($id)->update(['status' => 2]);
