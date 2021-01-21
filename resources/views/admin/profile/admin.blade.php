@@ -14,7 +14,7 @@
 
             <!-- Button trigger modal -->
             <button class="greeting-windows " data-toggle="modal" data-target="#exampleModal">
-                {{$talks->random()->content}}</button>
+                {{$talks}}</button>
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -70,7 +70,7 @@
         <div class="prompt-box d-flex">
             <!-- Button trigger modal -->
             <button class="prompt-windows" data-toggle="modal" data-target="#exampleModal2">
-                {{$talks->random()->content}}</button>
+                {{$talks2}}</button>
             <img src="{{asset('img/people-r-29.png')}}" width="100px">
             <!-- Modal -->
             <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"

@@ -208,38 +208,15 @@
      });
 
      //點擊刪除按鈕跳出提示確認(button上綁定onclick="javascript:return del();)
+
      function del() {
-        // var msg= "確定要刪除此專案嗎！？"
-        // if ( confirm(msg) == true){
-        // return true;
-        // }else{
-        // return false;
-        // }
+        var msg= "確定要刪除此專案嗎！？"
 
-
-        var msg =swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-            })
-            .then((willDelete) => {
-            if (willDelete) {
-                swal("Poof! Your imaginary file has been deleted!", {
-                icon: "success",
-                });
-            } else {
-                swal("Your imaginary file is safe!");
-            }
-        });
-
-        if ( msg == true){
+        if ( confirm(msg) == true){
         return true;
         }else{
         return false;
         }
-
     }
 
     //

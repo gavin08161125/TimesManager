@@ -29,7 +29,10 @@
             <div class="logo m-a">
                 <img src="{{ asset('img/logo.png') }}" alt="">
             </div>
-            <div class="main-btn m-a" style="text-decoration: none;color:black">TimeEmpire</div>
+            <a href="/admin/talk/index" style="text-decoration: none;color:black">
+                <div class="main-btn m-a down-btn">TimeEmpire</div>
+            </a>
+            {{-- <div class="main-btn m-a" style="text-decoration: none;color:black">TimeEmpire</div> --}}
             <div class="btn-group d-flex m-a">
                 <a class="btnb" href="/admin/profile" style="text-decoration: none;color:black">個人<br>頁面</a>
                 <a class="btnb" href="/admin/project" style="text-decoration: none;color:black">專案<br>管理</a>
@@ -37,12 +40,15 @@
             <div class="btn-group d-flex m-a">
                 <a class="btnb" href="/admin/pointLog/{{auth()->user()->id}}"
                     style="text-decoration: none;color:black">點數<br>歷程</a>
-                <a class="btnb" href="/admin/to_do_list/{{auth()->user()->id}}" style="text-decoration: none;color:black">工作<br>日誌</a>
+                <a class="btnb" href="/admin/to_do_list/{{auth()->user()->id}}"
+                    style="text-decoration: none;color:black">工作<br>日誌</a>
             </div>
 
             @if(App\User::find(auth()->user()->id)->authority == 1)
-            <a href="/admin/user/" style="text-decoration: none;color:black"><div class="main-btn m-a down-btn" > 人員管理
-            </div></a>
+            <a href="/admin/user/" style="text-decoration: none;color:black">
+                <div class="main-btn m-a down-btn"> 人員管理
+                </div>
+            </a>
 
 
             @endif
@@ -81,7 +87,7 @@
                     @endauth
                 </div>
                 <div class="logout-btn m-a">
-                    <a  href="{{ route('logout') }}"
+                    <a href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('登出') }}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
