@@ -15,6 +15,23 @@
 
 }
 
+.prompt-windows , .greeting-windows{
+    border: none;
+}
+
+.prompt-windows:active , .greeting-windows:active{
+    border: none;
+}
+
+.prompt-windows:hover , .greeting-windows:hover{
+    border: none;
+}
+
+.prompt-windows:focus , .greeting-windows:focus{
+    border: none;
+}
+
+
 .dataTable  {
     text-align: center;
 }

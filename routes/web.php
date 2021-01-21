@@ -85,14 +85,17 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
         Route::post('/update/{id}', 'UserController@update');
         Route::get('/destroy/{id}', 'UserController@destroy');
     });
-
+    //點數歷程
     Route::get('/pointLog/{id}','UserController@pointLog');
 
+    //工作日誌
     Route::get('/to_do_list/{id}','ToDoListController@index');
     Route::post('/to_do_list/create/{id}','ToDoListController@addList');
     Route::get('/to_do_list/update/{id}','ToDoListController@updateList');
     Route::get('/to_do_list/destroy/{id}','ToDoListController@deleteList');
 
+    //小人對話
+    Route::post('/talk/create/{id}','UserController@createTalk');
 
 
 });

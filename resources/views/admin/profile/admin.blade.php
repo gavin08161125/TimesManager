@@ -11,7 +11,38 @@
     <div class="leftSide">
         <div class="greeting d-flex">
             <img src="{{asset('img/people-l.png')}}" width="80px">
-            <div class="greeting-windows"> {{$talks->random()->content}}</div>
+
+            <!-- Button trigger modal -->
+            <button class="greeting-windows " data-toggle="modal" data-target="#exampleModal">
+                {{$talks->random()->content}}</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">增加對話</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="/admin/talk/create/{{auth()->user()->id}}" method="POST">
+                            @csrf
+                            <div class="modal-body">
+
+                                <h5>增加對話:</h5><input type="text" class="form-control" id="content" name="content" required>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button class='btn btn-success'>新增</button>
+                                <button type="button" class="btn btn-secondary " data-dismiss="modal">關閉</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="projects_owned">
             <!-- use table套件 -->
@@ -37,13 +68,42 @@
         </div>
 
         <div class="prompt-box d-flex">
-            <div class="prompt-windows">  {{$talks->random()->content}}</div>
+            <!-- Button trigger modal -->
+            <button class="prompt-windows" data-toggle="modal" data-target="#exampleModal2">
+                {{$talks->random()->content}}</button>
             <img src="{{asset('img/people-r-29.png')}}" width="100px">
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle2" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">增加對話</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="/admin/talk/create/{{auth()->user()->id}}" method="POST">
+                            @csrf
+                            <div class="modal-body">
+
+                                <h5>增加對話:</h5><input type="text" class="form-control" id="content" name="content" required>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button class='btn btn-success'>新增</button>
+                                <button type="button" class="btn btn-secondary " data-dismiss="modal">關閉</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="rightSide">
         <div class="personal-inform d-flex">
-            <table  style="width:80%">
+            <table style="width:80%">
                 <tbody>
                     <tr>
                         <th>姓名&ensp;&ensp;&ensp;&ensp;</th>
@@ -76,7 +136,7 @@
         <!-- pie chart套件 -->
         <div class="pie-chart">
             <h1>本月專案概況</h1>
-            <canvas  id="myChart" width="600" height="450"></canvas>
+            <canvas id="myChart" width="600" height="450"></canvas>
         </div>
     </div>
 </div>
@@ -84,16 +144,21 @@
 @endsection
 
 @section('js')
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+</script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+</script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <!-- pie chart -->
-    <script>
-
-        var ctx = document.getElementById('myChart').getContext('2d');
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<!-- pie chart -->
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
 
         var myPieChart = new Chart(ctx, {
         type: 'doughnut',
@@ -113,5 +178,5 @@
 
         }
     });
-    </script>
+</script>
 @endsection

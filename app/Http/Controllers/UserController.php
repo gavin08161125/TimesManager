@@ -15,58 +15,58 @@ class UserController extends Controller
 
 
 
-    public function profile(){
+    public function profile()
+    {
 
         //admin
-        if(User::find(auth()->user()->id)->authority == 1){
+        if (User::find(auth()->user()->id)->authority == 1) {
 
             //抓取所有小人對話
             $talks = Talk::all();
-
-
 
             $user = User::find(auth()->user()->id);
             $projects = Project::all();
 
-
-
-            return view('admin.profile.admin' ,compact('user' ,'projects','talks'));
-        }elseif (User::find(auth()->user()->id)->authority == 2){
+            return view('admin.profile.admin', compact('user', 'projects', 'talks'));
+        } elseif (User::find(auth()->user()->id)->authority == 2) {
             //抓取所有小人對話
             $talks = Talk::all();
-            $user = User::find(auth()->user()->id);
-            $projects =User::find(auth()->user()->id)->projects ;
 
-            return view('admin.profile.employee' ,compact('user' ,'projects','talks'));
-        }elseif (User::find(auth()->user()->id)->authority == 3){
+            $user = User::find(auth()->user()->id);
+            $projects = User::find(auth()->user()->id)->projects;
+
+            return view('admin.profile.employee', compact('user', 'projects', 'talks'));
+        } elseif (User::find(auth()->user()->id)->authority == 3) {
             //抓取所有小人對話
             $talks = Talk::all();
-            $user = User::find(auth()->user()->id);
-            $projects =User::find(auth()->user()->id)->projects ;
 
-            return view('admin.profile.employee' ,compact('user' ,'projects','talks'));
+            $user = User::find(auth()->user()->id);
+            $projects = User::find(auth()->user()->id)->projects;
+
+            return view('admin.profile.employee', compact('user', 'projects', 'talks'));
         }
-
-
     }
 
 
     //
-    public function index(){
+    public function index()
+    {
         //抓取全部人員資料
         $users = User::all();
 
-        return view('admin.usersController.index' ,compact('users'));
+        return view('admin.usersController.index', compact('users'));
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         //抓取全部人員資料
         $user = User::find($id);
 
-        return view('admin.usersController.edit' ,compact('user'));
+        return view('admin.usersController.edit', compact('user'));
     }
 
-    public function update(Request $request,$id){
+    public function update(Request $request, $id)
+    {
         //抓取對應ID人員資料
         $user = User::find($id);
         //抓取$request資料
@@ -78,7 +78,8 @@ class UserController extends Controller
     }
 
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $users = User::find($id);
         $users->delete();
 
@@ -87,34 +88,42 @@ class UserController extends Controller
 
 
 
-    public function usersController(){
+    public function usersController()
+    {
         $users = User::all();
 
-        return view('admin.users.index' ,compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
-    public function pointLog($id){
+    public function pointLog($id)
+    {
         //抓取全部人員資料
-        if(User::find(auth()->user()->authority == '1')){
+        if (User::find(auth()->user()->authority == '1')) {
 
             $tasks = Task::all();
 
-            return view('admin.pointLog.index' ,compact('tasks'));
-
-        }elseif(User::find(auth()->user()->authority == '2')){
+            return view('admin.pointLog.index', compact('tasks'));
+        } elseif (User::find(auth()->user()->authority == '2')) {
             //
-            $tasks = Task::all()->where('picker',auth()->user()->name);
-            $reviewer = Task::all()->where('reviewer',auth()->user()->name);
+            $tasks = Task::all()->where('picker', auth()->user()->name);
+            $reviewer = Task::all()->where('reviewer', auth()->user()->name);
 
-            return view('admin.pointLog.index2' ,compact('tasks' , 'reviewer'));
-
-        }else{
+            return view('admin.pointLog.index2', compact('tasks', 'reviewer'));
+        } else {
             //抓取執行者為自己的任務
-            $tasks = Task::all()->where('picker',auth()->user()->name);
+            $tasks = Task::all()->where('picker', auth()->user()->name);
 
-            return view('admin.pointLog.index' ,compact('tasks'));
+            return view('admin.pointLog.index', compact('tasks'));
         }
-
     }
 
+    public function createTalk(Request $request)
+    {
+        $talks = Talk::create([
+            'user_id' => auth()->user()->id,
+            'content' => $request->content,
+        ]);
+
+        return redirect()->back();
+    }
 }
