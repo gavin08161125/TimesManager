@@ -14,7 +14,6 @@ class UserController extends Controller
 {
 
 
-
     public function profile()
     {
 
@@ -39,7 +38,7 @@ class UserController extends Controller
                 $user = User::find(auth()->user()->id);
                 $projects = User::find(auth()->user()->id)->projects;
 
-                return view('admin.profile.admin', compact('user', 'projects', 'talks', 'talks2'));
+                return view('admin.profile.employee', compact('user', 'projects', 'talks', 'talks2'));
             //組員
             } elseif (User::find(auth()->user()->id)->authority == 3) {
                 //抓取所有小人對話
@@ -49,10 +48,10 @@ class UserController extends Controller
                 $user = User::find(auth()->user()->id);
                 $projects = User::find(auth()->user()->id)->projects;
 
-                return view('admin.profile.admin', compact('user', 'projects', 'talks', 'talks2'));
+                return view('admin.profile.employee', compact('user', 'projects', 'talks', 'talks2'));
             }
         //如果對話為0
-        }else{
+        }elseif(User::find(auth()->user()->id)->authority == 1){
 
             $talks = '點我可以新增對話唷！';
             $talks2 = '點我點我，說說話！';
@@ -61,7 +60,19 @@ class UserController extends Controller
 
 
             return view('admin.profile.admin', compact('user', 'projects','talks','talks2'));
+        }else{
+
+             //抓取所有小人對話
+             $talks = '點我可以新增對話唷！';
+             $talks2 = '點我點我，說說話！';
+
+             $user = User::find(auth()->user()->id);
+             $projects = User::find(auth()->user()->id)->projects;
+
+             return view('admin.profile.employee', compact('user', 'projects', 'talks', 'talks2'));
         }
+
+
     }
 
 
@@ -102,7 +113,6 @@ class UserController extends Controller
 
         return redirect()->back()->with('alert', '刪除人員成功!');
     }
-
 
 
     public function usersController()
@@ -146,7 +156,6 @@ class UserController extends Controller
             $talks = Talk::all()->where('user_id', auth()->user()->id);
         }
 
-
         return view('admin.talk.index', compact('talks'));
     }
 
@@ -166,4 +175,5 @@ class UserController extends Controller
         $talks->delete();
         return redirect()->back();
     }
+
 }

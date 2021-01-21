@@ -98,4 +98,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
     Route::post('/talk/create/{id}','UserController@createTalk');
     Route::get('/talk/index','UserController@indexTalk');
     Route::get('/talk/destroy/{id}','UserController@deleteTalk');
+
+    
 });
