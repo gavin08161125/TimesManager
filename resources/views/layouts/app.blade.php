@@ -24,6 +24,7 @@
 <body class="d-flex">
     <?php use App\User; ?>
     <?php use Illuminate\Support\Str; ?>
+    <?php use App\Task; ?>
     <nav>
         <div class="sideNav">
             <div class="logo m-a">
@@ -62,20 +63,29 @@
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="/admin/project">
+                                    <?php
+                                        $user = User::find(auth()->user()->id);
+                                        $point = $user->point;
+                                        $tasks = count(Task::all()->where('picker',$user->name)->where('status',1));
+                                    ?>
                                     {{-- 老闆小人 --}}
-                                    @if(User::find(auth()->user()->id)->authority == 1)
-                                    {{User::find(auth()->user()->id)->name}}，你好<br>
+                                    @if($user->authority == 1)
+                                    {{$user->name}}，你好<br>
                                     祝你有美好的一天
                                     {{-- 主管小人 --}}
-                                    @elseif(User::find(auth()->user()->id)->authority == 2)
-                                    {{User::find(auth()->user()->id)->name}}，你好<br>
-                                    <?php $point = User::find(auth()->user()->id)->point ?>
-                                    您目前有 {{$point}} 點任務點數
+                                    @elseif($user->authority == 2)
+                                    {{$user->name}}，你好<br>
+                                    您目前餘剩 {{$tasks}} 件任務未完成
+                                    @if ($point > 0)
+                                    哈哈，你只有{{$point}}點點數！！
+                                    @endif
                                     {{-- 員工小人 --}}
-                                    @elseif(User::find(auth()->user()->id)->authority == 3)
-                                    <?php $point = User::find(auth()->user()->id)->point ?>
-                                    {{User::find(auth()->user()->id)->name}}，你好<br>
-                                    您目前有 {{$point}} 點任務點數
+                                    @elseif($user->authority == 3)
+                                    {{$user->name}}，你好<br>
+                                    您目前餘剩 {{$tasks}} 件任務未完成
+                                    @if ($point > 0)
+                                    哈哈，你只有{{$point}}點點數！！
+                                    @endif
                                     @else
                                     請登入
                                     @endif
