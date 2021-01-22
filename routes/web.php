@@ -39,6 +39,7 @@ Route::get('/project', 'ProjectController@index');
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
     Route::get('/profile','UserController@profile');
+    Route::post('/profile/upload_img/{id}','UserController@imageChange');
     //專案
     Route::group(['prefix' => 'project'], function () {
         Route::get('/', 'ProjectController@index')->name('home');

@@ -9,6 +9,8 @@ use App\Project;
 use App\Department;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -179,6 +181,34 @@ class UserController extends Controller
     {
         $talks = Talk::find($id);
         $talks->delete();
+        return redirect()->back();
+    }
+
+    public function imageChange(Request $request,$id)
+    {
+        $imgs = $request->img;
+        // dd($imgs);
+        $user = User::find($id);
+        $userImg = User::find($id)->img;
+        $emptyImg ="https://s.yimg.com/uu/api/res/1.2/luKvlUy8pZ9gTU0SS2pXbg--~B/aD02MDQ7dz05NjA7YXBwaWQ9eXRhY2h5b24-/https://o.aolcdn.com/images/dar/5845cadfecd996e0372f/5d178cb92a30bc72bbc71c33e3605223945a5fa7/aHR0cDovL28uYW9sY2RuLmNvbS9oc3Mvc3RvcmFnZS9taWRhcy8yMGI5ZmMzMmNiOWRmYTJlMGMzYmZmNzA2NzZlNzJmNC8yMDI2MjQxMjEvd2FsbHBhcGVyLWZvci1mYWNlYm9vay1wcm9maWxlLXBob3RvLmpwZw=="; 
+        if ($request->hasFile('img')) {
+
+            if (file_exists(public_path() . $user->img)) {
+                File::delete(public_path() . $user->img);
+            }
+
+            $files = Storage::disk('public')->put('/images', $request->file('img'));
+
+            $user->img = Storage::url($files);
+            $user->save();
+        }else{
+
+            $user->img = $emptyImg;
+            $user->save();
+        }
+
+
+
         return redirect()->back();
     }
 }

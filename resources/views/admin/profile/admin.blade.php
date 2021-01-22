@@ -31,7 +31,8 @@
                             @csrf
                             <div class="modal-body">
 
-                                <h5>增加對話:</h5><input type="text" class="form-control" id="content" name="content" required>
+                                <h5>增加對話:</h5><input type="text" class="form-control" id="content" name="content"
+                                    required>
 
                             </div>
                             <div class="modal-footer">
@@ -87,7 +88,8 @@
                             @csrf
                             <div class="modal-body">
 
-                                <h5>增加對話:</h5><input type="text" class="form-control" id="content" name="content" required>
+                                <h5>增加對話:</h5><input type="text" class="form-control" id="content" name="content"
+                                    required>
 
                             </div>
                             <div class="modal-footer">
@@ -131,7 +133,15 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="personal-photo"></div>
+            <form action="">
+                <input id="file" type="file" onchange="upload(this)" style="display: none" />
+                <button type="button" class="btn chg_img" name="button" value="Upload" onclick="thisFileUpload();">
+                    <div class="personal-photo" style="background-image:url({{$user->img}});"></div>
+                    
+                </button>
+            </form>
+
+
         </div>
         <!-- pie chart套件 -->
         <div class="pie-chart">
@@ -178,5 +188,32 @@
 
         }
     });
+
+
+    function thisFileUpload() { 
+            document.getElementById("file").click();
+        };
+
+        function upload(e) {
+            var _token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            var file = document.querySelector('#file').value
+            console.log(file);
+        var file = e.files[0];
+        if (!file) {
+            return;
+        }
+
+        var formData = new FormData;
+
+        formData.append('img',file);
+        formData.append('_token',_token);
+
+        fetch('/admin/profile/upload_img/{{$user->id}}',{
+            method:'POST',
+            body:formData,
+        });
+
+        // e.value = '';
+    }
 </script>
 @endsection
