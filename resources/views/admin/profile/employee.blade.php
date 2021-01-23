@@ -134,9 +134,12 @@
 
                 </tbody>
             </table>
-            <div class="personal-photo"></div>
+            <input id="file" type="file" onchange="upload(this)" style="display: none" />
+            <button type="button" class="btn chg_img" name="button" value="Upload" onclick="thisFileUpload();">
+                <div class="personal-photo" style="background-image:url({{$user->img}});"></div>
+
+            </button>
         </div>
-        <!-- pie chart套件 -->
         <div class="point-section d-flex">
             <div class="point-box">目前<br>點數<br>
                 {{$user->point}}
@@ -164,6 +167,34 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
+<script>
 
+    //圖片上傳
+    function thisFileUpload() {
+            document.getElementById("file").click();
+        };
+
+        function upload(e) {
+            var _token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            var file = document.querySelector('#file').value
+            console.log(file);
+        var file = e.files[0];
+        if (!file) {
+            return;
+        }
+
+        var formData = new FormData;
+
+        formData.append('img',file);
+        formData.append('_token',_token);
+
+        fetch('/admin/profile/upload_img/{{$user->id}}',{
+            method:'POST',
+            body:formData,
+        });
+
+        // e.value = '';
+    }
+</script>
 
 @endsection

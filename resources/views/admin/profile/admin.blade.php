@@ -133,13 +133,13 @@
                     </tr>
                 </tbody>
             </table>
-            
+
                 <input id="file" type="file" onchange="upload(this)" style="display: none" />
                 <button type="button" class="btn chg_img" name="button" value="Upload" onclick="thisFileUpload();">
                     <div class="personal-photo" style="background-image:url({{$user->img}});"></div>
-                    
+
                 </button>
-            
+
 
 
         </div>
@@ -165,9 +165,11 @@
     integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <!-- pie chart -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 <script>
+    //pie chart
     var ctx = document.getElementById('myChart').getContext('2d');
 
         var myPieChart = new Chart(ctx, {
@@ -189,8 +191,8 @@
         }
     });
 
-
-    function thisFileUpload() { 
+    //圖片上傳
+    function thisFileUpload() {
             document.getElementById("file").click();
         };
 
