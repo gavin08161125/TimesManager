@@ -131,17 +131,22 @@ class UserController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
-    public function pointLog($id)
+    public function pointLog()
     {
         //抓取全部人員資料
+        //admin
         if (User::find(auth()->user()->authority == '1')) {
 
+
+            //全部任務
             $tasks = Task::all();
 
             return view('admin.pointLog.index', compact('tasks'));
+        //主管
         } elseif (User::find(auth()->user()->authority == '2')) {
-            //
+            //抓取執行者為自己的任務
             $tasks = Task::all()->where('picker', auth()->user()->name);
+            //抓取自己審核的資料
             $reviewer = Task::all()->where('reviewer', auth()->user()->name);
 
             return view('admin.pointLog.index2', compact('tasks', 'reviewer'));
@@ -190,7 +195,7 @@ class UserController extends Controller
         // dd($imgs);
         $user = User::find($id);
         $userImg = User::find($id)->img;
-        $emptyImg ="https://s.yimg.com/uu/api/res/1.2/luKvlUy8pZ9gTU0SS2pXbg--~B/aD02MDQ7dz05NjA7YXBwaWQ9eXRhY2h5b24-/https://o.aolcdn.com/images/dar/5845cadfecd996e0372f/5d178cb92a30bc72bbc71c33e3605223945a5fa7/aHR0cDovL28uYW9sY2RuLmNvbS9oc3Mvc3RvcmFnZS9taWRhcy8yMGI5ZmMzMmNiOWRmYTJlMGMzYmZmNzA2NzZlNzJmNC8yMDI2MjQxMjEvd2FsbHBhcGVyLWZvci1mYWNlYm9vay1wcm9maWxlLXBob3RvLmpwZw=="; 
+        $emptyImg ="https://s.yimg.com/uu/api/res/1.2/luKvlUy8pZ9gTU0SS2pXbg--~B/aD02MDQ7dz05NjA7YXBwaWQ9eXRhY2h5b24-/https://o.aolcdn.com/images/dar/5845cadfecd996e0372f/5d178cb92a30bc72bbc71c33e3605223945a5fa7/aHR0cDovL28uYW9sY2RuLmNvbS9oc3Mvc3RvcmFnZS9taWRhcy8yMGI5ZmMzMmNiOWRmYTJlMGMzYmZmNzA2NzZlNzJmNC8yMDI2MjQxMjEvd2FsbHBhcGVyLWZvci1mYWNlYm9vay1wcm9maWxlLXBob3RvLmpwZw==";
         if ($request->hasFile('img')) {
 
             if (file_exists(public_path() . $user->img)) {

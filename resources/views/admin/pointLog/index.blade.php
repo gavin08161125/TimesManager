@@ -3,11 +3,6 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-<style>
-    .card {
-        margin: 20px;
-    }
-</style>
 @endsection
 
 
@@ -27,7 +22,7 @@
                         <th>任務名稱</th>
                         <th>專案</th>
                         <th>核發主管</th>
-                        <th>花費時間</th>
+                        <th>任務花費時間</th>
                         <th>獲得點數</th>
                     </tr>
                 </thead>
@@ -49,9 +44,13 @@
                         <td>{{$task->add_point}}</td>
                     </tr>
                     @endforeach
+
                 </tbody>
 
             </table>
+
+            <a href="/admin/pointLog/detail_request
+            " class="btn btn-success"> 點數詳細</a>
 
 
     </div>
@@ -76,45 +75,6 @@
     jQuery( document ).ready(function( $ ) {
         $('#myTable').DataTable();
     });
-    // Code that uses other library's $ can follow here.
-
-    var add = document.querySelector('.add_project')
-    var hidden= document.querySelector('.remove_add')
-    //點擊新增按鈕移除hidden標籤，顯示畫面上的新增專案欄位
-     add.addEventListener('click', evt =>{
-         var hidden_text = document.querySelector('.hidden_text')
-         if(hidden_text.hasAttribute('hidden')){
-            hidden_text.removeAttribute('hidden')
-         }
-
-     });
-    //點擊取消新增按鈕增加hidden標籤，隱藏畫面上的新增專案欄位
-     hidden.addEventListener('click', evt =>{
-        var hidden_text = document.querySelector('.hidden_text')
-        hidden_text.setAttribute('hidden', 'hidden')
-     });
-
-     //點擊刪除按鈕跳出提示確認(button上綁定onclick="javascript:return del();)
-     function del() {
-        var msg = "您真的確定要刪除此專案嗎！？";
-        if (confirm(msg)==true){
-        return true;
-        }else{
-        return false;
-        }
-    }
-
-    //
-    //點擊刪除按鈕跳出提示確認(button上綁定onclick="javascript:return del();)
-    function endProject() {
-        var msg = "要封存此專案嗎？\n注意:如任務點數尚未發放，封存專案將會無法再行發放任務點數！！";
-        if (confirm(msg)==true){
-        return true;
-        }else{
-        return false;
-        }
-    }
-
     </script>
 
     @endsection

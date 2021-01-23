@@ -153,4 +153,31 @@ class CalculationController extends Controller
 
         return redirect()->back();
     }
+
+
+    public function pointDetailRequest()
+    {
+
+
+
+        return view('admin.pointLog.pointDetail.request');
+    }
+
+    public function pointDetailPost()
+    {
+
+
+
+        return redirect('/admin/pointLog/detail');
+    }
+
+
+    public function pointDetail()
+    {
+
+
+
+        return view('admin.pointLog.pointDetail.result');
+    }
+
 }

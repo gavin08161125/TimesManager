@@ -4,11 +4,7 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-<style>
-    .dataTable  {
-        text-align: center;
-    }
-</style>
+
 @endsection
 
 

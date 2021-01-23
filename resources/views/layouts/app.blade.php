@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/template.css') }}">
     @yield('css')
@@ -39,7 +40,7 @@
                 <a class="btnb" href="/admin/project" style="text-decoration: none;color:black">專案<br>管理</a>
             </div>
             <div class="btn-group d-flex m-a">
-                <a class="btnb" href="/admin/pointLog/{{auth()->user()->id}}"
+                <a class="btnb" href="/admin/pointLog"
                     style="text-decoration: none;color:black">點數<br>歷程</a>
                 <a class="btnb" href="/admin/to_do_list/{{auth()->user()->id}}"
                     style="text-decoration: none;color:black">工作<br>日誌</a>
