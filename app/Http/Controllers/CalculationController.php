@@ -179,8 +179,6 @@ class CalculationController extends Controller
         //使用者的專案
         $projects = User::find($user)->projects;
 
-
-
         return view('admin.pointLog.pointDetail.member', compact('user', 'projects'));
 
     }

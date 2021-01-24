@@ -75,8 +75,8 @@ class ProjectController extends Controller
         $update = $request->all();
         $products->update($update);
 
-        //更新專案時更新專案擁有者關聯
-        ProjectUser::where('project_id',$id)->where('user_id',$request->input('user_id'));
+        //更新專案時更新專案擁有者關聯(失效)
+        // ProjectUser::where('project_id',$id)->where('user_id',$request->input('user_id'));
 
         return redirect('/admin/project/');
     }

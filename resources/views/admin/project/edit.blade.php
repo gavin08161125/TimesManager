@@ -34,12 +34,42 @@
             <textarea class="form-control" id="description" rows="3" name="description" required>{{$project->description}}</textarea>
         </div>
 
-        <button class="btn btn-primary " >儲存</button>
+        <button class="btn btn-primary saveBtn" >儲存</button>
 
     </form>
 </div>
 @endsection
 
 @section('js')
+{{-- <script>
+     $(".saveBtn").click(function(){
+            console.log($(this).arrt('data-userid'))
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                method: 'POST',
+                url: `http://127.0.0.1:8000/admin/project/update/{{$project->id}}`,
+                data:{
+                    user_id: $(this).data('userid'),
+                    project_id: $(this).data('projectid'),
+                    task_id: $(this).data('taskid'),
+                    },
+
+
+          });
+
+
+        });
+
+
+
+
+</script> --}}
+
 
 @endsection

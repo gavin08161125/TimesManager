@@ -7,6 +7,7 @@ use App\Task;
 use App\User;
 use App\Project;
 use App\Department;
+use App\ProjectUser;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -116,8 +117,16 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+
+        //刪除使用者
         $users = User::find($id);
         $users->delete();
+
+        //刪除使用者時刪除其專案關聯
+        $userTasks = ProjectUser::all()->where('user_id',$id);
+        foreach($userTasks as $userTask){
+            $userTask->delete();
+        }
 
         return redirect()->back()->with('alert', '刪除人員成功!');
     }
@@ -223,7 +232,7 @@ class UserController extends Controller
         }
 
 
-        
+
         return redirect()->back();
     }
 }
