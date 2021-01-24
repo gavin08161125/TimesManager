@@ -51,21 +51,6 @@
 
         </table>
 
-        <h2>主管核發點數查詢</h2>
-        <hr>
-        <form action="/admin/pointLog/detail_request">
-
-            <div class="form-group">
-                <label for="user">名稱</label>
-                <select class="form-control" id="user" name="user">
-                    @foreach ($users as $user)
-                    <option value="{{$user->name}}">{{$user->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <button class="btn btn-primary">核發點數詳細</button>
-        </form>
 
     </div>
 

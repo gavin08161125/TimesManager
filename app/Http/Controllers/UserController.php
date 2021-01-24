@@ -137,12 +137,16 @@ class UserController extends Controller
         //admin
         if (User::find(auth()->user()->authority == '1')) {
 
-
             //全部任務
             $tasks = Task::all();
 
-            return view('admin.pointLog.index', compact('tasks'));
-        //主管
+            //使用者(主管以上)
+            $users = User::all()->filter(function ($value, $key) {
+                return $value->authority < 3;
+            });
+
+            return view('admin.pointLog.index', compact('tasks', 'users'));
+            //主管
         } elseif (User::find(auth()->user()->authority == '2')) {
             //抓取執行者為自己的任務
             $tasks = Task::all()->where('picker', auth()->user()->name);
@@ -154,7 +158,7 @@ class UserController extends Controller
             //抓取執行者為自己的任務
             $tasks = Task::all()->where('picker', auth()->user()->name);
 
-            return view('admin.pointLog.index', compact('tasks'));
+            return view('admin.pointLog.index3', compact('tasks'));
         }
     }
 
@@ -189,13 +193,13 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function imageChange(Request $request,$id)
+    public function imageChange(Request $request, $id)
     {
         $imgs = $request->img;
         // dd($imgs);
         $user = User::find($id);
         $userImg = User::find($id)->img;
-        $emptyImg ="https://s.yimg.com/uu/api/res/1.2/luKvlUy8pZ9gTU0SS2pXbg--~B/aD02MDQ7dz05NjA7YXBwaWQ9eXRhY2h5b24-/https://o.aolcdn.com/images/dar/5845cadfecd996e0372f/5d178cb92a30bc72bbc71c33e3605223945a5fa7/aHR0cDovL28uYW9sY2RuLmNvbS9oc3Mvc3RvcmFnZS9taWRhcy8yMGI5ZmMzMmNiOWRmYTJlMGMzYmZmNzA2NzZlNzJmNC8yMDI2MjQxMjEvd2FsbHBhcGVyLWZvci1mYWNlYm9vay1wcm9maWxlLXBob3RvLmpwZw==";
+        $emptyImg = "https://s.yimg.com/uu/api/res/1.2/luKvlUy8pZ9gTU0SS2pXbg--~B/aD02MDQ7dz05NjA7YXBwaWQ9eXRhY2h5b24-/https://o.aolcdn.com/images/dar/5845cadfecd996e0372f/5d178cb92a30bc72bbc71c33e3605223945a5fa7/aHR0cDovL28uYW9sY2RuLmNvbS9oc3Mvc3RvcmFnZS9taWRhcy8yMGI5ZmMzMmNiOWRmYTJlMGMzYmZmNzA2NzZlNzJmNC8yMDI2MjQxMjEvd2FsbHBhcGVyLWZvci1mYWNlYm9vay1wcm9maWxlLXBob3RvLmpwZw==";
         if ($request->hasFile('img')) {
 
             if (file_exists(public_path() . $user->img)) {
@@ -206,7 +210,7 @@ class UserController extends Controller
 
             $user->img = Storage::url($files);
             $user->save();
-        }else{
+        } else {
 
             $user->img = $emptyImg;
             $user->save();

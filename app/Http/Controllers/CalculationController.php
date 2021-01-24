@@ -6,6 +6,7 @@ use App\Task;
 use App\User;
 
 use App\Project;
+use App\ProjectUser;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;
 
@@ -84,7 +85,7 @@ class CalculationController extends Controller
         $reviewer = User::find(auth()->user()->id)->name;
 
         $task = Task::find($id);
-        return view('admin.task.point.point', compact('task', 'product','reviewer'));
+        return view('admin.task.point.point', compact('task', 'product', 'reviewer'));
     }
 
     /**
@@ -122,7 +123,7 @@ class CalculationController extends Controller
         $originalPoing = Task::find($id)->user->point;
 
         //把抓取的點數更新至使用者總點數(原點數+任務執行者點數)
-        $returnToUserPoint = User::where('name', $request->picker)->update(['point' => $originalPoing+$sumPoint]);
+        $returnToUserPoint = User::where('name', $request->picker)->update(['point' => $originalPoing + $sumPoint]);
 
         //回傳project的id回taskindex頁面，才能抓取對應的任務列表
         $projects = Task::find($id)->project_id;
@@ -155,29 +156,36 @@ class CalculationController extends Controller
     }
 
 
-    public function pointDetailRequest()
+    public function pointDetailRequest(Request $request)
+    {
+
+        //被查詢使用者(主管)
+        $user = $request->user;
+        //被查詢者名子
+
+
+        //主管下的專案
+        $projects = Project::all()->where('owner', $user);
+
+
+
+        return view('admin.pointLog.pointDetail.request', compact('user', 'projects'));
+    }
+
+
+
+
+    public function pointDetail(Request $request)
     {
 
 
+        //抓取任務獲得點數
+        $tasks = Task::all()->where('picker',$request->user)->where('project_id',$request->project);
 
-        return view('admin.pointLog.pointDetail.request');
+        //抓取核發任務點數
+        $reviewer = Task::all()->where('reviewer',$request->user)->where('project_id',$request->project);;
+
+
+        return view('admin.pointLog.pointDetail.result',compact('request','tasks','reviewer'));
     }
-
-    public function pointDetailPost()
-    {
-
-
-
-        return redirect('/admin/pointLog/detail');
-    }
-
-
-    public function pointDetail()
-    {
-
-
-
-        return view('admin.pointLog.pointDetail.result');
-    }
-
 }

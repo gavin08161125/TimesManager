@@ -27,7 +27,8 @@
                     <th>任務名稱</th>
                     <th>專案</th>
                     <th>核發主管</th>
-                    <th>花費時間</th>
+                    <th>任務負責人</th>
+                    <th>任務花費時間</th>
                     <th>獲得點數</th>
                 </tr>
             </thead>
@@ -42,7 +43,9 @@
                     {{-- 專案 --}}
                     <td>{{$task->project->title}}</td>
                     {{-- 核發主管 --}}
-                    <td>{{$task->project->owner}}</td>
+                    <td>{{$task->reviewer}}</td>
+                    {{-- 任務負責人 --}}
+                    <td>{{$task->picker}}</td>
                     {{-- 花費時間 --}}
                     <td>{{$task->totaltime}}</td>
                     {{-- 獲得點數 --}}
@@ -62,6 +65,7 @@
                         <th>任務名稱</th>
                         <th>專案</th>
                         <th>核發主管</th>
+                        <th>任務負責人</th>
                         <th>任務花費時間</th>
                         <th>核發點數</th>
                     </tr>
@@ -77,7 +81,9 @@
                         {{-- 專案 --}}
                         <td>{{$reviewer->project->title}}</td>
                         {{-- 核發主管 --}}
-                        <td>{{$reviewer->project->owner}}</td>
+                        <td>{{$reviewer->reviewer}}</td>
+                        {{-- 任務負責人 --}}
+                        <td>{{$reviewer->picker}}</td>
                         {{-- 花費時間 --}}
                         <td>{{$reviewer->totaltime}}</td>
                         {{-- 核發點數 --}}
@@ -110,6 +116,11 @@
     $.noConflict();
     jQuery( document ).ready(function( $ ) {
         $('#myTable').DataTable();
+    });
+
+    $.noConflict();
+    jQuery( document ).ready(function( $ ) {
+        $('#myTable2').DataTable();
     });
 
     </script>
