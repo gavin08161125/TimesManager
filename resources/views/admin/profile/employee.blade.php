@@ -194,6 +194,12 @@
         });
 
         // e.value = '';
+
+        setTimeout("reload()",900);
+    }
+
+    function reload(){
+        window.location.href="/admin/profile";
     }
 </script>
 

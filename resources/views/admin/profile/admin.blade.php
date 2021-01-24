@@ -135,10 +135,15 @@
             </table>
 
                 <input id="file" type="file" onchange="upload(this)" style="display: none" />
-                <button type="button" class="btn chg_img" name="button" value="Upload" onclick="thisFileUpload();">
+                {{-- <button type="button" class="btn chg_img" name="button" value="Upload" onclick="thisFileUpload();">
                     <div class="personal-photo" style="background-image:url({{$user->img}});"></div>
 
-                </button>
+                </button> --}}
+
+                <a href="#" class="btn chg_img" name="button" value="Upload" onclick="thisFileUpload();">
+                    <div class="personal-photo" style="background-image:url({{$user->img}});"></div>
+
+                </a>
 
 
 
@@ -216,6 +221,12 @@
         });
 
         // e.value = '';
+        
+        setTimeout("reload()",900);
+    }
+
+    function reload(){
+        window.location.href="/admin/profile";
     }
 </script>
 @endsection
