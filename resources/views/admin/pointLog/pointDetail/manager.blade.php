@@ -8,10 +8,10 @@
 <div class="container">
     <h2>點數歷程>主管核發點數查詢</h2>
     <hr>
-    <form action="/admin/pointLog/detail" method="get">
+    <form action="/admin/point_log/detail_manager" method="get">
         @csrf
 
-        <div class="form-group">
+        <div class="form-group" hidden>
             <label for="user">名稱</label>
             <input class="form-control" id="user" name="user" value="{{$user}}" readonly>
         </div>

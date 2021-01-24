@@ -141,11 +141,17 @@ class UserController extends Controller
             $tasks = Task::all();
 
             //使用者(主管以上)
-            $users = User::all()->filter(function ($value, $key) {
+            $managers = User::all()->filter(function ($value, $key) {
                 return $value->authority < 3;
             });
 
-            return view('admin.pointLog.index', compact('tasks', 'users'));
+            //使用者(員工)
+            $members = User::all()->filter(function ($value, $key) {
+                return $value->authority == 3;
+            });
+
+
+            return view('admin.pointLog.index', compact('tasks', 'managers','members'));
             //主管
         } elseif (User::find(auth()->user()->authority == '2')) {
             //抓取執行者為自己的任務

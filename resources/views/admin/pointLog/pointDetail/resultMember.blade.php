@@ -2,6 +2,11 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+<style>
+    .card {
+        margin: 20px;
+    }
+</style>
 @endsection
 
 
@@ -11,10 +16,10 @@
     <div class="container">
 
 
-        <h2>點數歷程</h2>
+        <h2>獲得點數</h2>
         <hr>
 
-        <table id="myTable" class="display">
+        <table id="myTable2" class="display">
             <thead>
                 <tr>
                     <th>獲得日期</th>
@@ -37,51 +42,18 @@
                     {{-- 專案 --}}
                     <td>{{$task->project->title}}</td>
                     {{-- 核發主管 --}}
-                    <td>{{$task->reviewer}}</td>
+                    <td>{{$task->project->owner}}</td>
                     {{-- 任務負責人 --}}
                     <td>{{$task->picker}}</td>
                     {{-- 花費時間 --}}
-                    <td>{{$task->totaltime}}</td>
+                    <td>{{$task->totaltime}}小時</td>
                     {{-- 獲得點數 --}}
                     <td>{{$task->add_point}}</td>
                 </tr>
                 @endforeach
-
             </tbody>
-
         </table>
 
-        <div class="container ">
-            <h3>主管核發點數查詢</h3>
-            <hr>
-            <form action="/admin/point_log/detail_manager_request">
-
-                <div class="form-group">
-                    <label for="manager">名稱</label>
-                    <select class="form-control" id="manager" name="manager">
-                        @foreach ($managers as $manager)
-                        <option value="{{$manager->name}}">{{$manager->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <button class="btn btn-primary">核發點數詳細</button>
-            </form>
-            <h3>員工核發點數查詢</h3>
-            <hr>
-            <form action="/admin/point_log/detail_member_request">
-                <div class="form-group">
-                    <label for="member">名稱</label>
-                    <select class="form-control" id="member" name="member">
-                        @foreach ($members as $member)
-                        <option value="{{$member->id}}">{{$member->name}}</option>
-                        @endforeach
-                    </select>
-
-                    <button class="btn btn-primary">核發點數詳細</button>
-                </div>
-            </form>
-        </div>
 
     </div>
 
@@ -105,6 +77,12 @@
     jQuery( document ).ready(function( $ ) {
         $('#myTable').DataTable();
     });
+
+    $.noConflict();
+    jQuery( document ).ready(function( $ ) {
+        $('#myTable2').DataTable();
+    });
+
     </script>
 
     @endsection

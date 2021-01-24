@@ -156,36 +156,57 @@ class CalculationController extends Controller
     }
 
 
-    public function pointDetailRequest(Request $request)
+    public function pointDetailManagerRequest(Request $request)
     {
 
-        //被查詢使用者(主管)
-        $user = $request->user;
-        //被查詢者名子
+        //被查詢使用者
+        $user = $request->manager;
 
-
-        //主管下的專案
+        //使用者的專案
         $projects = Project::all()->where('owner', $user);
 
+        return view('admin.pointLog.pointDetail.manager', compact('user', 'projects'));
 
-
-        return view('admin.pointLog.pointDetail.request', compact('user', 'projects'));
     }
 
 
-
-
-    public function pointDetail(Request $request)
+    public function pointDetailMemberRequest(Request $request)
     {
 
+        //被查詢使用者
+        $user = $request->member;
 
-        //抓取任務獲得點數
+        //使用者的專案
+        $projects = User::find($user)->projects;
+
+
+
+        return view('admin.pointLog.pointDetail.member', compact('user', 'projects'));
+
+    }
+
+    public function pointDetailManager(Request $request)
+    {
+        //抓取任務獲得點數(主管)
         $tasks = Task::all()->where('picker',$request->user)->where('project_id',$request->project);
 
-        //抓取核發任務點數
+        //抓取核發任務點數(主管)
         $reviewer = Task::all()->where('reviewer',$request->user)->where('project_id',$request->project);;
 
-
-        return view('admin.pointLog.pointDetail.result',compact('request','tasks','reviewer'));
+        return view('admin.pointLog.pointDetail.resultManager',compact('request','tasks','reviewer'));
     }
+
+
+    public function pointDetailMember(Request $request)
+    {
+        //使用者
+        $user=User::find($request->user);
+
+        //抓取任務獲得點數(員工)
+        $tasks = Task::all()->where('project_id',$request->project)->where('picker',$user->name);
+
+        return view('admin.pointLog.pointDetail.resultMember',compact('request','tasks'));
+    }
+
+
 }

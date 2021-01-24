@@ -87,10 +87,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
         Route::get('/destroy/{id}', 'UserController@destroy');
     });
     //點數歷程
-    Route::get('/pointLog','UserController@pointLog');
-    Route::get('/pointLog/detail_request','CalculationController@pointDetailRequest');
-    
-    Route::get('/pointLog/detail','CalculationController@pointDetail');
+    Route::get('/point_log','UserController@pointLog');
+    Route::get('/point_log/detail_manager_request','CalculationController@pointDetailManagerRequest');
+    Route::get('/point_log/detail_member_request','CalculationController@pointDetailMemberRequest');
+    Route::get('/point_log/detail_manager','CalculationController@pointDetailManager');
+    Route::get('/point_log/detail_member','CalculationController@pointDetailMember');
+
 
     //工作日誌
     Route::get('/to_do_list/{id}','ToDoListController@index');

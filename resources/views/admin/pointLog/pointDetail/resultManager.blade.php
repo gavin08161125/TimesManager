@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('css')
@@ -27,6 +26,7 @@
                     <th>任務名稱</th>
                     <th>專案</th>
                     <th>核發主管</th>
+                    <th>任務負責人</th>
                     <th>任務花費時間</th>
                     <th>獲得點數</th>
                 </tr>
@@ -43,6 +43,8 @@
                     <td>{{$task->project->title}}</td>
                     {{-- 核發主管 --}}
                     <td>{{$task->project->owner}}</td>
+                    {{-- 任務負責人 --}}
+                    <td>{{$task->picker}}</td>
                     {{-- 花費時間 --}}
                     <td>{{$task->totaltime}}小時</td>
                     {{-- 獲得點數 --}}
@@ -53,40 +55,43 @@
         </table>
 
 
-                <h2>核發點數</h2>
-            <hr>
-            <table id="myTable" class="display">
-                <thead>
-                    <tr>
-                        <th>獲得日期</th>
-                        <th>任務名稱</th>
-                        <th>專案</th>
-                        <th>核發主管</th>
-                        <th>任務花費時間</th>
-                        <th>核發點數</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <h2>核發點數</h2>
+        <hr>
+        <table id="myTable" class="display">
+            <thead>
+                <tr>
+                    <th>獲得日期</th>
+                    <th>任務名稱</th>
+                    <th>專案</th>
+                    <th>核發主管</th>
+                    <th>任務負責人</th>
+                    <th>任務花費時間</th>
+                    <th>核發點數</th>
+                </tr>
+            </thead>
+            <tbody>
 
-                    @foreach ($reviewer as $reviewer)
-                    <tr>
-                        {{-- 獲得日期 --}}
-                        <td>{{$reviewer->updated_at}}</td>
-                        {{-- 任務名稱 --}}
-                        <td>{{$reviewer->name}}</td>
-                        {{-- 專案 --}}
-                        <td>{{$reviewer->project->title}}</td>
-                        {{-- 核發主管 --}}
-                        <td>{{$reviewer->project->owner}}</td>
-                        {{-- 花費時間 --}}
-                        <td>{{$reviewer->totaltime}}小時</td>
-                        {{-- 核發點數 --}}
-                        <td>{{$reviewer->add_point}}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
+                @foreach ($reviewer as $reviewer)
+                <tr>
+                    {{-- 獲得日期 --}}
+                    <td>{{$reviewer->updated_at}}</td>
+                    {{-- 任務名稱 --}}
+                    <td>{{$reviewer->name}}</td>
+                    {{-- 專案 --}}
+                    <td>{{$reviewer->project->title}}</td>
+                    {{-- 核發主管 --}}
+                    <td>{{$reviewer->reviewer}}</td>
+                    {{-- 任務負責人 --}}
+                    <td>{{$reviewer->picker}}</td>
+                    {{-- 花費時間 --}}
+                    <td>{{$reviewer->totaltime}}</td>
+                    {{-- 核發點數 --}}
+                    <td>{{$reviewer->add_point}}</td>
+                </tr>
+                @endforeach
+            </tbody>
 
-            </table>
+        </table>
 
 
     </div>
@@ -107,7 +112,7 @@
         crossorigin="anonymous"></script>
 
     <script>
-    $.noConflict();
+        $.noConflict();
     jQuery( document ).ready(function( $ ) {
         $('#myTable').DataTable();
     });
