@@ -29,6 +29,7 @@
 
 <div class="filter" hidden>
     <div class="turntable" >
+
         <span class="pointer"></span>
     </div>
 </div>
@@ -103,7 +104,8 @@
             // 点击后禁用
             $(this).attr('disabled', 'disabled');
             filter.removeAttr('hidden');
-            window.location.href='game/{{$user->id}}';
+            setTimeout('window.location.href="game/{{$user->id}}";',2000);
+
             return true;
             }else{
             return false;
