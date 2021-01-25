@@ -99,11 +99,13 @@
         if (confirm(msg)==true){
             var filter = $('.filter');
             var start = $('.start');
+            var container = $('.container')
             run($('.pointer'));
 
             // 点击后禁用
             $(this).attr('disabled', 'disabled');
             filter.removeAttr('hidden');
+            container.attr('hidden','hidden');
             setTimeout('window.location.href="game/{{$user->id}}";',2000);
 
             return true;

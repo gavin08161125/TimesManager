@@ -257,5 +257,15 @@ form{
     border: none;
 }
 
+.task_btn{
+    background-color:  none;
+    background-image: none;
+    padding: 0;
+    -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+    box-shadow: none;
+    border: none;
+}
+
 
 
