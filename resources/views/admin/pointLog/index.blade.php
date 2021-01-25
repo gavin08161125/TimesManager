@@ -78,8 +78,9 @@
                         @endforeach
                     </select>
 
-                    <button class="btn btn-primary">核發點數詳細</button>
+                    
                 </div>
+                <button class="btn btn-primary">核發點數詳細</button>
             </form>
         </div>
 

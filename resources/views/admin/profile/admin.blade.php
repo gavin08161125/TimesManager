@@ -134,26 +134,27 @@
                 </tbody>
             </table>
 
-                <input id="file" type="file" onchange="upload(this)" style="display: none" />
-                {{-- <button type="button" class="btn chg_img" name="button" value="Upload" onclick="thisFileUpload();">
-                    <div class="personal-photo" style="background-image:url({{$user->img}});"></div>
-
-                </button> --}}
-
-                <a href="#" class="btn chg_img" name="button" value="Upload" onclick="thisFileUpload();">
-                    <div class="personal-photo" style="background-image:url({{$user->img}});"></div>
-
-                </a>
-
-
-
+            <input id="file" type="file" onchange="upload(this)" style="display: none" />
+            {{-- <button type="button" class="btn chg_img" name="button" value="Upload" onclick="thisFileUpload();">
+                    <div class="personal-photo" style="background-image:url({{$user->img}});">
         </div>
-        <!-- pie chart套件 -->
-        <div class="pie-chart">
-            <h1>本月專案概況</h1>
-            <canvas id="myChart" width="600" height="450"></canvas>
-        </div>
+
+        </button> --}}
+
+        <a href="#" class="btn chg_img" name="button" value="Upload" onclick="thisFileUpload();">
+            <div class="personal-photo" style="background-image:url({{$user->img}});"></div>
+
+        </a>
+
+
+
     </div>
+    <!-- pie chart套件 -->
+    <div class="pie-chart">
+        <h1>本月專案概況</h1>
+        <canvas id="myChart" class="myChart" width="600" height="450"></canvas>
+    </div>
+</div>
 </div>
 
 @endsection
@@ -172,11 +173,16 @@
 
 <!-- pie chart -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-style@0.5.0"></script>
 <script>
     //pie chart
     var ctx = document.getElementById('myChart').getContext('2d');
 
+        var effectColors = {
+        highlight: 'rgba(255, 255, 255, 0.75)',
+        shadow: 'rgba(0, 0, 0, 0.5)',
+        glow: 'rgb(255, 255, 0)'	
+    };
         var myPieChart = new Chart(ctx, {
         type: 'doughnut',
 
@@ -185,8 +191,18 @@
             labels: ['執行中', '已結案' ],
             datasets: [{
                 backgroundColor: ['#936331','#8FC0C4','#DD8B63'],
-                data: [{{count($projects->where('status',1))}}, {{count($projects->where('status',2))}}]
-            }]
+                data: [{{count($projects->where('status',1))}}, {{count($projects->where('status',2))}}],shadowOffsetX: 3,
+                shadowOffsetY: 3,
+                shadowBlur: 10,
+                shadowColor: effectColors.shadow,
+                bevelWidth: 2,
+                bevelHighlightColor: effectColors.highlight,
+                bevelShadowColor: effectColors.shadow,
+                hoverInnerGlowWidth: 20,
+                hoverInnerGlowColor: effectColors.glow,
+                hoverOuterGlowWidth: 20,
+                hoverOuterGlowColor: effectColors.glow
+                }]
         },
         options: {
             legend:{
@@ -194,6 +210,7 @@
             }
 
         }
+    
     });
 
     //圖片上傳

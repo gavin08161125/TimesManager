@@ -61,6 +61,8 @@ body {
     width: 100%;
     height: 100%;
     background-color: #F0E09C;
+    /* background-image: url('/img/馬鈴薯.png'); 
+    background-position: center; */
     font-family: 'HunInn';
 }
 
@@ -196,13 +198,13 @@ nav {
 main {
     width: calc(100% - 388px);
     height: 100vh;
-    background-color: #F0E09C;
+    /* background-color: #F0E09C; */
     padding-top: 50px;
     overflow: scroll;
 }
 
 table {
-    background-color: #E4B959;
+    background-color: #92c0e6;
 }
 
 table.dataTable thead th,
@@ -221,11 +223,23 @@ table.dataTable tbody tr {
     background-color: #E4B959;
 }
 
-
 form{
     padding: 25px;
     border-radius: 20px;
-    background-color: #e6dcc6;
+    border: 1px white solid;
+    background-color: #f4f3f3;
+    /* background-image: url('/img/馬鈴薯.png');  */
+    /* background-position: center; */
+    -webkit-box-shadow: 3px 3px 5px grey;
+	-moz-box-shadow: 3px 3px 5px grey;
+	box-shadow: 3px 3px 5px rgb(104, 80, 57);
+    /* background-size: cover; */
+
+    /* background: radial-gradient(center, ellipse cover, rgba(255, 255, 194, 0.8)58%, rgba(217, 177, 166, 0.3)87%);
+    background: -moz-radial-gradient(center, ellipse cover, rgba(255, 255, 194, 0.8)58%, rgba(217, 177, 166, 0.3)87%);
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 194, 0.8)58%, rgba(217, 177, 166, 0.3)87%);
+    background: -o-radial-gradient(center, ellipse cover, rgba(255, 255, 194, 0.8)58%, rgba(217, 177, 166, 0.3)87%); */
+ 
 }
 
 .point_log_h3{
@@ -235,6 +249,9 @@ form{
 /* 任務管理主頁的Form按鈕 */
 .task{
     background-color:  #F0E09C;
+    background-image: none;
     padding: 0;
 }
+
+
 

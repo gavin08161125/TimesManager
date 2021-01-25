@@ -94,7 +94,7 @@
                 <td>{{$task->add_point}}</td>
                 {{-- <a class="btn btn-primary" href="/admin/project/task/edit/{{$task->id}}" > --}}
                 <td>
-                    <form action="/admin/project/task/edit/{{$task->id}} "> <button class="btn btn-primary "
+                    <form action="/admin/project/task/edit/{{$task->id}} " class="task"> <button class="btn btn-primary "
                             @if($task->status == 2) disabled @endif >編輯</button></form>
                 </td>
                 <td><a class="btn btn-danger" href="/admin/project/task/destroy/{{$task->id}}"
@@ -108,7 +108,7 @@
                     data-taskid="{{$task->id}}" onclick="location.reload()">任務結束</button> --}}
 
 
-                    <form action="/admin/project/task/feedback/{{$task->id}}">
+                    <form action="/admin/project/task/feedback/{{$task->id}}" class="task">
                         <button class="btn btn-primary pointBtn" @if ($task->status == 2 )
                             disabled @endif
                             data-picker="{{$task->picker}}" data-projectid="{{$task->project_id}}"
