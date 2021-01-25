@@ -3,14 +3,34 @@
 @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 <link href="{{ asset('css/lottery.css') }}" rel="stylesheet">
+<style>
+    #main {
+        padding: 0!important;
+    }
 
+    .filter {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    h1{
+        margin-top: 20px;
+    }
+
+
+</style>
 @endsection
 
 
 @section('main')
 
-<div class="turntable" hidden>
-    <span class="pointer"></span>
+<div class="filter" hidden>
+    <div class="turntable" >
+        <span class="pointer"></span>
+    </div>
 </div>
 
 <div class="container">
@@ -76,18 +96,18 @@
 
         var msg = "抽獎須扣除10點任務點數，確定抽獎嗎?！？";
         if (confirm(msg)==true){
-            var turntable = $('.turntable');
+            var filter = $('.filter');
             var start = $('.start');
             run($('.pointer'));
 
             // 点击后禁用
             $(this).attr('disabled', 'disabled');
-            turntable.removeAttr('hidden');
+            filter.removeAttr('hidden');
             window.location.href='game/{{$user->id}}';
-        return true;
-        }else{
-        return false;
-        }
+            return true;
+            }else{
+            return false;
+            }
 
     }
 
@@ -99,7 +119,7 @@ var iEnd = -1;
 setTimeout(function(){
     iEnd = Math.floor(Math.random() * 8);
     console.log(iEnd);
-}, 3000);
+}, 2000);
 
 // 旋转
 function run(oPointer){

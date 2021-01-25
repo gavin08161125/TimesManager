@@ -111,8 +111,8 @@
     </nav>
 
 
-    <main class="py-4">
-        <div class="container ">
+    <main class="py-4 " id='main'>
+        {{-- <div class="container ">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
@@ -155,7 +155,7 @@
                     @endguest
                 </ul>
             </div>
-        </div>
+        </div> --}}
         @yield('content')
         @yield('main')
     </main>
