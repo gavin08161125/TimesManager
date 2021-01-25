@@ -128,8 +128,9 @@
                         <td>{{$user->phone}}</td>
                     </tr>
                     <tr>
+
                         <th>電子信箱</th>
-                        <td>{{$user->email}}</td>
+                        <td>{{Str::limit($user->email, 12, '...')}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -181,7 +182,7 @@
         var effectColors = {
         highlight: 'rgba(255, 255, 255, 0.75)',
         shadow: 'rgba(0, 0, 0, 0.5)',
-        glow: 'rgb(255, 255, 0)'	
+        glow: 'rgb(255, 255, 0)'
     };
         var myPieChart = new Chart(ctx, {
         type: 'doughnut',
@@ -210,7 +211,7 @@
             }
 
         }
-    
+
     });
 
     //圖片上傳
@@ -238,7 +239,7 @@
         });
 
         // e.value = '';
-        
+
         setTimeout("reload()",900);
     }
 

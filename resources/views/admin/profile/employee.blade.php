@@ -128,7 +128,7 @@
                     </tr>
                     <tr>
                         <th>電子信箱</th>
-                        <td>{{$user->email}}</td>
+                        <td>{{Str::limit($user->email, 12, '...')}}</td>
                     </tr>
 
 

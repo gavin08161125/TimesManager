@@ -40,8 +40,7 @@
                 <a class="btnb" href="/admin/project" style="text-decoration: none;color:black">專案<br>管理</a>
             </div>
             <div class="btn-group d-flex m-a">
-                <a class="btnb" href="/admin/point_log"
-                    style="text-decoration: none;color:black">點數<br>歷程</a>
+                <a class="btnb" href="/admin/point_log" style="text-decoration: none;color:black">點數<br>歷程</a>
                 <a class="btnb" href="/admin/to_do_list/{{auth()->user()->id}}"
                     style="text-decoration: none;color:black">工作<br>日誌</a>
             </div>
@@ -97,14 +96,13 @@
                     </div>
                     @endauth
                 </div>
-                <div class="logout-btn m-a">
-                    <a href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('登出') }}
-                    </a>
+                <a class="logout-btn m-a"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('登出') }}
+                    <a href="{{ route('logout') }}"></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
-                </div>
+                </a>
 
             </div>
 
