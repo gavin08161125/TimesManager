@@ -52,9 +52,9 @@
         </table>
 
         <div class="container ">
-            <h3>主管核發點數查詢</h3>
+            <h3 class="point_log_h3">主管核發點數查詢</h3>
             <hr>
-            <form action="/admin/point_log/detail_manager_request">
+            <form action="/admin/point_log/detail_manager_request" class="point_log_form">
 
                 <div class="form-group">
                     <label for="manager">名稱</label>
@@ -67,9 +67,9 @@
 
                 <button class="btn btn-primary">核發點數詳細</button>
             </form>
-            <h3>員工核發點數查詢</h3>
+            <h3 class="point_log_h3">員工核發點數查詢</h3>
             <hr>
-            <form action="/admin/point_log/detail_member_request">
+            <form action="/admin/point_log/detail_member_request" class="point_log_form">
                 <div class="form-group">
                     <label for="member">名稱</label>
                     <select class="form-control" id="member" name="member">

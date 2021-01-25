@@ -148,7 +148,7 @@
         </tbody>
     </table>
     {{-- 抓取的id從indexfunction接過來，透過Form表單抓取id 把值post進create頁面 --}}
-    <form action="/admin/project/task/create/{{$request->id}}" neme="id" id="id">
+    <form action="/admin/project/task/create/{{$request->id}}" neme="id" id="id" class="task">
         <button class="btn btn-success " neme="id" id="id" value="{{$request->id}}">新增工作</button>
     </form>
 </div>

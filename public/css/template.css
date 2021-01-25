@@ -220,3 +220,21 @@ table.dataTable tbody td {
 table.dataTable tbody tr {
     background-color: #E4B959;
 }
+
+
+form{
+    padding: 25px;
+    border-radius: 20px;
+    background-color: #e6dcc6;
+}
+
+.point_log_h3{
+    margin-top: 25px;
+}
+
+/* 任務管理主頁的Form按鈕 */
+.task{
+    background-color:  #F0E09C;
+    padding: 0;
+}
+

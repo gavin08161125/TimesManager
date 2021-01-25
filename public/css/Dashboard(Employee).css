@@ -308,6 +308,10 @@ table.dataTable tbody tr {
   padding-top: 40px;
 }
 
+.point-section a:hover{
+    text-decoration: none;
+}
+
 .point-section .diary-box {
   width: 171px;
   height: 194px;
@@ -322,4 +326,5 @@ table.dataTable tbody tr {
           box-shadow: 10px 10px 5px 5px #693c36;
   padding-top: 40px;
 }
+
 /*# sourceMappingURL=Dashboard(Employee).css.map */
