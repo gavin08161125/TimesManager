@@ -61,7 +61,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: #F0E09C;
-    /* background-image: url('/img/馬鈴薯.png'); 
+    /* background-image: url('/img/馬鈴薯.png');
     background-position: center; */
     font-family: 'HunInn';
 }
@@ -239,7 +239,7 @@ form{
     background: -moz-radial-gradient(center, ellipse cover, rgba(255, 255, 194, 0.8)58%, rgba(217, 177, 166, 0.3)87%);
     background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 194, 0.8)58%, rgba(217, 177, 166, 0.3)87%);
     background: -o-radial-gradient(center, ellipse cover, rgba(255, 255, 194, 0.8)58%, rgba(217, 177, 166, 0.3)87%); */
- 
+
 }
 
 .point_log_h3{
@@ -251,6 +251,10 @@ form{
     background-color:  #F0E09C;
     background-image: none;
     padding: 0;
+    -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+    box-shadow: none;
+    border: none;
 }
 
 

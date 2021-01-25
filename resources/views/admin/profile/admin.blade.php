@@ -182,7 +182,7 @@
         var effectColors = {
         highlight: 'rgba(255, 255, 255, 0.75)',
         shadow: 'rgba(0, 0, 0, 0.5)',
-        glow: 'rgb(255, 255, 0)'
+        glow: 'rgb(255,243,92)'
     };
         var myPieChart = new Chart(ctx, {
         type: 'doughnut',
@@ -191,7 +191,7 @@
 
             labels: ['執行中', '已結案' ],
             datasets: [{
-                backgroundColor: ['#936331','#8FC0C4','#DD8B63'],
+                backgroundColor: ['#DD8B63','#8FC0C4'],
                 data: [{{count($projects->where('status',1))}}, {{count($projects->where('status',2))}}],shadowOffsetX: 3,
                 shadowOffsetY: 3,
                 shadowBlur: 10,

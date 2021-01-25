@@ -2,11 +2,16 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+<link href="{{ asset('css/lottery.css') }}" rel="stylesheet">
 
 @endsection
 
 
 @section('main')
+
+<div class="turntable" hidden>
+    <span class="pointer"></span>
+</div>
 
 <div class="container">
     <div class="container">
@@ -38,15 +43,16 @@
     {{-- 抽獎 --}}
     @if ($user->point >= 10)
 
-    <a class='btn btn-success' href="/admin/lotto/game/{{$user->id}}" onclick="javascript:return del();">點我抽獎
-    </a>
-
+    <button class='btn btn-success start' onclick="javascript:return lottory();">點我抽獎
+    </button>
+    {{-- href="/admin/lotto/game/{{$user->id}}" --}}
     @endif
 
     @endsection
 
 
     @section('js')
+
 
     <!-- #region datatables files -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
@@ -63,17 +69,67 @@
         $('#myTable').DataTable();
     });
 
-    //點擊刪除按鈕跳出提示確認(button上綁定onclick="javascript:return del();)
-    function del() {
+    //點擊按鈕跳出抽獎提示確認並執行動作(button上綁定onclick="javascript:return lottory();)
+    function lottory() {
+    // 开始
+    //點擊按鈕移除hidden屬性
+
         var msg = "抽獎須扣除10點任務點數，確定抽獎嗎?！？";
         if (confirm(msg)==true){
+            var turntable = $('.turntable');
+            var start = $('.start');
+            run($('.pointer'));
+
+            // 点击后禁用
+            $(this).attr('disabled', 'disabled');
+            turntable.removeAttr('hidden');
+            window.location.href='game/{{$user->id}}';
         return true;
         }else{
         return false;
         }
+
     }
 
     </script>
+    {{-- lottery test --}}
+    <script>
+        // 假设iEnd是请求获得的奖品结果
+var iEnd = -1;
+setTimeout(function(){
+    iEnd = Math.floor(Math.random() * 8);
+    console.log(iEnd);
+}, 3000);
 
+// 旋转
+function run(oPointer){
+    var deg = 0, iSpeed = 20, timer = null, arr = [360, 45, 90, 135, 180, 225, 270, 315], circle = 5;
+    timer = setInterval(function(){
+
+        deg += iSpeed;
+        if(deg >= 360){
+            deg = deg % 360;
+            circle--;
+            circle <= 0 && (iSpeed *= 0.7);
+        }
+
+        if(iEnd !== -1 && circle <= 0 && Math.abs(arr[iEnd] - deg) <= iSpeed){
+            clearInterval(timer);
+            deg = arr[iEnd];
+        }
+
+        oPointer.css({
+            'transform': 'rotate('+ deg +'deg)',
+            'webkitTransform': 'rotate('+ deg +'deg)',
+            'mozTransform': 'rotate('+ deg +'deg)'
+        });
+
+    }, 20);
+}
+
+
+
+
+    </script>
 
     @endsection
