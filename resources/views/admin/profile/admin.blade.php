@@ -143,7 +143,7 @@
         </button> --}}
 
         <a href="#" class="btn chg_img" name="button" value="Upload" onclick="thisFileUpload();">
-            <div class="personal-photo" style="background-image:url({{$user->img}});"></div>
+            <div class="personal-photo" @if ($user->img != "")style="background-image:url({{$user->img}});" @endif></div>
 
         </a>
 
