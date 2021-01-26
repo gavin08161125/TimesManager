@@ -80,8 +80,6 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         //
-
-
         Task::create([
             'name' => $request->name,
             'project_id' => $request->project_id,
