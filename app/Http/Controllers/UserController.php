@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
+
 class UserController extends Controller
 {
 
@@ -221,10 +222,14 @@ class UserController extends Controller
                 File::delete(public_path() . $user->img);
             }
 
-            $files = Storage::disk('public')->put('/images', $request->file('img'));
+            // $files = Storage::disk('public')->put('/images', $request->file('img'));
 
-            $user->img = Storage::url($files);
+            $path = $this->fileUpload($imgs,'product');
+
+            $user->img = $path;
+
             $user->save();
+
         } else {
 
             $user->img = $emptyImg;
@@ -235,4 +240,23 @@ class UserController extends Controller
 
         return redirect()->back();
     }
+ public function fileUpload($file,$dir){
+        //防呆：資料夾不存在時將會自動建立資料夾，避免錯誤
+        if( ! is_dir('upload/')){
+            mkdir('upload/');
+        }
+        //防呆：資料夾不存在時將會自動建立資料夾，避免錯誤
+        if ( ! is_dir('upload/'.$dir)) {
+            mkdir('upload/'.$dir);
+        }
+        //取得檔案的副檔名
+        $extension = $file->getClientOriginalExtension();
+        //檔案名稱會被重新命名
+        $filename = strval(time().md5(rand(100, 200))).'.'.$extension;
+        //移動到指定路徑
+        move_uploaded_file($file, public_path().'/upload/'.$dir.'/'.$filename);
+        //回傳 資料庫儲存用的路徑格式
+        return '/upload/'.$dir.'/'.$filename;
+    }
+
 }
