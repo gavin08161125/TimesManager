@@ -136,7 +136,7 @@
             </table>
             <input id="file" type="file" onchange="upload(this)" style="display: none" />
             <button type="button" class="btn chg_img" name="button" value="Upload" onclick="thisFileUpload();">
-                <div class="personal-photo" style="background-image:url({{$user->img}});"></div>
+                <div class="personal-photo" @if ($user->img != "") style="background-image:url({{$user->img}});" @endif></div>
 
             </button>
         </div>
