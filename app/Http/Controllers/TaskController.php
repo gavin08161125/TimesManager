@@ -77,11 +77,11 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         //
 
-        $task = Task::find($id);
+
         Task::create([
             'name' => $request->name,
             'project_id' => $request->project_id,
