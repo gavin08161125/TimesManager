@@ -166,7 +166,9 @@
     {{-- 抓取的id從indexfunction接過來，透過Form表單抓取id 把值post進create頁面 --}}
 
     <form action="/admin/project/task/create/{{$request->id}}" neme="id" id="hh" class="task" >
+        @if(App\Project::find($request->id)->status == 1)
         <button class="btn btn-success " neme="id" id="id" value="{{$request->id}}">新增工作</button>
+        @endif
         <a  class="btn btn-success " href="/admin/project">回上一頁</a>
     </form>
 </div>
