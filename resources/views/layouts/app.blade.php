@@ -84,7 +84,7 @@
                                     {{$user->name}}，你好<br>
                                     您目前餘剩 {{$tasks}} 件任務未完成
                                     @if ($point > 0)
-                                    哈哈，你只有{{$point}}點點數！！
+                                    你擁有{{$point}}點點數！！
                                     @endif
                                     @else
                                     請登入
