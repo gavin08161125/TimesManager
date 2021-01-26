@@ -61,6 +61,9 @@ animation: moving 1s linear;
     }
 }
 
+.detail{
+    font-size: 18px;
+}
 
 
 </style>
@@ -100,7 +103,7 @@ animation: moving 1s linear;
         <div class="col-6">
             @foreach ($myLists as $myList)
             <div class="list-group">
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                <button type="button" class="btn btn-warning btn-sm detail" data-toggle="modal"
                     data-target="#exampleModalLong{{$myList->id}}">
                     事項詳細
                 </button>

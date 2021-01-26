@@ -225,9 +225,7 @@ class UserController extends Controller
             // $files = Storage::disk('public')->put('/images', $request->file('img'));
 
             $path = $this->fileUpload($imgs,'product');
-
             $user->img = $path;
-
             $user->save();
 
         } else {
