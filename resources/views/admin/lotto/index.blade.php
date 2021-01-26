@@ -5,7 +5,7 @@
 <link href="{{ asset('css/lottery.css') }}" rel="stylesheet">
 <style>
     #main {
-        padding: 0!important;
+        padding: 0 !important;
     }
 
     .filter {
@@ -16,11 +16,10 @@
         top: 0;
         left: 0;
     }
-    h1{
+
+    h1 {
         margin-top: 20px;
     }
-
-
 </style>
 @endsection
 
@@ -28,7 +27,7 @@
 @section('main')
 
 <div class="filter" hidden>
-    <div class="turntable" >
+    <div class="turntable">
 
         <span class="pointer"></span>
     </div>
@@ -127,7 +126,7 @@ setTimeout(function(){
 
 // 旋转
 function run(oPointer){
-    var deg = 0, iSpeed = 20, timer = null, arr = [360, 60, 90, 120, 180, 210, 270], circle = 5;
+    var deg = 0, iSpeed = 20, timer = null, arr = [30, 90, 120, 180, 210, 270, 300, 330], circle = 5;
     timer = setInterval(function(){
 
         deg += iSpeed;
