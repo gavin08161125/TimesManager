@@ -127,7 +127,7 @@ setTimeout(function(){
 
 // 旋转
 function run(oPointer){
-    var deg = 0, iSpeed = 20, timer = null, arr = [360, 45, 90, 135, 180, 225, 270, 315], circle = 5;
+    var deg = 0, iSpeed = 20, timer = null, arr = [360, 60, 90, 120, 180, 210, 270], circle = 5;
     timer = setInterval(function(){
 
         deg += iSpeed;
