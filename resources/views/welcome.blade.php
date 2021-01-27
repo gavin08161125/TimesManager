@@ -3220,7 +3220,7 @@
                     </div>
         </div>
     </section>
-    <div class="icon" style="background-image: url('{{ asset('img/littleCastle.png') }}');"></div>
+    <div class="icon" style="background-image: url('{{ asset('img/index/littleCastle.png') }}');"></div>
 
     <section class="project-feature" id="differention">
             <div class="container">
