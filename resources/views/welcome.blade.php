@@ -3225,25 +3225,25 @@
     <section class="project-feature" id="differention">
             <div class="container">
                 <div class="swipper">
-                    <div class="photo" style="background-image: url('{{ asset('img/index/photo1.png') }}');">
+                    <div class="photo" style="background-image: url('{{ asset('img/project-feature (1).jpg') }}');">
                         <h2>簡約設計風格<br>
                         簡單明瞭的線條設計<br>降低系統導入時的學習成本。
                     </h2>
                     </div>
-                    <div class="photo" style="background-image: url('{{ asset('img/index/photo2.png') }}');">
+                    <div class="photo" style="background-image: url('{{ asset('img/project-feature (2).jpg') }}');">
                         <h2>遊戲化的引導<br>
                             會心一笑的對話<br>偶爾的樂透特休激勵系統。
                         </h2>
                     </div>
                 </div>
                 <div class="swipper down-swipper">
-                    <div class="photo" style="background-image: url('{{ asset('img/index/photo3.png') }}');">
+                    <div class="photo" style="background-image: url('{{ asset('img/project-feature (3).jpg') }}');">
                         <h2>
                             更清楚的專案動向<br>
                             任務點數、時數交集比對<br>專案進度不delay。
                         </h2>
                     </div>
-                    <div class="photo" style="background-image: url('{{ asset('img/index/photo4.png') }}');">
+                    <div class="photo" style="background-image: url('{{ asset('img/project-feature (4).jpg') }}');">
                         <h2>工作流程的優化<br>
                             透過數據反思專案經驗<br>讓每下一次的專案都更有效率。
                         </h2>
