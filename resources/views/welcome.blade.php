@@ -3122,17 +3122,31 @@
                 <a href="#contactUs">了解更多</a>
             </div>
         </div>
+        <div class="prompt-win">Try to Click</div>
     </nav>
     <main>
     <!-- 地球動畫 -->
     <section>
         <div class="container" id="transformation">
-            <h5>在家工作，對台灣來說，2020年之前還是個「替代選項」（alternative）<br>
-                但在新冠肺炎（COVID-19）盛行後，卻變成了「非要不可」（must）<br>遠距工作為員工省掉通勤的時間
+            <h5>
+                工時管理系統-協助高效控管您的時間成本
             </h5>
             <div class="banner">
-                <div class="circle" style="background-image: url('{{ asset('img/index/Earyh-all.png') }}');"></div>
-
+                <div class="floating-windows">
+                    <span id="close2">X</span>
+                    <h2>遠距工作之難</h2>
+                        <p>在家工作對台灣來說，2020年之前還是個「替代選項」（alternative），但在新冠肺炎（COVID-19）後，卻變成了「非要不可」（must）。遠距工作為員工帶來了，省掉通勤的時間、通勤費用，省下午餐晚餐外食時間和金錢的優點；同時少了辦公室的噪音、大聲談話或做事被打斷等等干擾，員工能更專注一次完成一項任務，一心多用不只會降低專注力和效率，研究也顯示，只要一件正在進行的事情被打斷，效率就會減少20%！
+                    </p>
+                </div>
+                <div class="circle" style="background-image: url('{{ asset('img/index/Earyh-all.png') }}');">
+                    <div class="point">
+                    </div>
+                    <div class="point"></div></div>
+                <div class="floating-windows">
+                    <span id="close2">X</span>
+                    <h2>企業微型化之痛</h2>
+        <p>「企業微型化」是指企業走向專業化、人力精簡化的方向，透過解放金字塔階層結構的方式，擺脫中間管理層、降低管理，實際落實資訊透明化，並且擁有雲端的知識管理系統，來降低溝通成本，將過往企業習慣的向外開源，走向向內開源。</p>
+                </div>
             </div>
         </div>
     </section>
@@ -3141,8 +3155,9 @@
         <div class="container">
                     <div class="cardbox" data-aos="fade-right"
                     data-aos-offset="300"
-                    data-aos-easing="ease-in-sine">
+                    data-aos-easing="ease-in-sine" style="background-image: url('{{ asset('img/project-manager.gif') }}');">
                     </div>
+
                     <div class="cardbox" data-aos="zoom-in">
                         <h1>專案項目管理系統</h1>
                         <h3>
@@ -3154,9 +3169,10 @@
                             或是對於工作流程、人員安排有更適當的安排。
                         </h3>
                     </div>
+
                     <div class="cardbox" data-aos="fade-left"
                     data-aos-offset="300"
-                    data-aos-easing="ease-in-sine">
+                    data-aos-easing="ease-in-sine" style="background-image: url('{{ asset('img/point.gif') }}');">
                     </div>
 
                     <div class="cardbox" data-aos="fade-right"
@@ -3173,8 +3189,9 @@
                         </h3>
                     </div>
 
-                    <div class="cardbox" data-aos="zoom-in">
+                    <div class="cardbox" data-aos="zoom-in" style="background-image: url('{{ asset('img/working-item.gif') }}');">
                     </div>
+
                     <div class="cardbox" data-aos="zoom-in">
                         <h1>個人整體工時系統</h1>
                         <h3>
@@ -3187,8 +3204,9 @@
                         </h3>
                     </div>
 
-                    <div class="cardbox" data-aos="zoom-in">
+                    <div class="cardbox" data-aos="zoom-in" style="background-image: url('{{ asset('img/working-time.gif') }}');">
                     </div>
+
                     <div class="cardbox" data-aos="zoom-in">
                         <h1>工時透明化</h1>
                         <h3>
@@ -3202,7 +3220,8 @@
                     </div>
         </div>
     </section>
-    <div class="icon" style="background-image: url('{{ asset('img/index/littleCastle.png') }}');"></div>
+    <div class="icon" style="background-image: url('{{ asset('img/littleCastle.png') }}');"></div>
+
     <section class="project-feature" id="differention">
             <div class="container">
                 <div class="swipper">
@@ -3232,31 +3251,25 @@
                 </div>
             </div>
     </section>
-        <section class="social-recommand">
-            <!-- <div class="container-circle">
-                <div class="social"></div>
-                <div class="social"></div>
-                <div class="social"></div>
-                <div class="social"></div>
-            </div> -->
-        </section>
+    <section class="social-recommand">
+    </section>
     <section class="start_use" id="persona">
         <div class="ig-content">
                 <!-- 第一則 -->
             <div class="ig-text">
-                <img src="{{ asset('img/index/instagram_post.png') }}" alt="">
+                <img src="{{ asset('img/tweet_post (1).png') }}" alt="">
             </div>
                 <!-- 第二則 -->
             <div class="ig-text">
-                <img src="{{ asset('img/index/instagram_post (3).png') }}" alt="">
+                <img src="{{ asset('img/tweet_post (2).png') }}" alt="">
             </div>
                 <!-- 第三則 -->
             <div class="ig-text">
-                <img src="{{ asset('img/index/instagram_post (2).png') }}" alt="">
+                <img src="{{ asset('img/tweet_post (3).png') }}" alt="">
             </div>
                 <!-- 第四則 -->
             <div class="ig-text">
-                <img src="{{ asset('img/index/instagram_post (1).png') }}" alt="">
+                <img src="{{ asset('img/tweet_post.png') }}" alt="">
             </div>
         </div>
 
@@ -3300,49 +3313,96 @@
       crossorigin="anonymous"></script>
 
     <script>
-        var btns = document.querySelectorAll(".tower")
-        var chats = document.querySelectorAll(".chatBox")
-        var close = document.querySelectorAll(".close")
 
-        function clear() {
-            btns.forEach(function(btn,index) {
-                btns[index].classList.remove("hover")
-                chats[index].classList.remove("active")
-            });
+    var btns = document.querySelectorAll(".tower")
+    var chats = document.querySelectorAll(".chatBox")
+    var close = document.querySelectorAll(".close")
+    var windows = document.querySelectorAll(".floating-windows")
+    var circle = document.querySelector(".circle")
+    var prompts = document.querySelector(".prompt-win")
+
+
+    circle.onclick = function () {
+        windows.classList.add("active")
+    }
+
+    function clear() {
+        btns.forEach(function(btn,index) {
+            btns[index].classList.remove("hover")
+            chats[index].classList.remove("active")
+        });
+    }
+
+    btns.forEach(function (btn,index) {
+        btn.onclick = function () {
+            clear()
+            btns[index].classList.add("hover")
+            chats[index].classList.add("active")
+            prompts.setAttribute('hidden','hidden')
         }
+    });
 
-        btns.forEach(function (btn,index) {
-            btn.onclick = function () {
-                clear()
-                btns[index].classList.add("hover")
-                chats[index].classList.add("active")
-            }
-        });
-        close.forEach(function (close,index) {
-            close.onclick = function () {
-                chats[index].classList.remove("active")
-            }
-        });
+    close.forEach(function (close,index) {
+        close.onclick = function () {
+            chats[index].classList.remove("active")
+        }
+    });
 
-    </script>
+    var pot = document.querySelectorAll(".point");
+    var windows = document.querySelectorAll(".floating-windows");
+    var close2 =document.querySelectorAll("#close2");
+
+    pot.forEach(function (pot,index) {
+        pot.onclick=function(){
+            windows[index].style.opacity = "1"
+        }
+    })
+
+    close2.forEach(function (close,index) {
+        close.onclick = function () {
+            windows[index].style.opacity = "0"
+        }
+    });
+</script>
+
 
     <!-- wave -->
     <script>
-    var ocean = document.getElementById("ocean"),
-    waveWidth = 10,
-    waveCount = Math.floor(window.innerWidth/waveWidth),
-    docFrag = document.createDocumentFragment();
+        $(document).ready(function () {
+            var ocean = document.getElementById("ocean"),
+            waveWidth = 10,
+            waveCount = Math.floor((window.innerWidth-17)/waveWidth),
+            docFrag = document.createDocumentFragment();
 
-    for(var i = 0; i < waveCount; i++){
-    var wave = document.createElement("div");
-    wave.className += " wave";
-    docFrag.appendChild(wave);
-    wave.style.left = i * waveWidth + "px";
-    wave.style.webkitAnimationDelay = (i/100) + "s";
-    }
+            for(var i = 0; i < waveCount; i++){
+            var wave = document.createElement("div");
+            wave.className += " wave";
+            docFrag.appendChild(wave);
+            wave.style.left = i * waveWidth + "px";
+            wave.style.webkitAnimationDelay = (i/100) + "s";
+            }
 
-    ocean.appendChild(docFrag);
+            ocean.appendChild(docFrag);
+        });
 
-    </script>
+        $( window ).resize(function() {
+           window.setTimeout(() => {
+                var ocean = document.getElementById("ocean"),
+                waveWidth = 10,
+                waveCount = Math.floor((window.innerWidth-17)/waveWidth),
+                docFrag = document.createDocumentFragment();
+
+                for(var i = 0; i < waveCount; i++){
+                var wave = document.createElement("div");
+                wave.className += " wave";
+                docFrag.appendChild(wave);
+                wave.style.left = i * waveWidth + "px";
+                wave.style.webkitAnimationDelay = (i/100) + "s";
+                }
+                $('.wave').remove();
+                ocean.appendChild(docFrag);
+           }, 300);
+        });
+        </script>
     </body>
 </html>
