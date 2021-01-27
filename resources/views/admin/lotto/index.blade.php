@@ -62,8 +62,10 @@
 
     {{-- 抽獎 --}}
     @if ($user->point >= 10)
-
     <button class='btn btn-success start' onclick="javascript:return lottory();">點我抽獎
+    </button>
+    @else
+    <button class='btn btn-success start' onclick="alert('點數不足10點，無法抽獎！！');">點我抽獎
     </button>
     {{-- href="/admin/lotto/game/{{$user->id}}" --}}
     @endif
@@ -92,7 +94,6 @@
     //點擊按鈕跳出抽獎提示確認並執行動作(button上綁定onclick="javascript:return lottory();)
     function lottory() {
     // 开始
-    //點擊按鈕移除hidden屬性
 
         var msg = "抽獎須扣除10點任務點數，確定抽獎嗎?！？";
         if (confirm(msg)==true){
@@ -103,8 +104,10 @@
 
             // 点击后禁用
             $(this).attr('disabled', 'disabled');
+            //點擊按鈕移除hidden屬性
             filter.removeAttr('hidden');
             container.attr('hidden','hidden');
+            //延遲刷新時間
             setTimeout('window.location.href="game/{{$user->id}}";',2000);
 
             return true;
@@ -114,20 +117,20 @@
 
     }
 
-    </script>
-    {{-- lottery test --}}
-    <script>
-        // 假设iEnd是请求获得的奖品结果
-var iEnd = -1;
-setTimeout(function(){
-    iEnd = Math.floor(Math.random() * 8);
-    console.log(iEnd);
-}, 2000);
+
+
+    //lottery test
+    // 假设iEnd是请求获得的奖品结果
+        var iEnd = -1;
+        setTimeout(function(){
+            iEnd = Math.floor(Math.random() * 8);
+            console.log(iEnd);
+        }, 2000);
 
 // 旋转
-function run(oPointer){
-    var deg = 0, iSpeed = 20, timer = null, arr = [0, 90, 120, 180, 210, 270, 300, 330], circle = 5;
-    timer = setInterval(function(){
+    function run(oPointer){
+        var deg = 0, iSpeed = 20, timer = null, arr = [0, 90, 120, 180, 210, 270, 300, 330], circle = 5;
+        timer = setInterval(function(){
 
         deg += iSpeed;
         if(deg >= 360){
@@ -149,8 +152,6 @@ function run(oPointer){
 
     }, 20);
 }
-
-
 
 
     </script>
