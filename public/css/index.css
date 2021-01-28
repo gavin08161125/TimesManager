@@ -914,8 +914,7 @@
 
   .project-feature .container .swipper .photo:hover h2 {
     opacity: 1;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
+    
     background: rgba(0, 0, 0, 0.5);
     width: 100%;
   }

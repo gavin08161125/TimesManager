@@ -3138,7 +3138,7 @@
                         <p>在家工作對台灣來說，2020年之前還是個「替代選項」（alternative），但在新冠肺炎（COVID-19）後，卻變成了「非要不可」（must）。遠距工作為員工帶來了，省掉通勤的時間、通勤費用，省下午餐晚餐外食時間和金錢的優點；同時少了辦公室的噪音、大聲談話或做事被打斷等等干擾，員工能更專注一次完成一項任務，一心多用不只會降低專注力和效率，研究也顯示，只要一件正在進行的事情被打斷，效率就會減少20%！
                     </p>
                 </div>
-                <div class="circle" style="background-image: url('{{ asset('img/index/Earyh-all.png') }}');">
+                <div class="circle" style="background-image: url('{{ asset('img/earth.cc.png') }}');">
                     <div class="point">
                     </div>
                     <div class="point"></div></div>
