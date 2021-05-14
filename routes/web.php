@@ -109,4 +109,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
     Route::get('/lotto/game/{id}','LottoController@lottoGame');
     Route::get('/lotto/index','LottoController@lottoIndex');
 
+    //抓測試IP
+    Route::get('/test',function (){
+        return view('text');
+    });
+
 });
