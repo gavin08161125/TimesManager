@@ -111,7 +111,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
 
     //抓測試IP
     Route::get('/test',function (){
-        return view('text');
+        return view('test');
     });
 
 });
