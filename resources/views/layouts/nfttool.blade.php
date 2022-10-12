@@ -25,13 +25,27 @@
             </textarea>
         </div>
 
+
+
+        <div style="display: flex">
+            <div class="form-group">
+                <label for="address">地址轉大小寫:</label>
+                <input type="text" class="form-control" id="address" name="address">
+            </div>
+            <button class="btn btn-primary" onclick="toLower()" >送出</button>
+        </div>
+
+        <div>
+            <label for="toLower">轉換結果:</label>
+            <textarea name="toLower" id="toLower" cols="100" rows="2">
+            </textarea>
+        </div>
+
     </div>
 
     <script>
 
         function submit(){
-
-            console.log("草");
             let proofBefore = document.getElementById('proof').value;
             console.log(proofBefore);
             let proofAfter = proofBefore.replace(/"/g,'');
@@ -46,7 +60,20 @@
                 alert('調皮?')
             }
 
+        }
 
+        function toLower(){
+            let addressBefore = document.getElementById('address').value;
+
+
+            if(addressBefore !== ""){
+                let addressAfter = addressBefore.toLowerCase();
+                let resultAddress= document.getElementById('toLower');
+                resultAddress.value = addressAfter;
+
+            }else{
+                alert('調皮?')
+            }
         }
 
     </script>
