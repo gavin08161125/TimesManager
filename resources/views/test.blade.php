@@ -1,4 +1,3 @@
-
 <?php
 if (!empty($_SERVER["HTTP_CLIENT_IP"])){
     $ip = $_SERVER["HTTP_CLIENT_IP"];
@@ -7,5 +6,14 @@ if (!empty($_SERVER["HTTP_CLIENT_IP"])){
 }else{
     $ip = $_SERVER["REMOTE_ADDR"];
 }
-echo $ip;
+echo IP:$ip;
+
 ?>
+
+@extends('layouts.nfttool')
+
+
+
+
+
+
