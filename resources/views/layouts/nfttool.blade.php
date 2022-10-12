@@ -37,7 +37,7 @@
 
         <div>
             <label for="toLower">轉換結果:</label>
-            <textarea style="resize:none" name="toLower" id="toLower" cols="250" rows="30" readonly>
+            <textarea style="resize:none" name="toLower" id="toLower" cols="250" rows="3" readonly>
             </textarea>
         </div>
 
