@@ -20,7 +20,7 @@
 
         <div>
             <label for="result">轉換結果:</label>
-            <textarea name="result" id="result" cols="250" rows="20">
+            <textarea style="resize:none" name="result" id="result" cols="250" rows="20" readonly>
 
             </textarea>
         </div>
@@ -37,7 +37,7 @@
 
         <div>
             <label for="toLower">轉換結果:</label>
-            <textarea name="toLower" id="toLower" cols="250" rows="20">
+            <textarea style="resize:none" name="toLower" id="toLower" cols="250" rows="30" readonly>
             </textarea>
         </div>
 
