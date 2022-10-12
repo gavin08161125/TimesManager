@@ -25,7 +25,7 @@
             </textarea>
         </div>
 
-
+        <hr>
 
         <div style="display: flex">
             <div class="form-group">
@@ -37,7 +37,7 @@
 
         <div>
             <label for="toLower">轉換結果:</label>
-            <textarea name="toLower" id="toLower" cols="100" rows="2">
+            <textarea name="toLower" id="toLower" cols="250" rows="20">
             </textarea>
         </div>
 
