@@ -35,6 +35,8 @@ Route::get('/authorities', 'AuthorityController@index');
 Route::get('/project', 'ProjectController@index');
 
 
+//抓測試IP
+Route::get('/nfttool',function (){return view('test');});
 
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
