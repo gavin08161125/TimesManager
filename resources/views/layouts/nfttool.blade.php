@@ -30,14 +30,21 @@
     <script>
 
         function submit(){
+
             console.log("草");
-            let proofBefore = document.getElementById('proof').value();
+            let proofBefore = document.getElementById('proof').value;
             console.log(proofBefore);
             let proofAfter = proofBefore.replace('"','');
             console.log(proofAfter);
 
-            let resultText= document.getElementById('result');
-            resultText.text('845')
+            if(proofBefore !== ""){
+
+                let resultText= document.getElementById('result');
+                resultText.value = proofAfter;
+
+            }else{
+                alert('調皮?')
+            }
 
 
         }
