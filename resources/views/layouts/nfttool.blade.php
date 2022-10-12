@@ -10,17 +10,17 @@
     <div class="container">
         <h2>小功能</h2>
         <hr>
-        <div>
+        <div style="display: flex">
             <div class="form-group">
-                <label for="proof">轉換proof</label>
+                <label for="proof">轉換proof:</label>
                 <input type="text" class="form-control" id="proof" name="proof">
             </div>
             <button class="btn btn-primary" onclick="submit()" >送出</button>
         </div>
 
         <div>
-            轉換結果:
-            <textarea name="result" id="result" cols="30" rows="10">
+            <label for="result">轉換結果:</label>
+            <textarea name="result" id="result" cols="250" rows="20">
 
             </textarea>
         </div>
@@ -30,9 +30,15 @@
     <script>
 
         function submit(){
-            console.log(草);
+            console.log("草");
             let proofBefore = document.getElementById('proof').value();
             console.log(proofBefore);
+            let proofAfter = proofBefore.replace('"','');
+            console.log()proofAfter;
+
+            let resultText= document.getElementById('result');
+            resultText.text('845')
+
 
         }
 
