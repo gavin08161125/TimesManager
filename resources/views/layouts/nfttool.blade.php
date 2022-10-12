@@ -34,7 +34,7 @@
             let proofBefore = document.getElementById('proof').value();
             console.log(proofBefore);
             let proofAfter = proofBefore.replace('"','');
-            console.log()proofAfter;
+            console.log(proofAfter);
 
             let resultText= document.getElementById('result');
             resultText.text('845')
