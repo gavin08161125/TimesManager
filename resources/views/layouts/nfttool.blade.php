@@ -34,7 +34,7 @@
             console.log("草");
             let proofBefore = document.getElementById('proof').value;
             console.log(proofBefore);
-            let proofAfter = proofBefore.replace('"','');
+            let proofAfter = proofBefore.replace(/"/g,'');
             console.log(proofAfter);
 
             if(proofBefore !== ""){
