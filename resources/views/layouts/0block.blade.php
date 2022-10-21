@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +21,6 @@
         }
     </style>
 </head>
-
 <body>
     <div >
         <input  id="connect" type="submit" value="連接" onclick="login()">
@@ -40,7 +38,7 @@
 
     <div>
         <label for="pk">私鑰(監測零塊打用):</label>
-        <input class="i"  id="pk" ></input>
+        <input class=""  id="pk" ></input>
     </div>
 
 
@@ -72,7 +70,7 @@
         <input type="submit" value="手動mint" onclick="startMint()">
         <input type="submit" value="監測" onclick="start(1)">
         <!-- <input type="submit" value="停止監測" onclick="start(0)"> -->
-        <!-- <input type="submit" value="快速" onclick="pkMint()"> -->
+        <!-- <input type="submit" value="快速" onclick="startPkMint()"> -->
     </div>
 
 
@@ -343,7 +341,7 @@
                 console.log("監測合約",contract.toString());
                 customWsProvider.on("pending", async (tx) => {
                 await customWsProvider.getTransaction(tx).then(function (transaction) {
-                        // console.log(transaction.to == contract.toString());
+                        console.log(transaction.to == contract.toString());
                         if( transaction.to == contract.toString() ){
                             console.log("pending")
                             console.log(transaction);
@@ -436,10 +434,16 @@
 
         async function pkMint(pk ,address , price , gasLimit ,hex16){
             const pkWallet = new ethers.Wallet(pk);
-            pkWallet.connect(provider)
+            let m = pkWallet.connect(provider)
+            console.log(m);
+            console.log('contract:',address);
+            console.log('price:',price);
+            console.log('gasLimit:',gasLimit);
+            console.log('hex16:',hex16);
+            console.log('pk:',pk);
 
-            await pkWallet.sendTransaction({
-                to: toAddress,
+            await m.sendTransaction({
+                to: address,
                 value: ethers.utils.parseEther(price),
                 data: hex16,
                 gasLimit: gasLimit
@@ -454,6 +458,17 @@
 
         }
 
+        function startPkMint(){
+            let contract = document.getElementById('contract').value;
+            let price = document.getElementById('price').value;
+            let gasLimit = parseInt(document.getElementById('gasLimit').value);
+            let hex16 = document.getElementsByName('hex16')[0].value;
+            let pk = document.getElementById('pk').value
+
+
+
+            pkMint(pk ,contract , price , gasLimit ,hex16)
+        }
 
 
 
