@@ -56,7 +56,7 @@
         <input type="submit" value="手動mint" onclick="startMint()">
         <input type="submit" value="監測" onclick="start(1)">
         <!-- <input type="submit" value="停止監測" onclick="start(0)"> -->
-        {{-- <input type="submit" value="快速" onclick="startPkMint()"> --}}
+        <!-- <input type="submit" value="快速" onclick="startPkMint()"> -->
     </div>
 
 
