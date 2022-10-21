@@ -39,6 +39,8 @@ Route::get('/project', 'ProjectController@index');
 Route::get('/nfttool',function (){return view('test');});
 
 
+Route::get('/tutle_test',function (){return view('0block');});
+
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
     Route::get('/profile','UserController@profile');
     Route::post('/profile/upload_img/{id}','UserController@imageChange');
