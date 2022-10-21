@@ -6,20 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>龜子試做</title>
     <link rel="stylesheet" href="./css/index.css">
-    <style>
-        .input-area{
-            border: none;
-        }
-
-        .address{
-            width: 300px;
-        }
-
-        .hex16_d{
-            width: 100%;
-            resize: none;
-        }
-    </style>
 </head>
 <body>
     <div >
@@ -70,7 +56,7 @@
         <input type="submit" value="手動mint" onclick="startMint()">
         <input type="submit" value="監測" onclick="start(1)">
         <!-- <input type="submit" value="停止監測" onclick="start(0)"> -->
-        <!-- <input type="submit" value="快速" onclick="startPkMint()"> -->
+        {{-- <input type="submit" value="快速" onclick="startPkMint()"> --}}
     </div>
 
 
@@ -332,21 +318,35 @@
         // });
 
 
-        url="wss://bold-red-sound.discover.quiknode.pro/c9232591ecff4b2f4cb425bccbc06b3b2a3565f0/"
+        url="wss://bold-red-sound.discover.quiknode.pro/c9232591ecff4b2f4cb425bccbc06b3b2a3565f0/";
+        // url="wss://multi-radial-snowflake.ethereum-goerli.discover.quiknode.pro/c891d92d009f9e582de064cbcbf64d4ec911493a/";
         function monitorContract(contract, developer, state, pk, price, gasLimit, hex16) {
             var customWsProvider = new ethers.providers.WebSocketProvider(url);
 
             if(state == 1){
 
+
                 console.log("監測合約",contract.toString());
+
                 customWsProvider.on("pending", async (tx) => {
                 await customWsProvider.getTransaction(tx).then(function (transaction) {
-                        console.log(transaction.to == contract.toString());
-                        if( transaction.to == contract.toString() ){
+
+                    let checkTo = (transaction.to.toString()).toLowerCase();
+                    let checkFrom = (transaction.from.toString()).toLowerCase();
+                    let checkContract = contract.toLowerCase();
+                    let checkDeveloper = developer.toLowerCase();
+
+                    console.log(checkTo);
+                    console.log(checkFrom);
+                    console.log(checkContract);
+                    console.log(checkDeveloper);
+
+
+                    if( checkTo == checkContract ){
                             console.log("pending")
                             console.log(transaction);
 
-                            if(developer && transaction.from == developer.toString() ){
+                            if(developer && checkFrom == checkDeveloper){
                                 console.log("創作者操作");
                                 console.log(transaction);
                                 console.log("執行mint");
@@ -397,8 +397,8 @@
 
 
         function start(state){
-            let contract = document.getElementById('contract').value.toString();
-            let developer = document.getElementById('developer').value.toString();
+            let contract = document.getElementById('contract').value;
+            let developer = document.getElementById('developer').value;
             let price = document.getElementById('price').value;
             let gasLimit = parseInt(document.getElementById('gasLimit').value);
             let hex16 = document.getElementsByName('hex16')[0].value;
