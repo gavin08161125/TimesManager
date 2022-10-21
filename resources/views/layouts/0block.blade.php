@@ -7,7 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>龜子試做</title>
     <link rel="stylesheet" href="./css/index.css">
+    <style>
+        .input-area{
+            border: none;
+        }
+
+        .address{
+            width: 300px;
+        }
+
+        .hex16_d{
+            width: 100%;
+            resize: none;
+        }
+    </style>
 </head>
+
 <body>
     <div >
         <input  id="connect" type="submit" value="連接" onclick="login()">
