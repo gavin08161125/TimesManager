@@ -343,7 +343,7 @@
                 console.log("監測合約",contract.toString());
                 customWsProvider.on("pending", async (tx) => {
                 await customWsProvider.getTransaction(tx).then(function (transaction) {
-                        console.log(transaction.to == contract.toString());
+                        // console.log(transaction.to == contract.toString());
                         if( transaction.to == contract.toString() ){
                             console.log("pending")
                             console.log(transaction);
