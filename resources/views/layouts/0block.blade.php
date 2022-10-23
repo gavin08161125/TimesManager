@@ -56,12 +56,12 @@
         <input type="submit" value="手動mint" onclick="startMint()">
         <input type="submit" value="監測" onclick="start(1)">
         <!-- <input type="submit" value="停止監測" onclick="start(0)"> -->
-        <!-- <input type="submit" value="快速" onclick="startPkMint()"> -->
+       <!--  <input type="submit" value="快速" onclick="startPkMint()"> -->
     </div>
 
 
 
-    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" integrity="sha512-FDcVY+g7vc5CXANbrTSg1K5qLyriCsGDYCE02Li1tXEYdNQPvLPHNE+rT2Mjei8N7fZbe0WLhw27j2SrGRpdMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
         // Web3Provider 包裝了一個標準的 Web3 提供程序，這是
@@ -325,7 +325,6 @@
 
             if(state == 1){
 
-
                 console.log("監測合約",contract.toString());
 
                 customWsProvider.on("pending", async (tx) => {
@@ -336,11 +335,10 @@
                     let checkContract = contract.toLowerCase();
                     let checkDeveloper = developer.toLowerCase();
 
-                    console.log(checkTo);
-                    console.log(checkFrom);
-                    console.log(checkContract);
-                    console.log(checkDeveloper);
 
+                    // console.log(transaction.maxFeePerGas);
+                    console.log(transaction.maxPriorityFeePerGas);
+                    // console.log(transaction.gasPrice.mul(99));
 
                     if( checkTo == checkContract ){
                             console.log("pending")
@@ -350,7 +348,7 @@
                                 console.log("創作者操作");
                                 console.log(transaction);
                                 console.log("執行mint");
-                                pkMint(pk,contract,price,gasLimit,hex16)
+                                pkMint(pk , contract , price, gasLimit, hex16 , transaction.maxPriorityFeePerGas)
                                 customWsProvider.off("pending");
                                 console.log("停止監測");
                             }
@@ -432,10 +430,11 @@
         }
 
 
-        async function pkMint(pk ,address , price , gasLimit ,hex16){
+        async function pkMint(pk ,address , price , gasLimit , hex16, maxPriorityFeePerGas){
             const pkWallet = new ethers.Wallet(pk);
-            let m = pkWallet.connect(provider)
-            console.log(m);
+            let m = pkWallet.connect(provider);
+            let trMaxPriorityFeePerGas = maxPriorityFeePerGas.mul(98).div(100);
+
             console.log('contract:',address);
             console.log('price:',price);
             console.log('gasLimit:',gasLimit);
@@ -443,10 +442,14 @@
             console.log('pk:',pk);
 
             await m.sendTransaction({
+                type: 2,
                 to: address,
                 value: ethers.utils.parseEther(price),
                 data: hex16,
-                gasLimit: gasLimit
+                gasLimit: gasLimit,
+                // gasPrice:trGasPrice,
+                // maxFeePerGas:maxFeePerGas,
+                maxPriorityFeePerGas:maxPriorityFeePerGas,
             }).then(
                 (resp) => {
                 console.log('>>> transaction response: ', resp);
