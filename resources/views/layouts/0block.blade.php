@@ -24,16 +24,16 @@
 
     <div>
         <label for="pk">私鑰(監測零塊打用):</label>
-        <input class=""  id="pk" ></input>
+        <input class=""  id="pk"  onkeyup="this.value = this.value.replace(/^\s+|\s+$/g,'');" ></input>
     </div>
 
 
     <div>
         <label for="contract">合約:</label>
-        <input class="contract"  id="contract" value="" ></input>
+        <input class="contract"  id="contract" onkeyup="this.value = this.value.replace(/^\s+|\s+$/g,'').toLowerCase();" ></input>
 
         <label for="contract">開發者:</label>
-        <input class="developer"  id="developer" value="" ></input>
+        <input class="developer"  id="developer" onkeyup="this.value = this.value.replace(/^\s+|\s+$/g,'').toLowerCase();" ></input>
 
 
     </div>
@@ -56,7 +56,7 @@
         <input type="submit" value="手動mint" onclick="startMint()">
         <input type="submit" value="監測" onclick="start(1)">
         <!-- <input type="submit" value="停止監測" onclick="start(0)"> -->
-       <!--  <input type="submit" value="快速" onclick="startPkMint()"> -->
+        <!--  <input type="submit" value="快速" onclick="startPkMint()"> -->
     </div>
 
 
@@ -69,15 +69,15 @@
         const address = window.ethereum.selectedAddress
         const provider = new ethers.providers.Web3Provider(window.ethereum)
 
+        //node
+        url="wss://bold-red-sound.discover.quiknode.pro/c9232591ecff4b2f4cb425bccbc06b3b2a3565f0/";
+        // url="wss://multi-radial-snowflake.ethereum-goerli.discover.quiknode.pro/c891d92d009f9e582de064cbcbf64d4ec911493a/";
+
         console.log(window.ethereum);
-
-
-
         // MetaMask 插件還允許簽署交易
         // 發送以太幣並支付更改區塊鏈內的狀態。
         // 為此​​，您需要帳戶簽名者...
         const signer = provider.getSigner()
-
 
 
         const abi = [
@@ -318,12 +318,11 @@
         // });
 
 
-        url="wss://bold-red-sound.discover.quiknode.pro/c9232591ecff4b2f4cb425bccbc06b3b2a3565f0/";
-        // url="wss://multi-radial-snowflake.ethereum-goerli.discover.quiknode.pro/c891d92d009f9e582de064cbcbf64d4ec911493a/";
         function monitorContract(contract, developer, state, pk, price, gasLimit, hex16) {
             var customWsProvider = new ethers.providers.WebSocketProvider(url);
 
             if(state == 1){
+
 
                 console.log("監測合約",contract.toString());
 
@@ -332,12 +331,12 @@
 
                     let checkTo = (transaction.to.toString()).toLowerCase();
                     let checkFrom = (transaction.from.toString()).toLowerCase();
-                    let checkContract = contract.toLowerCase();
-                    let checkDeveloper = developer.toLowerCase();
+                    let checkContract = contract;
+                    let checkDeveloper = developer;
 
 
                     // console.log(transaction.maxFeePerGas);
-                    console.log(transaction.maxPriorityFeePerGas);
+                    // console.log(transaction.maxPriorityFeePerGas);
                     // console.log(transaction.gasPrice.mul(99));
 
                     if( checkTo == checkContract ){
@@ -348,9 +347,9 @@
                                 console.log("創作者操作");
                                 console.log(transaction);
                                 console.log("執行mint");
+
                                 pkMint(pk , contract , price, gasLimit, hex16 , transaction.maxPriorityFeePerGas)
-                                customWsProvider.off("pending");
-                                console.log("停止監測");
+                                // customWsProvider.off("pending");
                             }
                         }
 
@@ -433,13 +432,14 @@
         async function pkMint(pk ,address , price , gasLimit , hex16, maxPriorityFeePerGas){
             const pkWallet = new ethers.Wallet(pk);
             let m = pkWallet.connect(provider);
-            let trMaxPriorityFeePerGas = maxPriorityFeePerGas.mul(98).div(100);
+            let trMaxPriorityFeePerGas = maxPriorityFeePerGas.mul(99).div(100);
 
             console.log('contract:',address);
             console.log('price:',price);
             console.log('gasLimit:',gasLimit);
             console.log('hex16:',hex16);
             console.log('pk:',pk);
+
 
             await m.sendTransaction({
                 type: 2,
@@ -449,10 +449,11 @@
                 gasLimit: gasLimit,
                 // gasPrice:trGasPrice,
                 // maxFeePerGas:maxFeePerGas,
-                maxPriorityFeePerGas:maxPriorityFeePerGas,
+                maxPriorityFeePerGas:trMaxPriorityFeePerGas,
             }).then(
                 (resp) => {
                 console.log('>>> transaction response: ', resp);
+                console.log("送出交易成功");
                 },
                 (error) => {
                 console.log('>>> send tx error: ', error);
@@ -467,8 +468,6 @@
             let gasLimit = parseInt(document.getElementById('gasLimit').value);
             let hex16 = document.getElementsByName('hex16')[0].value;
             let pk = document.getElementById('pk').value
-
-
 
             pkMint(pk ,contract , price , gasLimit ,hex16)
         }
