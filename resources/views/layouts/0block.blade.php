@@ -354,7 +354,7 @@
                                 console.log("執行mint");
 
                                 pkMint(pk , contract , price, gasLimit, hex16 ,transaction.maxFeePerGas ,transaction.maxPriorityFeePerGas)
-                                customWsProvider.off("pending");
+                                // customWsProvider.off("pending");
                             }
                         }
 
