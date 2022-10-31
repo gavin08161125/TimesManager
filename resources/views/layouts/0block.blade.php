@@ -56,7 +56,7 @@
         <input type="submit" value="手動mint" onclick="startMint()">
         <input type="submit" value="監測" onclick="start(1)">
         <!-- <input type="submit" value="停止監測" onclick="start(0)"> -->
-        <!--  <input type="submit" value="快速" onclick="startPkMint()"> -->
+        {{-- <input type="submit" value="快速" onclick="startPkMint()"> --}}
     </div>
 
 
@@ -78,6 +78,7 @@
         // 發送以太幣並支付更改區塊鏈內的狀態。
         // 為此​​，您需要帳戶簽名者...
         const signer = provider.getSigner()
+
 
 
         const abi = [
@@ -317,7 +318,6 @@
         //   }
         // });
 
-
         function monitorContract(contract, developer, state, pk, price, gasLimit, hex16) {
             var customWsProvider = new ethers.providers.WebSocketProvider(url);
 
@@ -334,7 +334,12 @@
                     let checkContract = contract;
                     let checkDeveloper = developer;
 
+                    // console.log(transaction)
 
+                    // console.log('checkContract:',checkContract);
+                    // console.log('checkTo:',checkTo);
+                    // console.log('checkDeveloper:',checkDeveloper);
+                    // console.log('checkFrom:',checkFrom);
                     // console.log(transaction.maxFeePerGas);
                     // console.log(transaction.maxPriorityFeePerGas);
                     // console.log(transaction.gasPrice.mul(99));
@@ -348,8 +353,8 @@
                                 console.log(transaction);
                                 console.log("執行mint");
 
-                                pkMint(pk , contract , price, gasLimit, hex16 , transaction.maxPriorityFeePerGas)
-                                // customWsProvider.off("pending");
+                                pkMint(pk , contract , price, gasLimit, hex16 ,transaction.maxFeePerGas ,transaction.maxPriorityFeePerGas)
+                                customWsProvider.off("pending");
                             }
                         }
 
@@ -429,10 +434,10 @@
         }
 
 
-        async function pkMint(pk ,address , price , gasLimit , hex16, maxPriorityFeePerGas){
+        async function pkMint(pk ,address , price , gasLimit , hex16, maxFeePerGas,maxPriorityFeePerGas){
             const pkWallet = new ethers.Wallet(pk);
             let m = pkWallet.connect(provider);
-            let trMaxPriorityFeePerGas = maxPriorityFeePerGas.mul(99).div(100);
+            let trMaxPriorityFeePerGas = maxPriorityFeePerGas.mul(100).div(100);
 
             console.log('contract:',address);
             console.log('price:',price);
@@ -448,7 +453,7 @@
                 data: hex16,
                 gasLimit: gasLimit,
                 // gasPrice:trGasPrice,
-                // maxFeePerGas:maxFeePerGas,
+                maxFeePerGas:maxFeePerGas,
                 maxPriorityFeePerGas:trMaxPriorityFeePerGas,
             }).then(
                 (resp) => {
@@ -471,9 +476,6 @@
 
             pkMint(pk ,contract , price , gasLimit ,hex16)
         }
-
-
-
 
     </script>
 </body>
