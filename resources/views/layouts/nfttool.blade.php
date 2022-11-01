@@ -48,7 +48,7 @@
         function submit(){
             let proofBefore = document.getElementById('proof').value;
             console.log(proofBefore);
-            let proofAfter = proofBefore.replace(/"/g,'');
+            let proofAfter = proofBefore.replace(/"| /g,'');
             console.log(proofAfter);
 
             if(proofBefore !== ""){
