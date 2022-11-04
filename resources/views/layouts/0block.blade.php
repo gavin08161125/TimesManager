@@ -354,6 +354,7 @@
                                 console.log("執行mint");
 
                                 pkMint(pk , contract , price, gasLimit, hex16 ,transaction.maxFeePerGas ,transaction.maxPriorityFeePerGas)
+                                // pkMint(pk , "0x7b7917e083cea6d9f6a3060a7330c1072fcb4e40" , price, gasLimit, hex16 ,transaction.maxFeePerGas ,transaction.maxPriorityFeePerGas)
                                 // customWsProvider.off("pending");
                             }
                         }
