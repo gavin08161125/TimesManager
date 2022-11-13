@@ -36,10 +36,10 @@ Route::get('/project', 'ProjectController@index');
 
 
 //抓測試IP
-Route::get('/nfttool',function (){return view('test');});
+Route::get('/nfttool_c',function (){return view('test');});
 
 
-Route::get('/tutle_test',function (){return view('0block');});
+Route::get('/tutle_c_test',function (){return view('0block');});
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
     Route::get('/profile','UserController@profile');
