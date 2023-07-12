@@ -116,7 +116,7 @@ class TaskController extends Controller
         $task = Task::find($id);
 
         $projects = Project::find($task->project_id);
-        $members = Project::find($task->project_id);
+        $members = Project::find($task->project_id)->users;
 
 
         return view('admin.task.edit', compact('task', 'projects', 'members'));
