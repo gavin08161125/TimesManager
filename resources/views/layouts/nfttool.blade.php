@@ -14,10 +14,10 @@
 </head>
 <body>
 
-    <div class="menu">
+    {{-- <div class="menu">
         <a href="../home.html"><img class="icon" src="../Image/Pig.png" alt="Unity" width="60" height="60"></a>
         <a class="inpage-button" href="index.html">TOOLS</a>
-    </div>
+    </div> --}}
     <div class="flex-tool">
         <div class="tool-menu">
             <a class="tool-button" href="#">Mint</a> <br>
