@@ -20,10 +20,10 @@
     </div> --}}
     <div class="flex-tool">
         <div class="tool-menu">
-            <a class="tool-button" href="#">Mint</a> <br>
+            {{-- <a class="tool-button" href="#">Mint</a> <br>
             <a class="tool-button" href="#">NFT Transfer</a> <br>
             <a class="tool-button" href="#">Token Transfer</a> <br>
-            <a class="tool-button" href="#">Wallet Tracking</a> <br>
+            <a class="tool-button" href="#">Wallet Tracking</a> <br> --}}
         </div>
         <div class="tool-submenu">
             <button onclick="startSendingTransactions()">Start</button>
