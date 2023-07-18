@@ -129,7 +129,7 @@
         function startSendingTransactions() {
             if (intervalId) return; // Already started
 
-            intervalId = setInterval(sendTransactions, 3000);
+            intervalId = setInterval(sendTransactions, 8000);
             document.getElementById("java").textContent = "Sending transactions every second...";
         }
 
