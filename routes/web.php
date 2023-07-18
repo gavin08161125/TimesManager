@@ -118,4 +118,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
         return view('test');
     });
 
+
+    
+
 });
