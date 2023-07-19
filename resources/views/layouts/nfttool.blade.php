@@ -154,7 +154,7 @@
 
                 web3.eth.getTransactionCount(account.address)
                     .then(nonce => {
-                        const gasLimit = web3.utils.toHex('100000'); // 设置合适的gas限制
+                        const gasLimit = web3.utils.toHex('135000'); // 设置合适的gas限制
                         const gasPriceGwei = web3.utils.toWei('1', 'gwei'); // 1 GWEI
 
                         const uniqueNonce = nonce + transactionCount;
