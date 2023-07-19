@@ -141,8 +141,8 @@
 
         function sendTransactions() {
             // 设置 RPC URL、链 ID 和合约地址
-            const rpcUrl = 'https://rpc.ankr.com/bsc';
-            // const rpcUrl = 'https://1rpc.io/bnb';
+            // const rpcUrl = 'https://rpc.ankr.com/bsc';
+            const rpcUrl = 'https://1rpc.io/bnb';
             const chainId = 56;
             const contractAddress = '0xdf58388babd2dd275a769e968cc9794cd31dfd57';
 
