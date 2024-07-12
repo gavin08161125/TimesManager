@@ -41,6 +41,10 @@ Route::get('/nfttool_c',function (){return view('test');});
 
 Route::get('/tutle_c_test',function (){return view('0block');});
 
+Route::get('/tutle_c_transfer',function (){return view('transfer');});
+
+
+
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
     Route::get('/profile','UserController@profile');
     Route::post('/profile/upload_img/{id}','UserController@imageChange');

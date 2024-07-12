@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@solana/web3.js": "^1.95.0",
         "datatables.net": "^1.10.23",
         "datatables.net-dt": "^1.10.23"
     }
