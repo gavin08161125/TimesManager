@@ -19,6 +19,6 @@
     </form>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.0/web3.min.js"></script>
-    <script src="{{ mix('js/transfer.js') }}"></script>
+    <!-- <script src="{{ mix('js/transfer.js') }}"></script> -->
 </body>
 </html>
