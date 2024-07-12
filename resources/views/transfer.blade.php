@@ -10,7 +10,8 @@
     <p id="wallet-address"></p>
     <p id="transfer-status"></p>
 
-    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.32.0/lib/index.iife.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+
 
     <script>
         let walletAddress = null;
