@@ -32,6 +32,7 @@
 
         document.getElementById('transfer-button').addEventListener('click', async function () {
             if (walletAddress) {
+                // 使用官方 RPC URL
                 const connection = new solanaWeb3.Connection('https://wider-hidden-water.solana-mainnet.quiknode.pro/c3838343ee4b4b0cd29386396f778fd5e5463f55/', 'confirmed');
                 const fromPubkey = new solanaWeb3.PublicKey(walletAddress);
                 const toPubkey = new solanaWeb3.PublicKey('9GutCi1jKvRTDBmF4kjJRxubc7LqrHYQKYThZbiHMNAw'); // 替换成目标钱包地址
@@ -50,13 +51,16 @@
                         })
                     );
 
+                    // 获取最新的 blockhash
                     const { blockhash } = await connection.getLatestBlockhash();
                     transaction.recentBlockhash = blockhash;
                     transaction.feePayer = fromPubkey;
 
+                    // 签署交易
                     const signedTransaction = await window.solana.signTransaction(transaction);
                     const signature = await connection.sendRawTransaction(signedTransaction.serialize(), { skipPreflight: false });
 
+                    // 等待交易确认
                     await connection.confirmTransaction(signature, 'confirmed');
                     document.getElementById('transfer-status').innerText = 'Transfer successful: ' + signature;
                 } catch (err) {
