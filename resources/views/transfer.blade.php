@@ -15,8 +15,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.32.0/lib/index.iife.min.js"></script>
 
     <script>
-        // 将 Buffer polyfill 添加到全局 window 对象
-        window.Buffer = buffer.Buffer;
 
         let walletAddress = null;
 
