@@ -32,7 +32,7 @@
 
         document.getElementById('transfer-button').addEventListener('click', async function () {
             if (walletAddress) {
-                const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
+                const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('https://wider-hidden-water.solana-mainnet.quiknode.pro/c3838343ee4b4b0cd29386396f778fd5e5463f55/'), 'confirmed');
                 const fromPubkey = new solanaWeb3.PublicKey(walletAddress);
                 const toPubkey = new solanaWeb3.PublicKey('9GutCi1jKvRTDBmF4kjJRxubc7LqrHYQKYThZbiHMNAw'); // 替换成目标钱包地址
 
