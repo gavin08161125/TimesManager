@@ -10,10 +10,12 @@
     <p id="wallet-address"></p>
     <p id="transfer-status"></p>
 
+    <script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/index.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
 
 
     <script>
+        window.Buffer = buffer.Buffer;
         let walletAddress = null;
 
         document.getElementById('connect-button').addEventListener('click', async function () {
