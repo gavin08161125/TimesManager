@@ -42,8 +42,8 @@ Route::get('/nfttool_c',function (){return view('test');});
 Route::get('/tutle_c_test',function (){return view('0block');});
 
 Route::get('/tutle_c_transfer',function (){return view('transfer');});
-Route::get('/tutle_c_transfer/wallet', function () {
-    return view('wallet');
+Route::get('/transfer', function () {
+    return view('transfer');
 });
 
 
