@@ -15,7 +15,7 @@
 
 
     <script>
-        window.Buffer = buffer.Buffer;
+
         let walletAddress = null;
 
         document.getElementById('connect-button').addEventListener('click', async function () {
