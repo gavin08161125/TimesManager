@@ -46,7 +46,9 @@ Route::get('/transfer', function () {
     return view('transfer');
 });
 
-Route::get('/test-0',function (){return "test0";});
+Route::post('/test-0', function (Request $request) {
+    return response()->json($request->all());
+});
 
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
