@@ -46,6 +46,7 @@ Route::get('/transfer', function () {
     return view('transfer');
 });
 
+Route::get('/test-0',function (){return "test0";});
 
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin/'], function () {
