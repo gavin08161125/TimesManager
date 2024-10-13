@@ -47,7 +47,7 @@ Route::get('/transfer', function () {
 });
 
 Route::post('/test-0', function (Request $request) {
-    return response()->json($request->all());
+    return response()->json($request->all(), 200);
 });
 
 
